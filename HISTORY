@@ -1,4 +1,21 @@
 *******************************************
+** CPSRSS V0.5.3 [R1 build 2005/03/07-16:08 by madarche]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+- Lazy refresh is now on by default.
+Bug fixes:
+~~~~~~~~~~
+- Made the links of the RSS box open in the same window by default. This is a
+  usability and accessibility improvement.
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSRSS V0.5.2 [R1 build 2004/12/13-09:14 by edegoute]
 
 Requires:
