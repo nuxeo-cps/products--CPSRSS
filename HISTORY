@@ -1,4 +1,20 @@
 *******************************************
+** CPSRSS V0.1.2 [R1 build 2004/01/21-10:44 by ben]
+
+ZODB Requires:
+~~~~~~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+-
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- Cosmetic changes
+
+*******************************************
 ** CPSRSS V0.1.1 [R1 build 2003-10/03-13:51 by anguenot]
 
 ZODB Requires:
