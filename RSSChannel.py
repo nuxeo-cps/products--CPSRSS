@@ -218,7 +218,6 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
             LOG('RSSChannel Error', DEBUG,
                 'Timeout error while retrieving feed\n'+str(url)+'\n'+str(err2))
 
-        print data
         if data.has_key('status') and data['status'] >= 400:
             # If the http request fails, the description field could contain
             # more info about why the request failed, like the error code (404,
@@ -264,7 +263,6 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
                 filteredData['url'] = ''
                 # Fill with actual values if exist (for robustness as this
                 # might depend on the quality of the feed).
-                print data
                 if data.has_key('feed'):
                     chn = data['feed']
                     if chn.has_key('title'):
