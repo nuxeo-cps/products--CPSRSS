@@ -93,13 +93,13 @@ class RSSTool(UniqueObject, PortalFolder):
     manage_addRSSChannelForm = DTMLFile('zmi/addRSSChannelForm', globals())
 
     security.declareProtected(ManagePortal, 'manage_addRSSChannel')
-    def manage_addRSSChannel(self, id, REQUEST=None, **kw):
+    def manage_addRSSChannel(self, id, channel_url, REQUEST=None, **kw):
         """Add a RSS Channel from the ZMI."""
         if REQUEST:
             kw.update(REQUEST.form)
             del kw['id']
         container = self
-        addRSSChannel(container, id, **kw)
+        addRSSChannel(container, id, channel_url)
         if REQUEST:
             REQUEST.RESPONSE.redirect('%s/%s/manage_workspace'
                                       % (container.absolute_url(), id))

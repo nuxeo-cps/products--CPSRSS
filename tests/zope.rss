@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<rss version="2.0">
+
+  <channel>
+    <title>Zope.org</title>
+    <link>http://zope.org</link>
+    <language>en</language>
+    <description></description>
+
+  <item>
+       <title>mxmCounter - A filesystem based hit counter product for Zope, CMF &amp; Plone sites</title>
+       <link>http://zope.org/Members/maxm/news/mxmCounter_release</link>
+       <guid>http://zope.org/Members/maxm/news/mxmCounter_release</guid>
+       <pubDate>Thu, 26 Feb 2004 00:57:48 -0500</pubDate>
+       <description>mxm has just released version 1.0.0 of mxmCounter. It counts hits on webpages.</description>
+  </item>
+  <item>
+       <title>Issue dealer 0.9.22 released</title>
+       <link>http://zope.org/Members/morphex/issue_dealer_0_9_22_released</link>
+       <guid>http://zope.org/Members/morphex/issue_dealer_0_9_22_released</guid>
+       <pubDate>Wed, 25 Feb 2004 14:51:32 -0500</pubDate>
+       <description>A new version of the Issue Dealer has been released.</description>
+  </item>
+  <item>
+       <title>Nuxeo CPS 3.0 rc3 released</title>
+       <link>http://zope.org/Members/nuxeo/news/cps3.0rc3-released</link>
+       <guid>http://zope.org/Members/nuxeo/news/cps3.0rc3-released</guid>
+       <pubDate>Wed, 25 Feb 2004 12:02:01 -0500</pubDate>
+       <description>The hopefuly final release candidate before CPS 3.0 has been released. All the 355 unit tests are passing, of course, but there may be a few bugs left, so it's the last time for you to grab the tarball / zipball and test it (under Zope 2.6.1, 2.6.4 or 2.7.0) and report bugs (+ patches :) ) to the cps-devel mailing list (http://lists.nuxeo.com/mailman/listinfo/cps-devel).</description>
+  </item>
+  <item>
+       <title>Silva 0.9.3.3 released</title>
+       <link>http://zope.org/Members/infrae/news/silva_0_9_3_3_released</link>
+       <guid>http://zope.org/Members/infrae/news/silva_0_9_3_3_released</guid>
+       <pubDate>Wed, 25 Feb 2004 06:19:26 -0500</pubDate>
+       <description>Infrae has released Silva 0.9.3.3, a minor bugfix release for the Silva 0.9.3 line of development.</description>
+  </item>
+  <item>
+       <title>Zope 2.7.0 and products RPMs for RedHat</title>
+       <link>http://zope.org/Members/hewei/release_zoperpms</link>
+       <guid>http://zope.org/Members/hewei/release_zoperpms</guid>
+       <pubDate>Wed, 25 Feb 2004 06:19:28 -0500</pubDate>
+       <description></description>
+  </item>
+  <item>
+       <title>QuickLinks 0.1.8</title>
+       <link>http://zope.org/Members/peterbe/QuickLinks/News_Item.2004-02-24.5028</link>
+       <guid>http://zope.org/Members/peterbe/QuickLinks/News_Item.2004-02-24.5028</guid>
+       <pubDate>Tue, 24 Feb 2004 15:12:16 -0500</pubDate>
+       <description>QuickLinks 0.1.8 is a tiny but useful patch to the Zope management interface.</description>
+  </item>
+  <item>
+       <title>Pan European Portals Conference 2004</title>
+       <link>http://zope.org/Members/glpb99/pepc2004</link>
+       <guid>http://zope.org/Members/glpb99/pepc2004</guid>
+       <pubDate>Tue, 24 Feb 2004 01:13:06 -0500</pubDate>
+       <description>The call for speakers is now open</description>
+  </item>
+
+  </channel>
+
+
+</rss>
