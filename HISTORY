@@ -1,4 +1,23 @@
 *******************************************
+** CPSRSS V0.3.1 [R1 build 2004/07/07-17:11 by madarche]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+-
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- view permission on a RSS box is set to anonymous users when creating the box:
+  users having permissions in subfolders do not have the right to view boxes
+  set in the .cps_boxes file higher in the hierarchy, whereas they have the right
+  to view boxes set in the .cps_boxes_root file (discussed with Florent).
+
+*******************************************
 ** CPSRSS V0.3.0 [R1 build 2004/06/14-08:14 by ben]
 
 Requires:
