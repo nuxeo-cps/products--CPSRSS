@@ -167,7 +167,7 @@ def install(self):
     ttool.manage_addTypeInformation(id='RSS Box',
                                     add_meta_type='Factory-based Type Information',
                                     typeinfo_name='CPSRSS: RSS Box',)
-    ttool['RSS Box'].manage_changeProperties(title='RSS Box',
+    ttool['RSS Box'].manage_changeProperties(title='portal_type_RSSBox_title',
                                              description='portal_type_RSSBox_description',
                                              content_meta_type='RSS Box')
                                     
