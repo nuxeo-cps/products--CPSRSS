@@ -12,10 +12,8 @@
   <tr valign="top">
     <th align="right">Channel</th>
     <td>
-<!--      <input type="text" name="channel_id" value="" size="50"
-             tal:attributes="value box/box/channel_id">  -->
       <select name="channel_id">
-        <option tal:repeat="aFeed here/portal_rss/objectValues" value="" tal:attributes="value feed/id" tal:content="feed/title">Feed Title</option>
+        <option tal:repeat="aFeed here/portal_rss/objectValues" value="" tal:attributes="value aFeed/id" tal:content="aFeed/title">Feed Title</option>
       </select>
     </td>
   </tr>
