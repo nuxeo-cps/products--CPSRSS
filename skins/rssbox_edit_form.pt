@@ -1,15 +1,28 @@
-<metal:html use-macro="here/main_template/macros/master">
+<!-- $Id$ -->
+
+<metal:html xmlns:tal="http://xml.zope.org/namespaces/tal" 
+            xmlns:metal="http://xml.zope.org/namespaces/metal" 
+            use-macro="here/main_template/macros/master">
 
 <metal:main fill-slot="main">
 
 <metal:boxform use-macro="here/basebox_edit_form/macros/boxform">
+
 <metal:fields fill-slot="additional_fields">
   <tr valign="top">
-    <th align="right">Channel</th><td>
-      <input type="text" name="channel_id" value="" size="50"
-             tal:attributes="value box/box/channel_id"></td>
+    <th align="right">Channel</th>
+    <td>
+<!--      <input type="text" name="channel_id" value="" size="50"
+             tal:attributes="value box/box/channel_id">  -->
+      <select name="channel_id">
+        <option tal:repeat="aFeed here/portal_rss/objectValues" value="" tal:attributes="value feed/id" tal:content="feed/title">Feed Title</option>
+      </select>
+    </td>
   </tr>
 </metal:fields>
+
 </metal:boxform>
+
 </metal:main>
+
 </metal:html>
