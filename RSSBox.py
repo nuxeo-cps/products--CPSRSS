@@ -67,12 +67,16 @@ class RSSBox(BaseBox):
     security = ClassSecurityInfo()
 
     _properties = BaseBox._properties + (
-        {'id':'channel_id', 'type':'string', 'mode':'w', 'label':'RSS Channel Id'},
+        {'id':'channel_id', 'type':'string', 'mode':'w',
+         'label':'RSS Channel Id'},
         )
 
     def __init__(self, id,
                  channel_id='',
                  **kw):
+        #this on-the-fly import prevents a randomly-occuring failure
+        #to import that causes BaseBox to be None on the next line
+        #(at least with Zope 2.6.1)
         from Products.CPSDefault.BaseBox import BaseBox
         BaseBox.__init__(self, id, provider='rss', category='rssbox', kw=kw)
         self.channel_id = channel_id
