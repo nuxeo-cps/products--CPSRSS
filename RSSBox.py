@@ -73,6 +73,7 @@ class RSSBox(BaseBox):
     def __init__(self, id,
                  channel_id='',
                  **kw):
+        from Products.CPSDefault.BaseBox import BaseBox
         BaseBox.__init__(self, id, provider='rss', category='rssbox', kw=kw)
         self.channel_id = channel_id
 
