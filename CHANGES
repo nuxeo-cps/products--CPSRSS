@@ -3,8 +3,8 @@ Requires:
 -
 New features:
 ~~~~~~~~~~~~~
-added an event notification on refreshed channels
--
+- added an event notification on refreshed channels
+- added author and modified date of item information
 Bug fixes:
 ~~~~~~~~~~
 -
