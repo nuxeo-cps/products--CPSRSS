@@ -80,7 +80,8 @@ class RSSBox(BaseBox):
         #this on-the-fly import prevents a randomly-occuring failure
         #to import that causes BaseBox to be None on the next line
         #(at least with Zope 2.6.1)
-        from Products.CPSDefault.BaseBox import BaseBox
+        # JA : seems to work like that. weired anyway. To watch out.
+        #from Products.CPSDefault.BaseBox import BaseBox
         BaseBox.__init__(self, id, provider='rss', category='rssbox', kw=kw)
         self.channel_id = channel_id
         self.nbMaxItems = nbMaxItems
