@@ -9,5 +9,4 @@ Bug fixes:
 -
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
-- RSSTool is no longer a PortalFolder since it is not some CMF content, just a
-  Folder as other tools are.
+-
