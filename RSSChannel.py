@@ -5,7 +5,7 @@
 # it under the terms of the GNU General Public License version 2 as published
 # by the Free Software Foundation.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed 75in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -43,6 +43,8 @@ from Products.CMFDefault.DublinCore import DefaultDublinCoreImpl
 # put feedreader.py in the same directory as RSSChannel.py
 # or in your_zope_root/lib/python/
 import feedparser
+
+from sgmllib import SGMLParseError
 
 RSSChannel_meta_type = 'RSS Channel'
 
@@ -172,7 +174,12 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
         url = self.channel_url
         if not url.startswith('http://') or url.startswith('https://'):
             data = {'channel': {}, 'items': []}
-        data = feedparser.parse(url)
+        try :
+            data = feedparser.parse(url)
+        except SGMLParseError, err:
+            data = {'channel': {}, 'items': []}
+            LOG('RSSChannel Error', DEBUG,
+                'RSS/SGML parsing error while retrieving feed\n'+str(url)+'\n'+str(err))
         if data.has_key('status') and data['status']>=400:
             #if the http request fails
             #the description field could contain more info about why
@@ -224,10 +231,20 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
                     if (chn.has_key('link')):
                         filteredData['url']=chn['link']
                 self.title = filteredData['title']
+                if self.title is None or len(self.title)==0 or self.title.isspace():
+                    self.title = self.id
                 self.description = filteredData['description']
                 #assign data to object
                 if self._data != filteredData:
                     self._data = filteredData
+            else:
+                self._data = {'title': self.id,
+                              'description': '',
+                              'url': url,
+                              'lines': [],
+                              'newWindow': self.new_window,
+                              'feedType': 0, #RSS feed
+                              }
 
     def _retrieveHTMLFeed(self):
         """Fetch an HTML feed"""
