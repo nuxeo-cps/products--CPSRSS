@@ -326,9 +326,9 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
 InitializeClass(RSSChannel)
 
 
-def addRSSChannel(container, id, REQUEST=None, **kw):
+def addRSSChannel(container, id, channel_url, REQUEST=None, **kw):
     """Create an empty RSS Channel."""
-    ob = RSSChannel(id, **kw)
+    ob = RSSChannel(id, channel_url)
     container._setObject(id, ob)
     ob = container._getOb(id)
     if REQUEST:
