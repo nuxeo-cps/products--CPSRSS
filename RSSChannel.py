@@ -76,9 +76,10 @@ factory_type_information = (
 
 class RSSChannel(PortalContent, DefaultDublinCoreImpl):
     """
-    A workflow schema serves as a proxy for the CMF user to be able to
-    crate new Workflow definitions without direct contact with the
-    workflow tool.
+    RSSChannel handles calls to the RSS parser and reorganizes
+    resulting data structures (mainly filtering)
+
+    Restructuring gets rid of irrelevant data.
     """
 
     meta_type = RSSChannel_meta_type
@@ -92,20 +93,26 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
         {'id':'description', 'type':'text', 'mode':'w', 'label':'Description'},
         {'id':'channel_url', 'type':'string', 'mode':'w', 'label':'Channel URL'},
         {'id':'new_window', 'type':'boolean', 'mode':'w', 'label':'Open Links in New Window'},
+        {'id':'html_feed', 'type':'boolean', 'mode':'w',
+         'label':'HTML feeds are provided untransformed'
+         },
         )
     
     title = ''
     description = ''
     channel_url = ''
-    new_window = 0 #true if links to news items should open in new windows
+    #true if links to news items should open in new windows
+    new_window = 1
+    #true if the feed is already formatted in HTML,
+    #in which case we provide it "as is" to the box
+    html_feed = 0
 
-    def __init__(self, id, channel_url = '', new_window = 0, **kw):
+    def __init__(self, id, channel_url='', new_window=1, html_feed=0, **kw):
         self.id = id
         self.channel_url = channel_url
         self.new_window = new_window
+        self.html_feed = html_feed
         self._refresh_time = 0 # far in the past
-##        self._text = ''
-##        self._headers = {}
         self._data = {}
         
     #
@@ -115,14 +122,15 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
     security.declareProtected(ManagePortal, 'refresh')
     def refresh(self):
         """Refresh the channels from its source."""
+ 
         self._refresh()
 
     security.declareProtected(View, 'getData')
+    
     def getData(self):
         """Get the data for this channel, as a dict."""
 
-        #self._maybe_refresh()
-        self._refresh()
+        self._maybe_refresh()
         return self._data
 
     #
@@ -134,10 +142,12 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
 
         if not self.lazy_refresh: # acquired from parent (portal_rss)
             LOG('RSSChannel refresh', DEBUG, 'not on lazy refresh')
+            self._refresh()
             return
         delay = self.refresh_delay # acquired from parent (portal_rss)
         now = int(time.time())
         if now - self._refresh_time > delay:
+            LOG('RSSChannel refresh',DEBUG,' refreshing')
             self._refresh()
         else:
             LOG('RSSChannel refresh', DEBUG, 'not refreshing (now=%s last=%s)' %
@@ -146,11 +156,13 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
     def _refresh(self):
         """Refresh the channels from its source."""
         
-        LOG('RSSChannel refresh', DEBUG, 'refreshing from source')
-        self._retrieveFeed()
+        if self.html_feed:
+            self._retrieveHTMLFeed()
+        else:
+            self._retrieveRSSFeed()
         self._refresh_time = int(time.time())
 
-    def _retrieveFeed(self):
+    def _retrieveRSSFeed(self):
         """Call URP which will fetch and parse the RSS/XML feed"""
 
         url = self.channel_url
@@ -167,6 +179,7 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
                           'url': url,
                           'lines': [],
                           'newWindow': self.new_window,
+                          'feedType': 0, #RSS feed
                           }
         else:
             #even if it succeeds, there might still be no data in the feed
@@ -181,18 +194,19 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
                 items = []
                 for it in data['items']:
                     item = {'title': '','url': ''}
-                    #fill with actual values if exist (for robustness as this might
-                    #depend on the quality of the feed)
+                    #fill with actual values if exist (for robustness
+                    #as this might depend on the quality of the feed)
                     if it.has_key('title'): item['title'] = it['title']
                     if it.has_key('link'): item['url'] = it['link']
                     items.append(item)
-                filteredData = {'lines': items, 'newWindow': self.new_window}
+                #feedType=0 indicates an RSS feed
+                filteredData = {'lines': items, 'newWindow': self.new_window, 'feedType': 0}
                 #init values
                 filteredData['title'] = ''
                 filteredData['description'] = ''
                 filteredData['url'] = ''
-                #fill with actual values if exist (for robustness as this might depend
-                #on the quality of the feed)
+                #fill with actual values if exist (for robustness
+                #as this might depend on the quality of the feed)
                 if (data.has_key('channel')):
                     chn=data['channel']
                     if (chn.has_key('title')):
@@ -201,11 +215,32 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
                         filteredData['description']=chn['description']
                     if (chn.has_key('link')):
                         filteredData['url']=chn['link']
+                self.title = filteredData['title']
+                self.description = filteredData['description']
                 #assign data to object
                 if self._data != filteredData:
                     self._data = filteredData
-                    self.title = filteredData['title']
-                    self.description = filteredData['description']
+
+    def _retrieveHTMLFeed(self):
+        """Fetch an HTML feed"""
+
+        url = self.channel_url
+        if not url.startswith('http://') or url.startswith('https://'):
+            html_data = ''
+        self.title = 'HTML Feed'
+        self.description = "This feed has been formatted in HTML on the\
+        server side. It can only be displayed as is ; no other information\
+        is available."
+        try:
+            f = urllib.urlopen(url)
+            html_data = f.read()
+        except IOError:
+            html_data = ''
+            self.description = "An error occured while retrieving this feed"
+        data = {'feedType':1, 'htmlData': html_data}
+        if self._data != data:
+            # Avoid modifying persistent object if nothing has changed.
+            self._data = data
 
     #
     # ZMI
