@@ -24,7 +24,7 @@ from Globals import InitializeClass, DTMLFile
 from AccessControl import ClassSecurityInfo
 from OFS.Folder import Folder
 
-from Products.CMFCore.CMFCorePermissions import View, ManagePortal
+from Products.CMFCore.permissions import View, ManagePortal
 from Products.CMFCore.utils import UniqueObject
 
 from RSSChannel import addRSSChannel, RSSChannel_meta_type

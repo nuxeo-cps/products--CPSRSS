@@ -6,7 +6,7 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
--
+- Removed warnings: replaces CMFCore.CMFCorePermissions by CMFCore.permissions.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -
