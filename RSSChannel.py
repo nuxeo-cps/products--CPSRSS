@@ -28,10 +28,12 @@ from urllib2 import ProxyHandler
 from AccessControl import ClassSecurityInfo
 from Globals import InitializeClass
 
+
 from OFS.PropertyManager import PropertyManager
 from Products.CMFCore.CMFCorePermissions import View
 from Products.CMFCore.CMFCorePermissions import ModifyPortalContent
 from Products.CMFCore.CMFCorePermissions import ManagePortal
+from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.PortalContent import PortalContent
 from Products.CMFDefault.DublinCore import DefaultDublinCoreImpl
 
@@ -148,6 +150,11 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
         """Refresh the channels from its source."""
 
         self._refresh()
+
+        # notify the event service
+        etool = getToolByName(self, 'portal_eventservice', None)
+        if etool is not None:
+            etool.notifyEvent('rss_channel_refresh', self, {})
 
     security.declareProtected(View, 'getData')
     def getData(self, maxItems=None):
