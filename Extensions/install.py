@@ -48,7 +48,7 @@ def install(self):
     _log = []
     def pr(bla, zlog=1, _log=_log):
         if bla == 'flush':
-            return '<html><head><title>CPSForum Installer</title></head><body><pre>'+ \
+            return '<html><head><title>CPSRSS Installer</title></head><body><pre>'+ \
                    '\n'.join(_log) + \
                    '</pre></body></html>'
 
