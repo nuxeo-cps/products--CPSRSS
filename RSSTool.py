@@ -78,8 +78,8 @@ class RSSTool(UniqueObject, Folder):
          'label': 'Lazy Refresh'},
     )
     title = ''
-    refresh_delay = 3600
-    lazy_refresh = 0
+    refresh_delay = 1200 # 20 minutes
+    lazy_refresh = 1
 
     all_meta_types = (
         {'name': RSSChannel_meta_type,
