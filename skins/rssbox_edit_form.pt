@@ -14,9 +14,15 @@
     <th align="right" i18n:translate="label_channel">Channel</th>
     <td>
       <select name="channel_id">
-        <option tal:repeat="aFeed here/portal_rss/objectValues"
-                tal:attributes="value aFeed/id|string:"
-                tal:content="aFeed/title">Feed Title</option>
+        <tal:block repeat="aFeed here/portal_rss/objectValues">
+          <option tal:condition="python:box['box'].channel_id == aFeed.id"
+                  tal:attributes="value aFeed/id|string:;
+                                  selected string:selected;"
+                  tal:content="aFeed/title">Feed Title</option>
+          <option tal:condition="not:python:box['box'].channel_id == aFeed.id"
+                  tal:attributes="value aFeed/id|string:"
+                  tal:content="aFeed/title">Feed Title</option>
+        </tal:block>
       </select>
     </td>
   </tr>
