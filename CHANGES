@@ -6,7 +6,8 @@ New features:
 - Lazy refresh is now on by default.
 Bug fixes:
 ~~~~~~~~~~
--
+- Made the links of the RSS box open in the same window by default. This is a
+  usability and accessibility improvement.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -

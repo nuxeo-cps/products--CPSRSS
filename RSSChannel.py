@@ -1,4 +1,4 @@
-# (C) Copyright 2003 Nuxeo SARL <http://nuxeo.com>
+# (C) Copyright 2003-2005 Nuxeo SARL <http://nuxeo.com>
 # Author: Emmanuel Pietriga (ep@nuxeo.com)
 #
 # This program is free software; you can redistribute it and/or modify
@@ -96,17 +96,17 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
     security.declareObjectProtected(View)
 
     _properties = (
-        {'id': 'title', 'type': 'string', 'mode': 'w', 
+        {'id': 'title', 'type': 'string', 'mode': 'w',
          'label': 'Title'},
-        {'id': 'description', 'type': 'text', 'mode': 'w', 
+        {'id': 'description', 'type': 'text', 'mode': 'w',
          'label': 'Description'},
-        {'id': 'channel_url', 'type': 'string', 'mode':'w', 
+        {'id': 'channel_url', 'type': 'string', 'mode':'w',
          'label': 'Channel URL'},
-        {'id': 'channel_proxy', 'type': 'string', 'mode':'w', 
+        {'id': 'channel_proxy', 'type': 'string', 'mode':'w',
          'label': 'Proxy used to access channel'},
         {'id': 'new_window', 'type': 'boolean', 'mode': 'w',
          'label': 'Open Links in New Window'},
-        {'id': 'nbMaxItems', 'type': 'int', 'mode':'w', 
+        {'id': 'nbMaxItems', 'type': 'int', 'mode':'w',
          'label': 'Maximum number of items'},
         {'id': 'html_feed', 'type': 'boolean', 'mode': 'w',
          'label': 'HTML feeds are provided untransformed'},
@@ -118,7 +118,7 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
     channel_url = ''
     channel_proxy = ''
     # True if links to news items should open in new windows
-    new_window = 1
+    new_window = 0
     # Maximum number of items, 0 means unlimited
     nbMaxItems = 0
     # True if the feed is already formatted in HTML,
@@ -132,7 +132,7 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
     _modified = None
 
     def __init__(self, id, channel_url='', channel_proxy='',
-                 new_window=1, nbMaxItems=0, html_feed=0):
+                 new_window=0, nbMaxItems=0, html_feed=0):
         self.id = id
         self.channel_url = channel_url
         self.channel_proxy = channel_proxy
@@ -264,7 +264,7 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
                 if self.nbMaxItems and len(items) > self.nbMaxItems:
                     items = items[:self.nbMaxItems]
                 # feedType=0 indicates an RSS feed
-                filteredData = {'lines': items, 'newWindow': self.new_window, 
+                filteredData = {'lines': items, 'newWindow': self.new_window,
                                 'feedType': 0}
                 # init values
                 filteredData['title'] = ''
