@@ -19,4 +19,3 @@ msgstr "Numero massimo di elementi:"
 
 msgid "portal_type_RSSBox_description"
 msgstr "Un contenitore che visualizza i flussi RSS"
-

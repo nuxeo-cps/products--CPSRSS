@@ -31,7 +31,3 @@ msgstr "Maximum Number of Items"
 
 msgid "portal_type_RSSBox_description"
 msgstr "A box displaying RSS feeds"
-
-#~ msgid "rss_no_data"
-#~ msgstr "No data available"
-

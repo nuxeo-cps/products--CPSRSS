@@ -19,17 +19,14 @@ msgstr ""
 "X-Generator: KBabel 1.3\n"
 
 #.   <th align="right">Channel</th>
-#: from
-#: ../skins/rssbox_edit_form.pt
+#: from ../skins/rssbox_edit_form.pt
 msgid "label_channel"
 msgstr "Iturria"
 
 #.   <th align="right">Max items displayed</th>
-#: from
-#: ../skins/rssbox_edit_form.pt
+#: from ../skins/rssbox_edit_form.pt
 msgid "label_max_items"
 msgstr "Albiste Kopuru Maximoa"
 
 msgid "portal_type_RSSBox_description"
 msgstr "RSS iturriak erakusten dituen kutxa."
-

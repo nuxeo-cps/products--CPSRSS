@@ -31,7 +31,3 @@ msgstr "Nombre maximum de nouvelles"
 
 msgid "portal_type_RSSBox_description"
 msgstr "Affiche le contenu de flux RSS"
-
-#~ msgid "rss_no_data"
-#~ msgstr "Pas d'information disponible"
-
