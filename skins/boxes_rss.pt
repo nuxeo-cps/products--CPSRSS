@@ -2,19 +2,22 @@
 <!-- $Id$ -->
 
 <!-- ============================================================ -->
-<metal:block define-macro="rssbox_default">
+<metal:block xmlns:tal="http://xml.zope.org/namespaces/tal" 
+             xmlns:metal="http://xml.zope.org/namespaces/metal" 
+             define-macro="rssbox_default">
   <metal:block use-macro="python:path(box['settings']['box_skin'])">
     <metal:block fill-slot="box_title"
-      tal:condition="box/box/title"
-      tal:content="box/box/title">rss box title</metal:block>
+                 tal:condition="box/box/title"
+                 tal:content="box/box/title">
+      RSS Feed
+    </metal:block>
     <metal:block fill-slot="box_body"
                  tal:define="data python:here.rssbox_get_info(box['box'].channel_id)">
-      <p tal:condition="data/description|nothing" tal:content="data/description">
-	RSS Channel Description</p>
-      <ul tal:define="newWindow data/newWindow" tal:repeat="item data/lines">
-        <li>
-          <a href="." 
-	     tal:attributes="href item/url; target python:newWindow and '_blank' or None"
+      <div tal:condition="data/feedType" tal:content="structure data/htmlData">No data available</div>
+      <ul tal:condition="not:data/feedType">
+        <li tal:repeat="item data/lines">
+          <a href="."
+	     tal:attributes="href item/url; target python:data['newWindow'] and '_blank' or None"
              tal:content="item/title">news item</a>
         </li>
       </ul>
