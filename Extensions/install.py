@@ -39,6 +39,8 @@ HOWTO USE THAT ?
 import os, sys
 from zLOG import LOG, INFO, DEBUG
 
+from Products.CMFCore.DirectoryView import createDirectoryView
+
 def cps_rss_i18n_update(self):
     """
     Importation of the po files for internationalization.
@@ -195,8 +197,10 @@ def install(self):
                 pr("  Correctly installed, correcting path")
                 dv.manage_properties(dirpath=path)
         else:
-            portal.portal_skins.manage_addProduct['CMFCore'].manage_addDirectoryView(\
-                filepath=path, id=skin)
+            # Hack to Fix CMF 1.5 incompatibility
+            if path.startswith("Products/"):
+                path = path[len("Products/"):]
+            createDirectoryView(portal.portal_skins, path, skin)
             pr("  Creating skin")
     allskins = portal.portal_skins.getSkinPaths()
     for skin_name, skin_path in allskins:
