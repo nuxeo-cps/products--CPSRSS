@@ -75,6 +75,7 @@ class RSSBox(BaseBox):
 
     def __init__(self, id,
                  channel_id='',
+                 nbMaxItems=0,
                  **kw):
         # XXX FIXME:
         #this on-the-fly import prevents a randomly-occuring failure
