@@ -1,5 +1,5 @@
 ## Script (Python) "rssbox_get_info"
-##parameters=channel_id
+##parameters=channel_id, maxItems=None
 
 # $Id$
 
@@ -14,4 +14,4 @@ if channel is None:
             'feedType': 0, #RSS feed
             }
 
-return channel.getData()
+return channel.getData(maxItems)
