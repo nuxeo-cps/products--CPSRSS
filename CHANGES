@@ -9,4 +9,7 @@ Bug fixes:
 -
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
--
+- view permission on a RSS box is set to anonymous users when creating the box:
+  users having permissions in subfolders do not have the right to view boxes
+  set in the .cps_boxes file higher in the hierarchy, whereas they have the right
+  to view boxes set in the .cps_boxes_root file (discussed with Florent).

@@ -83,6 +83,8 @@ def addRSSBox(dispatcher, id, REQUEST=None, **kw):
     """Add an RSS Box."""
     ob = RSSBox(id, **kw)
     dispatcher._setObject(id, ob)
+    ob = getattr(dispatcher, id)
+    ob.manage_permission(View, ('Anonymous',), 1)
     if REQUEST:
         url = dispatcher.DestinationURL()
         REQUEST.RESPONSE.redirect('%s/manage_main' % url)
