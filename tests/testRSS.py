@@ -3,8 +3,6 @@
 
 import unittest, os.path
 import CPSRSSTestCase
-import Products
-
 
 class TestRSSTool(CPSRSSTestCase.CPSRSSTestCase):
     def testEmptyTool(self):
@@ -16,7 +14,7 @@ class TestRSSTool(CPSRSSTestCase.CPSRSSTestCase):
     def _testChannel(self, lazy_refresh=0):
         rss_tool = self.portal.portal_rss
         rss_tool.lazy_refresh = lazy_refresh
-        url = 'file://%s' % os.path.abspath(os.path.join(
+        url = os.path.abspath(os.path.join(
             os.path.dirname(CPSRSSTestCase.__file__), 'zope.rss'))
         rss_tool.manage_addRSSChannel('channel', url)
         self.assertEquals(rss_tool.objectIds(), ['channel'])
