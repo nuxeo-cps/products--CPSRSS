@@ -47,4 +47,3 @@ def initialize(registrar):
              product_name = 'CPSRSS',
              icon = 'tool.gif',
              ).initialize(registrar)
-

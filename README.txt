@@ -1,15 +1,29 @@
 $Id$
 
 --------------------------------------------------
-About CPSRSS - Installation procedure
+About CPSRSS
 --------------------------------------------------
 
-This product replaces NuxRSS and is intended for use with CPS 3. CPS
-2.x users should install NuxRSS.
+Want to display syndicated content on your CPS portal? This product adds a new
+type of box to CPS3 3.x. You then can lay out RSS feeds using the boxes
+management form. Available feeds are centralized in the portal_rss tool.
+
+Note to CPS 2 users:
+
+  This product is intended for use with CPS 3.x only. You should still use
+  NuxRSS along with CPS 2.x.
+
+Administrators can set globally how many entries are to show, and local managers
+can change this setting for displaying less entries.
+
+The feeds can be refreshed at each access or "lazily", after the given timeout.
+This caching reduces overload and avoid increasing response time because of slow
+syndicated sites.
 
 The current version relies on Mark Pilgrim's Ultraliberal RSS parser. It has
 been tested with version 2.5.3, which supports RSS feeds expressed in the
 following formats: RSS 0.9x, RSS 1.0 (and RDF/XML-based format) and 2.0.
+
 
 --------------------------------------------------
 HOW TO INSTALL
