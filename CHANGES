@@ -1,15 +1,12 @@
-ZODB Requires:
-~~~~~~~~~~~~~~
+Requires:
+~~~~~~~~~
 -
-
 New features:
 ~~~~~~~~~~~~~
 -
-
 Bug fixes:
 ~~~~~~~~~~
 -
-
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
-- CPSRSS now produces XHTML 1.0 transitional pages
+-
