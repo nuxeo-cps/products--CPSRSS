@@ -83,6 +83,10 @@ Note: it might be necessary to restart your Zope server after this step.
   to be transformed (this will just retrieve the HTML fragment at the given URL
   and put it in the RSS Box).
 
+- It is also possible to limit the number of items displayed for a given feed, 
+  by entering a non-zero integer value in field nbMaxItems. Value zero is the
+  default value and displays all items (no limit).
+
 - Go to the box management interface on the CPS site ; add an RSS Box and select
   a channel from the drop-down list (which contains all channels configured in 
   portal_rss). Save your changes. An RSS Box should now be visible in your portal.

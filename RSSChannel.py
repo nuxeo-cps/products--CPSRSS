@@ -93,6 +93,7 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
         {'id':'description', 'type':'text', 'mode':'w', 'label':'Description'},
         {'id':'channel_url', 'type':'string', 'mode':'w', 'label':'Channel URL'},
         {'id':'new_window', 'type':'boolean', 'mode':'w', 'label':'Open Links in New Window'},
+        {'id':'nbMaxItems','type':'int', 'mode':'w', 'label': 'Maximum number of items'},
         {'id':'html_feed', 'type':'boolean', 'mode':'w',
          'label':'HTML feeds are provided untransformed'
          },
@@ -103,14 +104,17 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
     channel_url = ''
     #true if links to news items should open in new windows
     new_window = 1
+    #maximum number of items, 0 means unlimited
+    nbMaxItems = 0
     #true if the feed is already formatted in HTML,
     #in which case we provide it "as is" to the box
     html_feed = 0
 
-    def __init__(self, id, channel_url='', new_window=1, html_feed=0, **kw):
+    def __init__(self, id, channel_url='', new_window=1, nbMaxItems=0, html_feed=0, **kw):
         self.id = id
         self.channel_url = channel_url
         self.new_window = new_window
+        self.nbMaxItems = nbMaxItems
         self.html_feed = html_feed
         self._refresh_time = 0 # far in the past
         self._data = {}
@@ -199,6 +203,10 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
                     if it.has_key('title'): item['title'] = it['title']
                     if it.has_key('link'): item['url'] = it['link']
                     items.append(item)
+                #if the max number of items to be displayed is limited
+                #and the total number of items is higher, truncate
+                if self.nbMaxItems and len(items) > self.nbMaxItems:
+                    items = items[:self.nbMaxItems]
                 #feedType=0 indicates an RSS feed
                 filteredData = {'lines': items, 'newWindow': self.new_window, 'feedType': 0}
                 #init values
