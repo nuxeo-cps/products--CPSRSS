@@ -24,7 +24,7 @@
     <th align="right" i18n:translate="label_max_items">Max items displayed</th>
     <td>
       <input type="text" name="nbMaxItems:int" size="2" value=""
-             tal:attributes="value box/box/nbMaxItems|string:">
+             tal:attributes="value box/box/nbMaxItems|string:" />
     </td>
   </tr>
 </metal:fields>
