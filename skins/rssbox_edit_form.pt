@@ -1,7 +1,7 @@
 <!-- $Id$ -->
 
-<metal:html xmlns:tal="http://xml.zope.org/namespaces/tal" 
-            xmlns:metal="http://xml.zope.org/namespaces/metal" 
+<metal:html xmlns:tal="http://xml.zope.org/namespaces/tal"
+            xmlns:metal="http://xml.zope.org/namespaces/metal"
             use-macro="here/main_template/macros/master">
 
 <metal:main fill-slot="main">

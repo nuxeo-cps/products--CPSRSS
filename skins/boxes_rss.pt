@@ -2,8 +2,8 @@
 <!-- $Id$ -->
 
 <!-- ============================================================ -->
-<metal:block xmlns:tal="http://xml.zope.org/namespaces/tal" 
-             xmlns:metal="http://xml.zope.org/namespaces/metal" 
+<metal:block xmlns:tal="http://xml.zope.org/namespaces/tal"
+             xmlns:metal="http://xml.zope.org/namespaces/metal"
              define-macro="rssbox_default">
   <metal:block use-macro="python:path(box['settings']['box_skin'])">
     <metal:block fill-slot="box_title"
