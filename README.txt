@@ -32,10 +32,10 @@ HOW TO INSTALL
 [2] http://www.timo-tasi.org/python/timeoutsocket.py
 
 - An Installer is now available for CPSRSS, but you still need to do one manual
-operation: as CPSRSS is not a final product, it is necessary to edit either
-getBoxTypes.py in CPSDefault/skins/cps_default or getCustomBoxTypes.py
-in your own product and add the following declaration to the list of
-items returned:
+  operation: as CPSRSS is not a final product, it is necessary to edit either
+  getBoxTypes.py in CPSDefault/skins/cps_default or getCustomBoxTypes.py in
+  your own product and add the following declaration to the list of items
+  returned:
 
 {'category': 'rssbox',
  'title': 'portal_type_RssBox_title',
@@ -63,18 +63,18 @@ Note: it might be necessary to restart your Zope server after this step.
   Function Name = install
 
 - Execute the script by going to the Test tab. This should automatically create
-  a portal_rss tool, an RSS Box portal_type, a cps_rss portal_skin and it should
-  insert cps_rss in the list of layers for skin Basic.
+  a portal_rss tool, an RSS Box portal_type, a cps_rss portal_skin and it
+  should insert cps_rss in the list of layers for skin Basic.
 
 - You can then add channels through the tool as follows.
 
 - Select portal_rss and add a channel, then enter an ID and the feed's URL in
   the 'Channel URL' field.
 
-- You can test that the feed is retrieved correctly by going to the
-  refresh tab of the portal_rss tool, clicking refresh, and then selecting your
-  channel (properties).  The title and description should now be filled by
-  values retrieved from the actual feed.
+- You can test that the feed is retrieved correctly by going to the refresh tab
+  of the portal_rss tool, clicking refresh, and then selecting your channel
+  (properties).  The title and description should now be filled by values
+  retrieved from the actual feed.
 
 - Check new_window if you want news items links to open in blank
   windows instead of the current one.
@@ -87,9 +87,10 @@ Note: it might be necessary to restart your Zope server after this step.
   by entering a non-zero integer value in field nbMaxItems. Value zero is the
   default value and displays all items (no limit).
 
-- Go to the box management interface on the CPS site ; add an RSS Box and select
-  a channel from the drop-down list (which contains all channels configured in 
-  portal_rss). Save your changes. An RSS Box should now be visible in your portal.
+- Go to the box management interface on the CPS site ; add an RSS Box and
+  select a channel from the drop-down list (which contains all channels
+  configured in portal_rss). Save your changes. An RSS Box should now be
+  visible in your portal.
   Its location depends on the slot you selected, as for any other box.
 
 
