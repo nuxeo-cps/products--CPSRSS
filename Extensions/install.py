@@ -33,13 +33,88 @@ HOWTO USE THAT ?
 
  - save it
  - click now the test tab of this external method.
- - that's it !
 
 """
 
 import os, sys
 from zLOG import LOG, INFO, DEBUG
 
+def cps_rss_i18n_update(self):
+    """
+    Importation of the po files for internationalization.
+    """
+    _log = []
+    def pr(bla, _log=_log):
+        if bla == 'flush':
+            return '\n'.join(_log)
+        _log.append(bla)
+        if (bla):
+            LOG('cps_i18n_update:', INFO, bla)
+
+    def primp(pr=pr):
+        pr(" !!! Cannot migrate that component !!!")
+
+    def prok(pr=pr):
+        pr(" Already correctly installed")
+
+    portal = self.portal_url.getPortalObject()
+    def portalhas(id, portal=portal):
+        return id in portal.objectIds()
+
+    pr(" Updating i18n support")
+
+
+    Localizer = portal['Localizer']
+    languages = Localizer.get_supported_languages()
+    catalog_id = 'cpsrss'
+    # Message Catalog
+    if catalog_id in Localizer.objectIds():
+        Localizer.manage_delObjects([catalog_id])
+        pr(" Previous default MessageCatalog deleted for CPSRSS")
+
+    # Adding the new message Catalog
+    Localizer.manage_addProduct['Localizer'].manage_addMessageCatalog(
+        id=catalog_id,
+        title='CPSRSS messages',
+        languages=languages,
+        )
+
+    cpsrssCatalog = Localizer.cpsrss
+
+    # computing po files' system directory
+    CPSRSS_path = sys.modules['Products.CPSRSS'].__path__[0]
+    i18n_path = os.path.join(CPSRSS_path, 'i18n')
+    pr("   po files are searched in %s" % i18n_path)
+    pr("   po files for %s are expected" % str(languages))
+
+    # loading po files
+    for lang in languages:
+        po_filename = lang + '.po'
+        pr("   importing %s file" % po_filename)
+        po_path = os.path.join(i18n_path, po_filename)
+        try:
+            po_file = open(po_path)
+        except NameError:
+            pr("    %s file not found" % po_path)
+        else:
+            cpsrssCatalog.manage_import(lang, po_file)
+            pr("    %s file imported" % po_path)
+
+    # Translation Service Tool
+    if portalhas('translation_service'):
+        translation_service = portal.translation_service
+        pr (" Translation Sevice Tool found in here ")
+        try:
+            if getattr(portal['translation_service'], 'cpsrss', None) == None:
+                # translation domains
+                translation_service.manage_addDomainInfo('RSSBox','Localizer/cpsrss')
+                pr(" RSSBox domain set to Localizer/cpsrss")
+        except:
+            pass
+    else:
+        raise str('DependanceError'), 'translation_service'
+
+    return pr('flush')
 
 def install(self):
     """
@@ -136,6 +211,12 @@ def install(self):
         npath = ', '.join(path)
         portal.portal_skins.addSkinSelection(skin_name, npath)
         pr(" Fixup of skin %s" % skin_name)
+
+    ##############################################
+    # i18n support
+    ##############################################
+
+    pr(cps_rss_i18n_update(self))
     
     pr("End of CPSRSS install")
     return pr('flush')
