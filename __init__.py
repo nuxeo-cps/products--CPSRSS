@@ -30,23 +30,22 @@ contentClasses = (RSSBox.RSSBox,)
 contentConstructors = (RSSBox.addRSSBox,)
 fti = (RSSBox.factory_type_information +
        ())
-tools = (RSSTool.RSSTool, )
 
 registerDirectory('skins', globals())
 
-def initialize(registrar):
-    utils.ContentInit(
-        'RSS Boxes',
-        content_types=contentClasses,
-        permission=AddPortalContent,
-        extra_constructors=contentConstructors,
-        fti=fti,
-        ).initialize(registrar)
+tools = (RSSTool.RSSTool, )
 
-    utils.ToolInit(
-        'RSS Tool',
-        tools = tools,
-        product_name = 'CPSRSS',
-        icon = 'tool.gif',
-        ).initialize(registrar)
+def initialize(registrar):
+    utils.ContentInit('RSS Boxes',
+                      content_types=contentClasses,
+                      permission=AddPortalContent,
+                      extra_constructors=contentConstructors,
+                      fti=fti,
+                      ).initialize(registrar)
+    utils.ToolInit('RSS Tool',
+                   tools = tools,
+                   product_name = 'CPSRSS',
+                   icon = 'tool.gif',
+                   ).initialize(registrar)
+    
 
