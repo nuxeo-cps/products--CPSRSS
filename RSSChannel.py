@@ -112,8 +112,11 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
     #in which case we provide it "as is" to the box
     html_feed = 0
 
-    def __init__(self, id, channel_url='', new_window=1, nbMaxItems=0, html_feed=0):
+    def __init__(self, id, title='', description='', channel_url='',
+                 new_window=1, nbMaxItems=0, html_feed=0, **kw):
         self.id = id
+        self.title = title
+        self.description = description
         self.channel_url = channel_url
         self.new_window = new_window
         self.nbMaxItems = nbMaxItems
@@ -133,11 +136,15 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
 
     security.declareProtected(View, 'getData')
     
-    def getData(self):
+    def getData(self, maxItems=None):
         """Get the data for this channel, as a dict."""
 
         self._maybe_refresh()
-        return self._data
+        data = self._data.copy()
+        lines = data['lines']
+        maxItems = maxItems or self.nbMaxItems
+        data.update({'lines': lines[:maxItems]})
+        return data
 
     #
     # internal
