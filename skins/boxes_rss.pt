@@ -12,7 +12,8 @@
       RSS Feed
     </metal:block>
     <metal:block fill-slot="box_body"
-                 tal:define="data python:here.rssbox_get_info(box['box'].channel_id)">
+                 tal:define="data python:here.rssbox_get_info(
+                                 box['box'].channel_id, box['box'].nbMaxItems)">
       <div tal:condition="data/feedType" tal:content="structure data/htmlData">No data available</div>
       <ul tal:condition="not:data/feedType">
         <li tal:repeat="item data/lines">
