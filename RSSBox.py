@@ -31,7 +31,7 @@ factory_type_information = (
      'title': 'portal_type_RSSBox_title',
      'description': 'portal_type_RSSBox_description',
      'meta_type': 'RSS Box',
-     'content_icon': 'box.gif',
+     'content_icon': 'box.png',
      'product': 'CPSRSS',
      'factory': 'addRSSBox',
      'immediate_view': 'rssbox_edit_form',
