@@ -191,7 +191,7 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
         if not url.startswith('http://') or url.startswith('https://'):
             data = {'channel': {}, 'items': []}
         try :
-            if (self._data.has_key('items') and self._data['items']):
+            if self._data.get('items'):
                 data = feedparser.parse(url,self._etag,self._modified)
             else:
                 data = feedparser.parse(url,None,None)
@@ -226,8 +226,7 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
                     #fill with actual values if exist (for robustness
                     #as this might depend on the quality of the feed)
                     item = {}
-                    if it.has_key('title') and it.has_key('link') \
-                           and not (len(it['title'])==0 or it['title'].isspace()):
+                    if it.has_key('link') and it.get('title','').strip():
                         item['title'] = it['title']
                         item['url'] = it['link']
                         items.append(item)
@@ -263,15 +262,11 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
                 if self._data != filteredData:
                     self._data = filteredData
             else:
-                if not self._data.has_key('title') or \
-                   len(self._data['title'])==0 or \
-                   self._data['title'].isspace():
+                if not self._data.get('title','').strip():
                     self._data['title'] = self.id
                 if not self._data.has_key('description'):
                     self._data['description'] = ''
-                if not self._data.has_key('url') or \
-                   len(self._data['url'])==0 or \
-                   self._data['url'].isspace():
+                if not self._data.get('url','').strip():
                     self._data['url'] = url
                 if not self._data.has_key('lines'):
                     self._data['lines'] = []
