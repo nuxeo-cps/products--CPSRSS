@@ -1,33 +1,40 @@
+# translation of ro.po to 
 # ##########################################################
 # ################# DON'T EDIT THIS FILE! ##################
 # ##########################################################
 # Gettext Message File for default.
 # Your Name <your@email>, Year
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
 msgid ""
 msgstr ""
-"Project-Id-Version: default\n"
+"Project-Id-Version: ro\n"
 "POT-Creation-Date: 2003-10-03 14:39default\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Your Name <your@email>\n"
-"Language-Team: Name <email>\n"
+"PO-Revision-Date: 2005-04-06 17:05+0300\n"
+"Last-Translator: \n"
+"Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"Content-Type: text/plain; charset=iso-8859-2\n"
+"Content-Type: text/plain; charset=ISO-8859-2\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language-code: ro\n"
 "Language-name: Romanian\n"
 "Preferred-encodings: utf-8 latin1\n"
 "Domain: default\n"
+"X-Generator: KBabel 1.9.1\n"
 
 #.   <th align="right">Channel</th>
 #: from ../skins/rssbox_edit_form.pt
 msgid "label_channel"
-msgstr ""
+msgstr "Canal"
 
 #.   <th align="right">Max items displayed</th>
 #: from ../skins/rssbox_edit_form.pt
 msgid "label_max_items"
-msgstr ""
+msgstr "Numar maxim de articole"
 
 msgid "portal_type_RSSBox_description"
-msgstr ""
+msgstr "Un box care afiseaza continutul fluxului RSS"
+
