@@ -200,7 +200,7 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
             data = {'channel': {}, 'items': []}
         try :
             if self.channel_proxy:
-                proxy_handler = ProxyHandler({'http': self.channel_proxy})
+                proxy_handler = urllib2.ProxyHandler({'http': self.channel_proxy})
                 handlers = [proxy_handler]
             else:
                 handlers = []
