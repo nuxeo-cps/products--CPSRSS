@@ -32,10 +32,9 @@ from Products.CMFDefault.DublinCore import DefaultDublinCoreImpl
 
 from Products.CPSDefault.BaseBox import BaseBox
 
-
 factory_type_information = (
-    {'id': 'RSS Box',
-     'title': 'RSS Box',
+    {'id': 'portal_type_RSSBox_title',
+     'title': 'portal_type_RSSBox_title',
      'description': 'portal_type_RSSBox_description',
      'meta_type': 'RSS Box',
      'content_icon': 'box.gif',
