@@ -5,7 +5,7 @@ About CPSRSS
 --------------------------------------------------
 
 Want to display syndicated content on your CPS portal? This product adds a new
-type of box to CPS3 3.x. You then can lay out RSS feeds using the boxes
+type of box to CPS 3.x. You then can lay out RSS feeds using the boxes
 management form. Available feeds are centralized in the portal_rss tool.
 
 Note to CPS 2 users:
