@@ -1,4 +1,21 @@
 *******************************************
+** CPSRSS V0.5.1 [R1 build 2004/11/18-09:44 by afernandez]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+- added an event notification on refreshed channels
+- added author and modified date of item information
+Bug fixes:
+~~~~~~~~~~
+-
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSRSS V0.5.0 [R1 build 2004/10/22-06:09 by ben]
 
 Requires:
