@@ -19,7 +19,7 @@
 #
 # $Id$
 
-from Products.CMFCore import utils
+from Products.CMFCore.utils import ContentInit, ToolInit
 from Products.CMFCore.DirectoryView import registerDirectory
 from Products.CMFCore.CMFCorePermissions import AddPortalContent
 
@@ -36,15 +36,15 @@ registerDirectory('skins', globals())
 tools = (RSSTool.RSSTool, )
 
 def initialize(registrar):
-    utils.ContentInit('RSS Boxes',
-                      content_types=contentClasses,
-                      permission=AddPortalContent,
-                      extra_constructors=contentConstructors,
-                      fti=fti,
-                      ).initialize(registrar)
-    utils.ToolInit('RSS Tool',
-                   tools = tools,
-                   product_name = 'CPSRSS',
-                   icon = 'tool.gif',
-                   ).initialize(registrar)
+    ContentInit('RSS Boxes',
+                content_types=contentClasses,
+                permission=AddPortalContent,
+                extra_constructors=contentConstructors,
+                fti=fti,
+                ).initialize(registrar)
+    ToolInit('RSS Tool',
+             tools = tools,
+             product_name = 'CPSRSS',
+             icon = 'tool.gif',
+             ).initialize(registrar)
 
