@@ -2,7 +2,8 @@
 
 <metal:html xmlns:tal="http://xml.zope.org/namespaces/tal"
             xmlns:metal="http://xml.zope.org/namespaces/metal"
-            use-macro="here/main_template/macros/master">
+            use-macro="here/main_template/macros/master"
+            i18n:domain="cpsrss">
 
 <metal:main fill-slot="main">
 
@@ -10,7 +11,7 @@
 
 <metal:fields fill-slot="additional_fields">
   <tr valign="top">
-    <th align="right">Channel</th>
+    <th align="right" i18n:translate="label_channel">Channel</th>
     <td>
       <select name="channel_id">
         <option tal:repeat="aFeed here/portal_rss/objectValues"
@@ -20,7 +21,7 @@
     </td>
   </tr>
   <tr valign="top">
-    <th align="right">Max items displayed</th>
+    <th align="right" i18n:translate="label_max_items">Max items displayed</th>
     <td>
       <input type="text" name="nbMaxItems:int" size="2" value=""
              tal:attributes="value box/box/nbMaxItems|string:">

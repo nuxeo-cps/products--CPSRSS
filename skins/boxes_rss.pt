@@ -4,7 +4,8 @@
 <!-- ============================================================ -->
 <metal:block xmlns:tal="http://xml.zope.org/namespaces/tal"
              xmlns:metal="http://xml.zope.org/namespaces/metal"
-             define-macro="rssbox_default">
+             define-macro="rssbox_default"
+             i18n:domain="cpsrss">
   <metal:block use-macro="python:path(box['settings']['box_skin'])">
     <metal:block fill-slot="box_title"
                  tal:condition="box/box/title"
@@ -14,7 +15,9 @@
     <metal:block fill-slot="box_body"
                  tal:define="data python:here.rssbox_get_info(
                                  box['box'].channel_id, box['box'].nbMaxItems)">
-      <div tal:condition="data/feedType" tal:content="structure data/htmlData">No data available</div>
+      <div tal:condition="data/feedType" tal:content="structure data/htmlData">
+	No data available
+      </div>
       <ul tal:condition="not:data/feedType">
         <li tal:repeat="item data/lines">
           <a href="."
