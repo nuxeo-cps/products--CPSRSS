@@ -1,4 +1,23 @@
 *******************************************
+** CPSRSS V0.5.2 [R1 build 2004/12/13-09:14 by edegoute]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- deleted tab in RSSChannel.py
+- #445 rssbox_edit_form doesn't chown selected channel in channel selector
+- sometimes, box is empty or have false news because it refreshes too much and
+  has been banned. The default delay is now one hour to prevent this.
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSRSS V0.5.1 [R1 build 2004/11/18-09:44 by afernandez]
 
 Requires:
