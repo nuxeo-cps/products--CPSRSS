@@ -19,7 +19,7 @@ HOW TO INSTALL
 
 - It should contain a copy of Mark Pilgrim's Ultraliberal RSS Parser
   (feedreader.py). If it does not, you can get a copy at [1]. You should use
-  version 2.5.3 or later. Copy feedreader.py to the CPSRSS directory or to your
+  version 2.5.3 or later. Copy feedparser.py to the CPSRSS directory or to your
   standard zope python lib directory (e.g. lib/python relative to Zope's main
   dir). 
   
