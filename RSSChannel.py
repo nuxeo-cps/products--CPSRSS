@@ -256,6 +256,8 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
                         item['title'] = it['title']
                         item['url'] = it['link']
                         item['description'] = it.get('description', '')
+			item['author'] = it.get('author', '')
+                        item['modified'] = it.get('modified','')
                         items.append(item)
                 # If the max number of items to be displayed is limited
                 # and the total number of items is higher, truncate.
