@@ -3,7 +3,7 @@ Requires:
 -
 New features:
 ~~~~~~~~~~~~~
--
+- Lazy refresh is now on by default.
 Bug fixes:
 ~~~~~~~~~~
 -
