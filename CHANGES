@@ -3,6 +3,7 @@ Requires:
 -
 New features:
 ~~~~~~~~~~~~~
+added an event notification on refreshed channels
 -
 Bug fixes:
 ~~~~~~~~~~
