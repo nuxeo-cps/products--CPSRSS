@@ -8,11 +8,6 @@ Want to display syndicated content on your CPS portal? This product adds a new
 type of box to CPS 3.x. You then can lay out RSS feeds using the boxes
 management form. Available feeds are centralized in the portal_rss tool.
 
-Note to CPS 2 users:
-
-  This product is intended for use with CPS 3.x only. You should still use
-  NuxRSS along with CPS 2.x.
-
 Administrators can set globally how many entries are to show, and local managers
 can change this setting for displaying less entries.
 
@@ -24,6 +19,10 @@ The current version relies on Mark Pilgrim's Ultraliberal RSS parser. It has
 been tested with version 2.5.3, which supports RSS feeds expressed in the
 following formats: RSS 0.9x, RSS 1.0 (and RDF/XML-based format) and 2.0.
 
+Note to CPS 2 users:
+
+  This product is intended for use with CPS 3.x only. You should still use
+  NuxRSS along with CPS 2.x.
 
 --------------------------------------------------
 HOW TO INSTALL
@@ -38,7 +37,7 @@ HOW TO INSTALL
   dir). 
   
   Note: you might also want to get timeoutsocket.py from [2] which is
-  used by the parser if present (put it in the same directorty). This is however
+  used by the parser if present (put it in the same directory). This is however
   not mandatory, and might cause trouble as it has not yet been extensively 
   tested
 
@@ -69,7 +68,7 @@ Note: it might be necessary to restart your Zope server after this step.
   consists in executing the product's installer (as you would for any other
   product).
 
-- From the ZMI, go to the CPS root, instanciate an External Method with the
+- From the ZMI, go to the CPS root, instantiate an External Method with the
   following parameters:
   ID = any Id you want, like cpsrssinst
   Title = anything you want, like CPSRSS Installer
