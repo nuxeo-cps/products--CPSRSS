@@ -23,6 +23,7 @@ from zLOG import LOG, DEBUG
 
 import time
 import urllib
+from urllib2 import ProxyHandler
 
 from AccessControl import ClassSecurityInfo
 from Globals import InitializeClass
@@ -199,14 +200,14 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
         if not url.startswith('http://') or url.startswith('https://'):
             data = {'channel': {}, 'items': []}
         try :
+            handlers = []
+            if self.channel_proxy:
+                proxy_handler = ProxyHandler({'http': self.channel_proxy})
+                handlers.append(proxy_handler)
             if self._data.get('items'):
-                #XXX: here we have to build a proxy handler with self.channel_proxy
-                #     that will be passed to the parse method
-                data = feedparser.parse(url, self._etag, self._modified)
+                data = feedparser.parse(url, self._etag, self._modified, handlers=handlers)
             else:
-                #XXX: here we have to build a proxy handler with self.channel_proxy
-                #     that will be passed to the parse method
-                data = feedparser.parse(url, None, None)
+                data = feedparser.parse(url, None, None, handlers=handlers)
         except SGMLParseError, err:
             data = {'channel': {}, 'items': []}
             LOG('RSSChannel Error', DEBUG,
