@@ -114,6 +114,12 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
     #in which case we provide it "as is" to the box
     html_feed = 0
 
+    #remember last time we retrieved a feed so that we can manually
+    #tell feedparser to go find it again or not (trying to correct
+    #weird behaviour)
+    _etag = None
+    _modified = None
+
     def __init__(self, id, channel_url='', new_window=1, nbMaxItems=0,
                  html_feed=0, **kw):
         self.id = id
@@ -185,7 +191,10 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
         if not url.startswith('http://') or url.startswith('https://'):
             data = {'channel': {}, 'items': []}
         try :
-            data = feedparser.parse(url)
+            if (self._data.has_key('items') and self._data['items']):
+                data = feedparser.parse(url,self._etag,self._modified)
+            else:
+                data = feedparser.parse(url,None,None)
         except SGMLParseError, err:
             data = {'channel': {}, 'items': []}
             LOG('RSSChannel Error', DEBUG,
@@ -206,8 +215,7 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
             #even if it succeeds, there might still be no data in the feed
             #this happens when the parser finds out that the feed has not
             #changed since it was last retrieved
-            if data.has_key('items') and data['items'] \
-                   and data.has_key('channel') and data['channel'] :
+            if data['items'] and data['channel'] :
                 # Avoid modifying persistent object if nothing has changed.
                 # data['items'] is empty if nothing has changed since the feed
                 # was last retrieved
@@ -235,7 +243,7 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
                 filteredData['url'] = ''
                 #fill with actual values if exist (for robustness
                 #as this might depend on the quality of the feed)
-                if (data.has_key('channel')):
+                if data.has_key('channel'):
                     chn=data['channel']
                     if (chn.has_key('title')):
                         filteredData['title']=chn['title']
@@ -243,6 +251,10 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
                         filteredData['description']=chn['description']
                     if (chn.has_key('link')):
                         filteredData['url']=chn['link']
+                if data.has_key('etag'):
+                    self._etag = data['etag']
+                if data.has_key('modified'):
+                    self._modified = data['modified']
                 self.title = filteredData['title']
                 if self.title is None or len(self.title)==0 or self.title.isspace():
                     self.title = self.id
@@ -251,13 +263,30 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
                 if self._data != filteredData:
                     self._data = filteredData
             else:
-                self._data = {'title': self.id,
-                              'description': '',
-                              'url': url,
-                              'lines': [],
-                              'newWindow': self.new_window,
-                              'feedType': 0, #RSS feed
-                              }
+                if not self._data.has_key('title') or \
+                   len(self._data['title'])==0 or \
+                   self._data['title'].isspace():
+                    self._data['title'] = self.id
+                if not self._data.has_key('description'):
+                    self._data['description'] = ''
+                if not self._data.has_key('url') or \
+                   len(self._data['url'])==0 or \
+                   self._data['url'].isspace():
+                    self._data['url'] = url
+                if not self._data.has_key('lines'):
+                    self._data['lines'] = []
+                if not self._data.has_key('newWindow'):
+                    self._data['newWindow'] = self.new_window
+                if not self._data.has_key('feedType'):
+                    self._data['feedType'] = 0
+                self.title = self._data['title']
+                if self.title is None or len(self.title)==0 or self.title.isspace():
+                    self.title = self.id
+                self.description = self._data['description']
+                if data.has_key('etag'):
+                    self._etag = data['etag']
+                if data.has_key('modified'):
+                    self._modified = data['modified']
 
     def _retrieveHTMLFeed(self):
         """Fetch an HTML feed"""
