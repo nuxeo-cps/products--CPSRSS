@@ -46,6 +46,12 @@ import feedparser
 
 from sgmllib import SGMLParseError
 
+# http://www.timo-tasi.org/python/timeoutsocket.py
+try:
+    from timeoutsocket import Timeout
+except ImportError:
+    LOG('sdfgjbsdfhbvsadifgvgvsdf',DEBUG,'sef')
+
 RSSChannel_meta_type = 'RSS Channel'
 
 factory_type_information =(
@@ -200,6 +206,10 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
             data = {'channel': {}, 'items': []}
             LOG('RSSChannel Error', DEBUG,
                 'RSS/SGML parsing error while retrieving feed\n'+str(url)+'\n'+str(err))
+        except Timeout, err2:
+            data = {'channel': {}, 'items': []}
+            LOG('RSSChannel Error', DEBUG,
+                'Timeout error while retrieving feed\n'+str(url)+'\n'+str(err2))
         if data.has_key('status') and data['status']>=400:
             #if the http request fails
             #the description field could contain more info about why
