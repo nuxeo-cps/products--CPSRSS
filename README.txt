@@ -31,12 +31,8 @@ HOW TO INSTALL
 [1] http://diveintomark.org/projects/feed_parser/
 [2] http://www.timo-tasi.org/python/timeoutsocket.py
 
--------------------------
-The Installer for this product is not yet available, so it is necessary
-to follow these steps for now:
--------------------------
-
--As CPSRSS is not a final product, it is necessary to edit either
+- An Installer is now available for CPSRSS, but you still need to do one manual
+operation: as CPSRSS is not a final product, it is necessary to edit either
 getBoxTypes.py in CPSDefault/skins/cps_default or getCustomBoxTypes.py
 in your own product and add the following declaration to the list of
 items returned:
@@ -55,15 +51,27 @@ TypeError when attempting to add an RSS Box in your portal.
 
 Note: it might be necessary to restart your Zope server after this step.
 
-- Open the ZMI and go to the CPS main dir
+- The remainder of the installation process is straightforward, as it 
+  consists in executing the product's installer (as you would for any other
+  product).
 
-- Add an RSS Tool from the drop down list, which will create a portal_rss tool
+- From the ZMI, go to the CPS root, instanciate an External Method with the
+  following parameters:
+  ID = any Id you want, like cpsrssinst
+  Title = anything you want, like CPSRSS Installer
+  Module Name = CPSRSS.install
+  Function Name = install
+
+- Execute the script by going to the Test tab. This should automatically create
+  a portal_rss tool, an RSS Box portal_type, a cps_rss portal_skin and it should
+  insert cps_rss in the list of layers for skin Basic.
+
+- You can then add channels through the tool as follows.
 
 - Select portal_rss and add a channel, then enter an ID and the feed's URL in
-  the 'Channel URL' field. Remember the ID as it will be required later for
-  linking a box to the channel (we will refer to it later as channel_id).
+  the 'Channel URL' field.
 
-- You can then test that the feed is retrieved correctly by going to the
+- You can test that the feed is retrieved correctly by going to the
   refresh tab of the portal_rss tool, clicking refresh, and then selecting your
   channel (properties).  The title and description should now be filled by
   values retrieved from the actual feed.
@@ -71,19 +79,14 @@ Note: it might be necessary to restart your Zope server after this step.
 - Check new_window if you want news items links to open in blank
   windows instead of the current one.
 
-- In portal_types, add a Factory-based Type Information ; select
-  CPSRSS: RSS Box
- 
-- Back again to CPS's root, select portal_skins. Add a FileSystem Directory
-  View object and choose CPSRSS/skins. Assign an ID to the
-  newly-created layer, and then insert it in the list of layers of all skins
-  that should use it (e.g. Basic) by going back to the properties tab of
-  portal_skins. Don't forget to save.
+- check HTML feed if the feed's URL already provides HTML that you do not want
+  to be transformed (this will just retrieve the HTML fragment at the given URL
+  and put it in the RSS Box).
 
-- Go to the box management interface on the CPS site ; add an RSS Box and fill
-  the Channel field with the channel_id you should have remembered
-  Note: a future version of CPSRSS will probably offer a drop-down list containing
-  all available channel_ids so that people do not have to know/remember those 
+- Go to the box management interface on the CPS site ; add an RSS Box and select
+  a channel from the drop-down list (which contains all channels configured in 
+  portal_rss). Save your changes. An RSS Box should now be visible in your portal.
+  Its location depends on the slot you selected, as for any other box.
 
 
 --------------------------------------------------
