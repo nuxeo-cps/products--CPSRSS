@@ -74,6 +74,7 @@ class RSSBox(BaseBox):
     def __init__(self, id,
                  channel_id='',
                  **kw):
+        # XXX FIXME:
         #this on-the-fly import prevents a randomly-occuring failure
         #to import that causes BaseBox to be None on the next line
         #(at least with Zope 2.6.1)
