@@ -147,12 +147,13 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
 
         self._maybe_refresh()
         data = self._data.copy()
-        lines = data['lines']
-        maxItems = maxItems or self.nbMaxItems
-        if maxItems:
-            # O special case.
-            # We want all the items
-            data.update({'lines': lines[:maxItems]})
+        if not self.html_feed:
+            lines = data.get('lines',[])
+            maxItems = maxItems or self.nbMaxItems
+            if maxItems:
+                # O special case.
+                # We want all the items
+                data.update({'lines': lines[:maxItems]})
         return data
 
     #
