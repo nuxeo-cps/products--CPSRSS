@@ -1,4 +1,20 @@
 *******************************************
+** CPSRSS V0.4.0 [R1 build 2004/07/08-08:54 by epietrig]
+
+Requires:
+~~~~~~~~~
+- feedparser v3.2 (included)
+New features:
+~~~~~~~~~~~~~
+- now possible to set a proxy to access the feed
+Bug fixes:
+~~~~~~~~~~
+-
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSRSS V0.3.1 [R1 build 2004/07/07-17:11 by madarche]
 
 Requires:

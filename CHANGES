@@ -1,9 +1,9 @@
 Requires:
 ~~~~~~~~~
-- feedparser v3.2 (included)
+-
 New features:
 ~~~~~~~~~~~~~
-- now possible to set a proxy to access the feed
+-
 Bug fixes:
 ~~~~~~~~~~
 -
