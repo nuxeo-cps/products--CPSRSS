@@ -1,4 +1,1 @@
 # author: epietriga@nuxeo.com
-
-- replace the Channel text field in rssbox_edit_form by a drop-down list
-  containing all available RSS feeds (retrieved from portal_tools)
