@@ -23,13 +23,7 @@ from zLOG import LOG, DEBUG
 from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo
 
-from Products.CMFCore.utils import getToolByName
-from Products.CMFCore.PortalFolder import PortalFolder
-from Products.CMFCore.CMFCorePermissions import View,ModifyPortalContent
-from Products.CMFCore.CMFCorePermissions import ManagePortal
-from Products.CMFCore.PortalContent import PortalContent
-from Products.CMFDefault.DublinCore import DefaultDublinCoreImpl
-
+from Products.CMFCore.CMFCorePermissions import View, ModifyPortalContent
 from Products.CPSDefault.BaseBox import BaseBox
 
 factory_type_information = (
@@ -60,27 +54,23 @@ factory_type_information = (
 class RSSBox(BaseBox):
     """An RSS Box (for displaying RSS channels)."""
 
-    meta_type = 'RSS Box'
-    portal_type = 'RSS Box'
+    portal_type = meta_type = 'RSS Box'
 
     security = ClassSecurityInfo()
 
     _properties = BaseBox._properties + (
-        {'id':'channel_id', 'type':'string', 'mode':'w',
-         'label':'RSS Channel Id'},
-        {'id':'nbMaxItems','type':'int', 'mode':'w',
+        {'id': 'channel_id', 'type': 'string', 'mode': 'w',
+         'label': 'RSS Channel Id'},
+        {'id': 'nbMaxItems', 'type': 'int', 'mode': 'w',
          'label': 'Maximum number of items'},
         )
 
-    def __init__(self, id,
-                 channel_id='',
-                 nbMaxItems=0,
-                 **kw):
+    def __init__(self, id, channel_id='', nbMaxItems=0, **kw):
         # XXX FIXME:
         #this on-the-fly import prevents a randomly-occuring failure
         #to import that causes BaseBox to be None on the next line
         #(at least with Zope 2.6.1)
-        # JA : seems to work like that. weired anyway. To watch out.
+        # JA : seems to work like that. weird anyway. To watch out.
         #from Products.CPSDefault.BaseBox import BaseBox
         BaseBox.__init__(self, id, provider='rss', category='rssbox', kw=kw)
         self.channel_id = channel_id
@@ -92,8 +82,8 @@ InitializeClass(RSSBox)
 def addRSSBox(dispatcher, id, REQUEST=None, **kw):
     """Add an RSS Box."""
     ob = RSSBox(id, **kw)
-    dispatcher._setObject(id,ob)
-    if REQUEST is not None:
+    dispatcher._setObject(id, ob)
+    if REQUEST:
         url = dispatcher.DestinationURL()
         REQUEST.RESPONSE.redirect('%s/manage_main' % url)
 

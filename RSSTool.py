@@ -25,7 +25,7 @@ from AccessControl import ClassSecurityInfo
 
 from Products.CMFCore.PortalFolder import PortalFolder
 from Products.CMFCore.CMFCorePermissions import View, ManagePortal
-from Products.CMFCore.utils import UniqueObject, getToolByName
+from Products.CMFCore.utils import UniqueObject
 
 from RSSChannel import addRSSChannel, RSSChannel_meta_type
 
@@ -44,20 +44,19 @@ class RSSTool(UniqueObject, PortalFolder):
     #
     # API
     #
-
     security.declareProtected(ManagePortal, 'refresh')
     def refresh(self, REQUEST=None):
         """Refresh all the channels from their source."""
         for ob in self.objectValues(RSSChannel_meta_type):
             ob.refresh()
-        if REQUEST is not None:
-            REQUEST.RESPONSE.redirect('%s/manage_main?manage_tabs_message=Refreshed.'
-                                      % self.absolute_url())
+        if REQUEST:
+            REQUEST.RESPONSE.redirect(
+                '%s/manage_main?manage_tabs_message=Refreshed.'
+                % self.absolute_url())
 
     #
     # CMF views
     #
-
     def __call__(self, REQUEST=None, **kw):
         """Default view."""
         return self.view(REQUEST=REQUEST, **kw)
@@ -72,12 +71,14 @@ class RSSTool(UniqueObject, PortalFolder):
     #
     # ZMI
     #
-
     _properties = (
-        {'id':'title', 'type':'string', 'mode':'w', 'label':'Title'},
-        {'id':'refresh_delay', 'type':'int', 'mode':'w', 'label':'Refresh Delay'},
-        {'id':'lazy_refresh', 'type':'boolean', 'mode':'w', 'label':'Lazy Refresh'},
-        )
+        {'id': 'title', 'type': 'string', 'mode': 'w', 
+         'label': 'Title'},
+        {'id': 'refresh_delay', 'type': 'int', 'mode': 'w', 
+         'label': 'Refresh Delay'},
+        {'id': 'lazy_refresh', 'type': 'boolean', 'mode': 'w', 
+         'label': 'Lazy Refresh'},
+    )
     title = ''
     refresh_delay = 600
     lazy_refresh = 0
@@ -92,22 +93,19 @@ class RSSTool(UniqueObject, PortalFolder):
     manage_addRSSChannelForm = DTMLFile('zmi/addRSSChannelForm', globals())
 
     security.declareProtected(ManagePortal, 'manage_addRSSChannel')
-    def manage_addRSSChannel(self, id,
-                             REQUEST=None, **kw):
+    def manage_addRSSChannel(self, id, REQUEST=None, **kw):
         """Add a RSS Channel from the ZMI."""
-        if REQUEST is not None:
+        if REQUEST:
             kw.update(REQUEST.form)
             del kw['id']
         container = self
         addRSSChannel(container, id, **kw)
-        if REQUEST is not None:
+        if REQUEST:
             REQUEST.RESPONSE.redirect('%s/%s/manage_workspace'
                                       % (container.absolute_url(), id))
 
     manage_options = (PortalFolder.manage_options[:1] + # contents
-                      ({'label': 'Refresh',
-                        'action': 'refreshForm'},
-                       ) +
+                      ({'label': 'Refresh', 'action': 'refreshForm'},) +
                       PortalFolder.manage_options[1:])
 
     refreshForm = DTMLFile('zmi/refreshForm', globals())

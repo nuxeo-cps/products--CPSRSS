@@ -23,14 +23,11 @@ from zLOG import LOG, DEBUG
 
 import time
 import urllib
-from StringIO import StringIO
 
-from Globals import InitializeClass, DTMLFile
 from AccessControl import ClassSecurityInfo
+from Globals import InitializeClass
 
 from OFS.PropertyManager import PropertyManager
-from Products.CMFCore.utils import getToolByName
-from Products.CMFCore.PortalFolder import PortalFolder
 from Products.CMFCore.CMFCorePermissions import View
 from Products.CMFCore.CMFCorePermissions import ModifyPortalContent
 from Products.CMFCore.CMFCorePermissions import ManagePortal
@@ -54,7 +51,7 @@ except ImportError,ie:
 
 RSSChannel_meta_type = 'RSS Channel'
 
-factory_type_information =(
+factory_type_information = (
     {'id': 'RSS Channel',
      'description': 'RSS Channel',
      'title': '',
@@ -81,7 +78,6 @@ factory_type_information =(
     )
 
 
-
 class RSSChannel(PortalContent, DefaultDublinCoreImpl):
     """
     RSSChannel handles calls to the RSS parser and reorganizes
@@ -97,37 +93,40 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
     security.declareObjectProtected(View)
 
     _properties = (
-        {'id':'title', 'type':'string', 'mode':'w', 'label':'Title'},
-        {'id':'description', 'type':'text', 'mode':'w', 'label':'Description'},
-        {'id':'channel_url', 'type':'string', 'mode':'w', 'label':'Channel URL'},
-        {'id':'new_window', 'type':'boolean', 'mode':'w', 'label':'Open Links in New Window'},
-        {'id':'nbMaxItems','type':'int', 'mode':'w', 'label': 'Maximum number of items'},
-        {'id':'html_feed', 'type':'boolean', 'mode':'w',
-         'label':'HTML feeds are provided untransformed'
-         },
-        )
+        {'id': 'title', 'type': 'string', 'mode': 'w', 
+         'label': 'Title'},
+        {'id': 'description', 'type': 'text', 'mode': 'w', 
+         'label': 'Description'},
+        {'id': 'channel_url', 'type': 'string', 'mode':'w', 
+         'label': 'Channel URL'},
+        {'id': 'new_window', 'type': 'boolean', 'mode': 'w',
+         'label': 'Open Links in New Window'},
+        {'id': 'nbMaxItems','type': 'int', 'mode':'w', 
+         'label': 'Maximum number of items'},
+        {'id': 'html_feed', 'type': 'boolean', 'mode': 'w',
+         'label': 'HTML feeds are provided untransformed'},
+    )
 
-    # filled by a refresh
+    # Filled by a refresh
     title = ''
-    # filled by a refresh
     description = ''
     channel_url = ''
-    #true if links to news items should open in new windows
+    # True if links to news items should open in new windows
     new_window = 1
-    #maximum number of items, 0 means unlimited
+    # Maximum number of items, 0 means unlimited
     nbMaxItems = 0
-    #true if the feed is already formatted in HTML,
-    #in which case we provide it "as is" to the box
+    # True if the feed is already formatted in HTML,
+    # in which case we provide it "as is" to the box
     html_feed = 0
 
-    #remember last time we retrieved a feed so that we can manually
-    #tell feedparser to go find it again or not (trying to correct
-    #weird behaviour)
+    # Remember last time we retrieved a feed so that we can manually
+    # tell feedparser to go find it again or not (trying to correct
+    # weird behaviour)
     _etag = None
     _modified = None
 
     def __init__(self, id, channel_url='', new_window=1, nbMaxItems=0,
-                 html_feed=0, **kw):
+                 html_feed=0):
         self.id = id
         self.channel_url = channel_url
         self.new_window = new_window
@@ -139,7 +138,6 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
     #
     # API
     #
-
     security.declareProtected(ManagePortal, 'refresh')
     def refresh(self):
         """Refresh the channels from its source."""
@@ -151,7 +149,7 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
     def getData(self, maxItems=None):
         """Get the data for this channel, as a dict."""
 
-        self._maybe_refresh()
+        self._maybeRefresh()
         data = self._data.copy()
         if not self.html_feed:
             lines = data.get('lines',[])
@@ -165,8 +163,7 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
     #
     # internal
     #
-
-    def _maybe_refresh(self):
+    def _maybeRefresh(self):
         """Refresh if on lazy refresh and the delay has elapsed."""
 
         if not self.lazy_refresh: # acquired from parent (portal_rss)
@@ -199,18 +196,19 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
             data = {'channel': {}, 'items': []}
         try :
             if self._data.get('items'):
-                data = feedparser.parse(url,self._etag,self._modified)
+                data = feedparser.parse(url, self._etag, self._modified)
             else:
-                data = feedparser.parse(url,None,None)
+                data = feedparser.parse(url, None, None)
         except SGMLParseError, err:
             data = {'channel': {}, 'items': []}
             LOG('RSSChannel Error', DEBUG,
-                'RSS/SGML parsing error while retrieving feed\n'+str(url)+'\n'+str(err))
+                'RSS/SGML parsing error while retrieving feed\n'
+                +str(url)+'\n'+str(err))
         except Timeout, err2:
             data = {'channel': {}, 'items': []}
             LOG('RSSChannel Error', DEBUG,
                 'Timeout error while retrieving feed\n'+str(url)+'\n'+str(err2))
-        if data.has_key('status') and data['status']>=400:
+        if data.has_key('status') and data['status'] >= 400:
             #if the http request fails
             #the description field could contain more info about why
             #the request failed, like the error code (404, etc.)
@@ -246,7 +244,8 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
                 if self.nbMaxItems and len(items) > self.nbMaxItems:
                     items = items[:self.nbMaxItems]
                 #feedType=0 indicates an RSS feed
-                filteredData = {'lines': items, 'newWindow': self.new_window, 'feedType': 0}
+                filteredData = {'lines': items, 'newWindow': self.new_window, 
+                                'feedType': 0}
                 #init values
                 filteredData['title'] = ''
                 filteredData['description'] = ''
@@ -254,30 +253,31 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
                 #fill with actual values if exist (for robustness
                 #as this might depend on the quality of the feed)
                 if data.has_key('channel'):
-                    chn=data['channel']
-                    if (chn.has_key('title')):
-                        filteredData['title']=chn['title']
-                    if (chn.has_key('description')):
-                        filteredData['description']=chn['description']
-                    if (chn.has_key('link')):
-                        filteredData['url']=chn['link']
+                    chn = data['channel']
+                    if chn.has_key('title'):
+                        filteredData['title'] = chn['title']
+                    if chn.has_key('description'):
+                        filteredData['description'] = chn['description']
+                    if chn.has_key('link'):
+                        filteredData['url'] = chn['link']
                 if data.has_key('etag'):
                     self._etag = data['etag']
                 if data.has_key('modified'):
                     self._modified = data['modified']
                 self.title = filteredData['title']
-                if self.title is None or len(self.title)==0 or self.title.isspace():
+                if self.title is None or len(self.title) == 0 \
+                  or self.title.isspace():
                     self.title = self.id
                 self.description = filteredData['description']
                 #assign data to object
                 if self._data != filteredData:
                     self._data = filteredData
             else:
-                if not self._data.get('title','').strip():
+                if not self._data.get('title', '').strip():
                     self._data['title'] = self.id
                 if not self._data.has_key('description'):
                     self._data['description'] = ''
-                if not self._data.get('url','').strip():
+                if not self._data.get('url', '').strip():
                     self._data['url'] = url
                 if not self._data.has_key('lines'):
                     self._data['lines'] = []
@@ -286,7 +286,8 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
                 if not self._data.has_key('feedType'):
                     self._data['feedType'] = 0
                 self.title = self._data['title']
-                if self.title is None or len(self.title)==0 or self.title.isspace():
+                if self.title is None or len(self.title)==0 \
+                  or self.title.isspace():
                     self.title = self.id
                 self.description = self._data['description']
                 if data.has_key('etag'):
@@ -301,9 +302,9 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
         if not url.startswith('http://') or url.startswith('https://'):
             html_data = ''
         self.title = 'HTML Feed'
-        self.description = "This feed has been formatted in HTML on the\
-        server side. It can only be displayed as is ; no other information\
-        is available."
+        self.description = "This feed has been formatted in HTML on the " \
+            "server side. It can only be displayed as is ; no other " \
+            "information is available."
         try:
             f = urllib.urlopen(url)
             html_data = f.read()
@@ -318,22 +319,18 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
     #
     # ZMI
     #
-
     manage_options = (PropertyManager.manage_options +   # Properties
                       PortalContent.manage_options[:1] + # skip Edit
-                      PortalContent.manage_options[3:]
-                      )
-
+                      PortalContent.manage_options[3:])
 
 InitializeClass(RSSChannel)
 
 
-def addRSSChannel(container, id,
-                  REQUEST=None, **kw):
+def addRSSChannel(container, id, REQUEST=None, **kw):
     """Create an empty RSS Channel."""
     ob = RSSChannel(id, **kw)
     container._setObject(id, ob)
     ob = container._getOb(id)
-    if REQUEST is not None:
+    if REQUEST:
         url = container.absolute_url()
         REQUEST.RESPONSE.redirect('%s/manage_main' % url)

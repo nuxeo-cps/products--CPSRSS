@@ -1,6 +1,7 @@
-# (C) Copyright 2002 Nuxeo SARL <http://nuxeo.com>
+# (C) Copyright 2002-2003 Nuxeo SARL <http://nuxeo.com>
 # (C) Copyright 2002 Préfecture du Bas-Rhin, France
-# Author: Florent Guillaume <fg@nuxeo.com>
+# Authors: Florent Guillaume <fg@nuxeo.com>
+#          Emmanuel Pietriga <epietriga@nuxeo.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as published
@@ -28,8 +29,7 @@ import RSSBox
 
 contentClasses = (RSSBox.RSSBox,)
 contentConstructors = (RSSBox.addRSSBox,)
-fti = (RSSBox.factory_type_information +
-       ())
+fti = (RSSBox.factory_type_information + ())
 
 registerDirectory('skins', globals())
 
@@ -47,5 +47,4 @@ def initialize(registrar):
                    product_name = 'CPSRSS',
                    icon = 'tool.gif',
                    ).initialize(registrar)
-    
 
