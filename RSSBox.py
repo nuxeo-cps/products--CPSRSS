@@ -69,6 +69,8 @@ class RSSBox(BaseBox):
     _properties = BaseBox._properties + (
         {'id':'channel_id', 'type':'string', 'mode':'w',
          'label':'RSS Channel Id'},
+        {'id':'nbMaxItems','type':'int', 'mode':'w',
+         'label': 'Maximum number of items'},
         )
 
     def __init__(self, id,
@@ -81,6 +83,7 @@ class RSSBox(BaseBox):
         from Products.CPSDefault.BaseBox import BaseBox
         BaseBox.__init__(self, id, provider='rss', category='rssbox', kw=kw)
         self.channel_id = channel_id
+        self.nbMaxItems = nbMaxItems
 
 InitializeClass(RSSBox)
 
