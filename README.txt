@@ -84,3 +84,23 @@ Note: it might be necessary to restart your Zope server after this step.
   the Channel field with the channel_id you should have remembered
   Note: a future version of CPSRSS will probably offer a drop-down list containing
   all available channel_ids so that people do not have to know/remember those 
+
+
+--------------------------------------------------
+RSS Tool configuration
+--------------------------------------------------
+
+It is possible to configure some options in the properties tab of the
+portal_rss tool. These options apply to all channels:
+
+- lazy_refresh: check this box if the channel's content should not be
+  updated each time the page is reloaded, but only when a given amount
+  of time (specified by refresh_delay in seconds) has elapsed since the 
+  last refresh.
+
+- refresh_delay: see above item
+
+If lazy_refresh is not checked, the channels will be refreshed each time
+a page containing boxes displaying them is reloaded. Note that the underlying
+RSS parser features its own mechanism to download the feed only if it changed
+since the last time it checked for it.
