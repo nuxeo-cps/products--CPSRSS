@@ -15,22 +15,6 @@
   </tr>
   <tr>
     <td align="left" valign="top">
-      <div class="form-label">Title</div>
-    </td>
-    <td align="left" valign="top">
-      <input type="text" name="title" size="30" />
-    </td>
-  </tr>
-  <tr>
-    <td align="left" valign="top">
-      <div class="form-label">Description</div>
-    </td>
-    <td align="left" valign="top">
-      <textarea name="description:text" rows="2" cols="30"></textarea>
-    </td>
-  </tr>
-  <tr>
-    <td align="left" valign="top">
       <div class="form-label">Channel URL</div>
     </td>
     <td align="left" valign="top">

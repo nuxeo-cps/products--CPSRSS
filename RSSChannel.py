@@ -101,7 +101,9 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
          },
         )
     
+    # filled by a refresh
     title = ''
+    # filled by a refresh
     description = ''
     channel_url = ''
     #true if links to news items should open in new windows
@@ -112,11 +114,9 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
     #in which case we provide it "as is" to the box
     html_feed = 0
 
-    def __init__(self, id, title='', description='', channel_url='',
-                 new_window=1, nbMaxItems=0, html_feed=0, **kw):
+    def __init__(self, id, channel_url='', new_window=1, nbMaxItems=0,
+                 html_feed=0, **kw):
         self.id = id
-        self.title = title
-        self.description = description
         self.channel_url = channel_url
         self.new_window = new_window
         self.nbMaxItems = nbMaxItems
