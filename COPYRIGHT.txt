@@ -1,0 +1,2 @@
+(c) 2003 Nuxeo SARL <http://nuxeo.com>
+(c) 2003 Emmanuel Pietriga <mailto:ep@nuxeo.com>

@@ -1,0 +1,37 @@
+<dtml-let form_title="'Add RSS Channel'">
+<dtml-var manage_page_header>
+<dtml-var manage_form_title>
+</dtml-let>
+
+<form action="manage_addRSSChannel" method="POST">
+<table cellspacing="0" cellpadding="2" border="0">
+  <tr>
+    <td align="left" valign="top">
+      <div class="form-label">Id</div>
+    </td>
+    <td align="left" valign="top">
+      <input type="text" name="id" size="30" />
+    </td>
+  </tr>
+  <tr>
+    <td align="left" valign="top">
+      <div class="form-label">Channel URL</div>
+    </td>
+    <td align="left" valign="top">
+      <input type="text" name="channel_url" size="60" />
+    </td>
+  </tr>
+  <tr>
+    <td align="left" valign="top">
+      &nbsp;
+    </td>
+    <td align="left" valign="top">
+      <div class="form-element">
+      <input class="form-element" type="submit" name="submit" value=" Add " />
+      </div>
+    </td>
+  </tr>
+</table>
+</form>
+
+<dtml-var manage_page_footer>
