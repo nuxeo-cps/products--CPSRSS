@@ -22,14 +22,14 @@
 from zLOG import LOG, DEBUG
 from Globals import InitializeClass, DTMLFile
 from AccessControl import ClassSecurityInfo
+from OFS.Folder import Folder
 
-from Products.CMFCore.PortalFolder import PortalFolder
 from Products.CMFCore.CMFCorePermissions import View, ManagePortal
 from Products.CMFCore.utils import UniqueObject
 
 from RSSChannel import addRSSChannel, RSSChannel_meta_type
 
-class RSSTool(UniqueObject, PortalFolder):
+class RSSTool(UniqueObject, Folder):
     """RSS tool, a container for RSS channels that can refresh them."""
 
     id = 'portal_rss'
@@ -37,9 +37,6 @@ class RSSTool(UniqueObject, PortalFolder):
 
     security = ClassSecurityInfo()
     security.declareObjectProtected(View)
-
-    def __init__(self):
-        PortalFolder.__init__(self, self.id)
 
     #
     # API
@@ -66,6 +63,7 @@ class RSSTool(UniqueObject, PortalFolder):
     security.declareProtected(View, 'view')
     def view(self, REQUEST=None, **kw):
         """Default view."""
+        # FIXME rsstool_view doesn't exist
         return self.rsstool_view(REQUEST=REQUEST, **kw)
 
     #
@@ -104,9 +102,9 @@ class RSSTool(UniqueObject, PortalFolder):
             REQUEST.RESPONSE.redirect('%s/%s/manage_workspace'
                                       % (container.absolute_url(), id))
 
-    manage_options = (PortalFolder.manage_options[:1] + # contents
+    manage_options = (Folder.manage_options[:1] + # contents
                       ({'label': 'Refresh', 'action': 'refreshForm'},) +
-                      PortalFolder.manage_options[1:])
+                      Folder.manage_options[1:])
 
     refreshForm = DTMLFile('zmi/refreshForm', globals())
 
