@@ -19,6 +19,13 @@
       </select>
     </td>
   </tr>
+  <tr valign="top">
+    <th align="right">Max items displayed</th>
+    <td>
+      <input type="text" name="nbMaxItems:int" size="2" value=""
+             tal:attributes="value box/box/nbMaxItems|string:">
+    </td>
+  </tr>
 </metal:fields>
 
 </metal:boxform>
