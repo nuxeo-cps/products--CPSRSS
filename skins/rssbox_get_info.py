@@ -11,6 +11,7 @@ if channel is None:
             'url': ".",
             'lines': [],
             'newWindow': 0,
+            'feedType': 0, #RSS feed
             }
 
 return channel.getData()
