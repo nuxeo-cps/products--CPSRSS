@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2003-10-03 14:29default\n"
-"PO-Revision-Date: 2003-10-03 14:22+0200\n"
+"POT-Creation-Date: 2003-10-03 14:39default\n"
+"PO-Revision-Date: 2003-10-03 14:41+0200\n"
 "Last-Translator: emmanuel <epietriga@nuxeo.com>\n"
 "Language-Team: francais <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -29,5 +29,9 @@ msgstr "Channel"
 msgid "label_max_items"
 msgstr "Maximum Number of Items"
 
+msgid "portal_type_RSSBox_description"
+msgstr "A box displaying RSS feeds"
+
 #~ msgid "rss_no_data"
 #~ msgstr "No data available"
+

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2003-10-03 14:29default\n"
+"POT-Creation-Date: 2003-10-03 14:39default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -27,4 +27,7 @@ msgstr ""
 #.   <th align="right">Max items displayed</th>
 #: from ../skins/rssbox_edit_form.pt
 msgid "label_max_items"
+msgstr ""
+
+msgid "portal_type_RSSBox_description"
 msgstr ""

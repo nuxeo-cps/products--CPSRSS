@@ -16,3 +16,6 @@ msgstr ""
 "Preferred-encodings: utf-8 latin1\n"
 "Domain: default\n"
 
+msgid "portal_type_RSSBox_description"
+msgstr ""
+
