@@ -1,0 +1,33 @@
+# ##########################################################
+# ################# DON'T EDIT THIS FILE! ##################
+# ##########################################################
+# Gettext Message File for default.
+# Your Name <your@email>, Year
+msgid ""
+msgstr ""
+"Project-Id-Version: default\n"
+"POT-Creation-Date: 2003-10-03 14:39default\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Your Name <your@email>\n"
+"Language-Team: Name <email>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-code: LL\n"
+"Language-name: Language\n"
+"Preferred-encodings: utf-8 latin1\n"
+"Domain: default\n"
+
+#.   <th align="right">Channel</th>
+#: from ../skins/rssbox_edit_form.pt
+msgid "label_channel"
+msgstr ""
+
+#.   <th align="right">Max items displayed</th>
+#: from ../skins/rssbox_edit_form.pt
+msgid "label_max_items"
+msgstr ""
+
+msgid "portal_type_RSSBox_description"
+msgstr ""
