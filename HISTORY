@@ -1,4 +1,20 @@
 *******************************************
+** CPSRSS V0.5.4 [R1 build 2005/04/08-16:24 by ben]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- Removed warnings: replaces CMFCore.CMFCorePermissions by CMFCore.permissions.
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSRSS V0.5.3 [R1 build 2005/03/07-16:08 by madarche]
 
 Requires:
