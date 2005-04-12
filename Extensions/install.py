@@ -161,7 +161,7 @@ def install(self):
 
     ttool = portal.portal_types
     ptypes_installed = ttool.objectIds()
-    
+
     if 'RSS Box' in ptypes_installed:
         pr(" Type RSS Box Deleted")
         ttool.manage_delObjects('RSS Box')
@@ -172,7 +172,7 @@ def install(self):
     ttool['RSS Box'].manage_changeProperties(title='portal_type_RSSBox_title',
                                              description='portal_type_RSSBox_description',
                                              content_meta_type='RSS Box')
-                                    
+
 
 
     ##########################################
@@ -186,7 +186,6 @@ def install(self):
 
     for skin in skins:
         path = paths[skin]
-        path = path.replace('/', os.sep)
         pr(" FS Directory View '%s'" % skin)
         if skin in portal.portal_skins.objectIds():
             dv = portal.portal_skins[skin]
@@ -221,6 +220,6 @@ def install(self):
     ##############################################
 
     pr(cps_rss_i18n_update(self))
-    
+
     pr("End of CPSRSS install")
     return pr('flush')
