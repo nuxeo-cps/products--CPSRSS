@@ -1,4 +1,20 @@
 *******************************************
+** CPSRSS V0.5.5 [R1 build 2005/04/13-08:27 by ben]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- Fixed installation problem(skins registration) under windows
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSRSS V0.5.4 [R1 build 2005/04/08-16:24 by ben]
 
 Requires:
