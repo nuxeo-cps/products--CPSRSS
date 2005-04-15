@@ -24,7 +24,7 @@ from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo
 
 from Products.CMFCore.permissions import View, ModifyPortalContent
-from Products.CPSDefault.BaseBox import BaseBox
+from Products.CPSBoxes.BaseBox import BaseBox
 
 factory_type_information = (
     {'id': 'portal_type_RSSBox_title',
@@ -66,12 +66,6 @@ class RSSBox(BaseBox):
         )
 
     def __init__(self, id, channel_id='', nbMaxItems=0, **kw):
-        # XXX FIXME:
-        #this on-the-fly import prevents a randomly-occuring failure
-        #to import that causes BaseBox to be None on the next line
-        #(at least with Zope 2.6.1)
-        # JA : seems to work like that. weird anyway. To watch out.
-        #from Products.CPSDefault.BaseBox import BaseBox
         BaseBox.__init__(self, id, provider='rss', category='rssbox', kw=kw)
         self.channel_id = channel_id
         self.nbMaxItems = nbMaxItems
