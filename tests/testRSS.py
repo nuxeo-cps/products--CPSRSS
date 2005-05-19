@@ -35,9 +35,6 @@ class TestRSSTool(CPSRSSTestCase.CPSRSSTestCase):
         python_version = sys.version_info[0], sys.version_info[1]
         if python_version[0] == 2 and python_version[1] >= 3:
             self.assert_('timeoutsocket' not in sys.modules.keys())
-        else:
-            self.assert_('timeoutsocket' in sys.modules.keys())
-
 
 def test_suite():
     suites = [unittest.makeSuite(TestRSSTool)]
