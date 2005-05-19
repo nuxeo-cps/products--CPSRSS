@@ -61,18 +61,28 @@ try:
     import zlib
 except:
     zlib = None
-    
+
 # timeoutsocket allows feedparser to time out rather than hang forever on ultra-slow servers.
 # Python 2.3 now has this functionality available in the standard socket library, so under
 # 2.3 you don't need to install anything.  But you probably should anyway, because the socket
 # module is buggy and timeoutsocket is better.
-try:
-    import timeoutsocket # http://www.timo-tasi.org/python/timeoutsocket.py
-    timeoutsocket.setDefaultSocketTimeout(20)
-except ImportError:
+
+# for python >= 2.3 we want to use the bundled stuff
+import sys
+python_version = sys.version_info[0], sys.version_info[1]
+
+if python_version[0] == 2 and python_version[1] >= 3:
     import socket
     if hasattr(socket, 'setdefaulttimeout'):
         socket.setdefaulttimeout(20)
+else:
+    try:
+        import timeoutsocket # http://www.timo-tasi.org/python/timeoutsocket.py
+        timeoutsocket.setDefaultSocketTimeout(20)
+    except ImportError:
+        # no timeout
+        pass
+
 import urllib, urllib2
 
 _mxtidy = None
@@ -165,7 +175,7 @@ class FeedParserDict(UserDict):
 
     def has_key(self, key):
         return hasattr(self, key) or UserDict.has_key(self, key)
-        
+
     def __getattr__(self, key):
         try:
             return self.__dict__[key]
@@ -216,7 +226,7 @@ class _FeedParserMixin:
                   "http://purl.org/pie/": "",
                   "http://purl.org/atom/ns#": "",
                   "http://purl.org/rss/1.0/modules/rss091#": "",
-                  
+
                   "http://webns.net/mvcb/":                               "admin",
                   "http://purl.org/rss/1.0/modules/aggregation/":         "ag",
                   "http://purl.org/rss/1.0/modules/annotate/":            "annotate",
@@ -263,7 +273,7 @@ class _FeedParserMixin:
     can_contain_relative_uris = ['content', 'description', 'title', 'summary', 'info', 'tagline', 'copyright']
     can_contain_dangerous_markup = ['content', 'description', 'title', 'summary', 'info', 'tagline', 'copyright']
     html_types = ['text/html', 'application/xhtml+xml']
-    
+
     def __init__(self, baseuri=None, encoding='utf-8'):
         if _debug: sys.stderr.write("initializing FeedParser\n")
         self.feeddata = FeedParserDict() # feed-level data
@@ -294,7 +304,7 @@ class _FeedParserMixin:
         # normalize attrs
         attrs = [(k.lower(), v) for k, v in attrs]
         attrs = [(k, k in ('rel', 'type') and v.lower() or v) for k, v in attrs]
-        
+
         # track xml:base and xml:lang
         attrsD = dict(attrs)
         baseuri = attrsD.get('xml:base', attrsD.get('base'))
@@ -307,7 +317,7 @@ class _FeedParserMixin:
             self.lang = lang
         self.basestack.append(baseuri)
         self.langstack.append(lang)
-        
+
         # track namespaces
         for prefix, uri in attrs:
             if prefix.startswith('xmlns:'):
@@ -345,7 +355,7 @@ class _FeedParserMixin:
             self.intextinput = 0
         if (not prefix) and tag not in ('title', 'link', 'description', 'url', 'width', 'height'):
             self.inimage = 0
-        
+
         # call special handler (if defined) or default handler
         methodname = '_start_' + prefix + suffix
         try:
@@ -472,7 +482,7 @@ class _FeedParserMixin:
 
     def resolveURI(self, uri):
         return urlparse.urljoin(self.baseuri or '', uri)
-    
+
     def decodeEntities(self, element, data):
         return data
 
@@ -487,7 +497,7 @@ class _FeedParserMixin:
         output = "".join(pieces)
         output = output.strip()
         if not expectingText: return output
-        
+
         # decode base64 content
         if self.contentparams.get('mode') == 'base64' and base64:
             try:
@@ -496,11 +506,11 @@ class _FeedParserMixin:
                 pass
             except binascii.Incomplete:
                 pass
-                
+
         # resolve relative URIs
         if (element in self.can_be_relative_uri) and output:
             output = self.resolveURI(output)
-        
+
         # decode entities within embedded markup
         output = self.decodeEntities(element, output)
 
@@ -508,7 +518,7 @@ class _FeedParserMixin:
         if self.contentparams.get('type', 'text/html') in self.html_types:
             if element in self.can_contain_relative_uris:
                 output = _resolveRelativeURIs(output, self.baseuri, self.encoding)
-        
+
         # sanitize embedded markup
         if self.contentparams.get('type', 'text/html') in self.html_types:
             if element in self.can_contain_dangerous_markup:
@@ -519,7 +529,7 @@ class _FeedParserMixin:
                 output = unicode(output, self.encoding)
             except:
                 pass
-            
+
         # store output in appropriate place(s)
         if self.inentry:
             if element == 'content':
@@ -568,7 +578,7 @@ class _FeedParserMixin:
             prefix = self.namespacemap.get(prefix, prefix)
             name = prefix + ':' + suffix
         return name
-        
+
     def _getAttribute(self, attrsD, name):
         return attrsD.get(self._mapToStandardPrefix(name))
 
@@ -593,7 +603,7 @@ class _FeedParserMixin:
                 self.version = 'rss20'
             else:
                 self.version = 'rss'
-    
+
     def _start_dlhottitles(self, attrsD):
         self.version = 'hotrss'
 
@@ -611,7 +621,7 @@ class _FeedParserMixin:
             self._start_link({})
             self.elementstack[-1][-1] = attrsD['href']
             self._end_link()
-    
+
     def _start_feed(self, attrsD):
         self.infeed = 1
         versionmap = {'0.1': 'atom01',
@@ -628,24 +638,24 @@ class _FeedParserMixin:
     def _end_channel(self):
         self.infeed = 0
     _end_feed = _end_channel
-    
+
     def _start_image(self, attrsD):
         self.inimage = 1
         self.push('image', 0)
         context = self._getContext()
         context.setdefault('image', FeedParserDict())
-            
+
     def _end_image(self):
         self.pop('image')
         self.inimage = 0
-                
+
     def _start_textinput(self, attrsD):
         self.intextinput = 1
         self.push('textinput', 0)
         context = self._getContext()
         context.setdefault('textinput', FeedParserDict())
     _start_textInput = _start_textinput
-    
+
     def _end_textinput(self):
         self.pop('textinput')
         self.intextinput = 0
@@ -676,7 +686,7 @@ class _FeedParserMixin:
     def _end_contributor(self):
         self.pop('contributor')
         self.incontributor = 0
-        
+
     def _start_name(self, attrsD):
         self.push('name', 0)
 
@@ -795,7 +805,7 @@ class _FeedParserMixin:
             context.setdefault('%s_detail' % key, FeedParserDict())
             context['%s_detail' % key]['name'] = author
             context['%s_detail' % key]['email'] = email
-            
+
     def _start_tagline(self, attrsD):
         self.incontent += 1
         self.contentparams = FeedParserDict({'mode': attrsD.get('mode', 'escaped'),
@@ -812,7 +822,7 @@ class _FeedParserMixin:
         if self.infeed:
             self.feeddata['description'] = value
     _end_subtitle = _end_tagline
-            
+
     def _start_copyright(self, attrsD):
         self.incontent += 1
         self.contentparams = FeedParserDict({'mode': attrsD.get('mode', 'escaped'),
@@ -862,7 +872,7 @@ class _FeedParserMixin:
         self.pop('publisher')
         self._sync_author_detail('publisher')
     _end_webmaster = _end_dc_publisher
-        
+
     def _start_dcterms_issued(self, attrsD):
         self.push('issued', 1)
     _start_issued = _start_dcterms_issued
@@ -907,7 +917,7 @@ class _FeedParserMixin:
         if value:
             self.elementstack[-1][2].append(value)
         self.pop('license')
-        
+
     def _start_creativecommons_license(self, attrsD):
         self.push('license', 1)
 
@@ -925,15 +935,15 @@ class _FeedParserMixin:
         cats.append((domain, None))
     _start_dc_subject = _start_category
     _start_keywords = _start_category
-        
+
     def _end_category(self):
         self.pop('category')
     _end_dc_subject = _end_category
     _end_keywords = _end_category
-        
+
     def _start_cloud(self, attrsD):
         self.feeddata['cloud'] = attrsD
-        
+
     def _start_link(self, attrsD):
         attrsD.setdefault('rel', 'alternate')
         attrsD.setdefault('type', 'text/html')
@@ -983,7 +993,7 @@ class _FeedParserMixin:
 
     def _end_id(self):
         value = self.pop('id')
-            
+
     def _start_title(self, attrsD):
         self.incontent += 1
         self.contentparams = FeedParserDict({'mode': attrsD.get('mode', 'escaped'),
@@ -1055,7 +1065,7 @@ class _FeedParserMixin:
         value = self.pop('generator')
         if self.feeddata.has_key('generator_detail'):
             self.feeddata['generator_detail']['name'] = value
-            
+
     def _start_admin_generatoragent(self, attrsD):
         self.push('generator', 1)
         value = self._getAttribute(attrsD, 'rdf:resource')
@@ -1070,7 +1080,7 @@ class _FeedParserMixin:
         if value:
             self.elementstack[-1][2].append(value)
         self.pop('errorreportsto')
-        
+
     def _start_summary(self, attrsD):
         self.incontent += 1
         self.contentparams = FeedParserDict({'mode': attrsD.get('mode', 'escaped'),
@@ -1085,12 +1095,12 @@ class _FeedParserMixin:
             self.entries[-1]['description'] = value
         self.incontent -= 1
         self.contentparams.clear()
-        
+
     def _start_enclosure(self, attrsD):
         if self.inentry:
             self.entries[-1].setdefault('enclosures', [])
             self.entries[-1]['enclosures'].append(FeedParserDict(attrsD))
-            
+
     def _start_source(self, attrsD):
         if self.inentry:
             self.entries[-1]['source'] = FeedParserDict(attrsD)
@@ -1153,10 +1163,10 @@ if _XML_AVAILABLE:
             _FeedParserMixin.__init__(self, baseuri, encoding)
             self.bozo = 0
             self.exc = None
-        
+
         def startPrefixMapping(self, prefix, uri):
             self.trackNamespace(prefix, uri)
-        
+
         def startElementNS(self, name, qname, attrs):
             namespace, localname = name
             namespace = str(namespace or '')
@@ -1203,7 +1213,7 @@ if _XML_AVAILABLE:
         def error(self, exc):
             self.bozo = 1
             self.exc = exc
-            
+
         def fatalError(self, exc):
             self.error(exc)
             raise exc
@@ -1211,12 +1221,12 @@ if _XML_AVAILABLE:
 class _BaseHTMLProcessor(sgmllib.SGMLParser):
     elements_no_end_tag = ['area', 'base', 'basefont', 'br', 'col', 'frame', 'hr',
       'img', 'input', 'isindex', 'link', 'meta', 'param']
-    
+
     def __init__(self, encoding):
         self.encoding = encoding
         if _debug: sys.stderr.write('entering BaseHTMLProcessor, encoding=%s\n' % self.encoding)
         sgmllib.SGMLParser.__init__(self)
-        
+
     def reset(self):
         self.pieces = []
         sgmllib.SGMLParser.reset(self)
@@ -1249,7 +1259,7 @@ class _BaseHTMLProcessor(sgmllib.SGMLParser):
             self.pieces.append("<%(tag)s%(strattrs)s />" % locals())
         else:
             self.pieces.append("<%(tag)s%(strattrs)s>" % locals())
-        
+
     def unknown_endtag(self, tag):
         # called for each end tag, e.g. for </pre>, tag will be "pre"
         # Reconstruct the original end tag.
@@ -1260,7 +1270,7 @@ class _BaseHTMLProcessor(sgmllib.SGMLParser):
         # called for each character reference, e.g. for "&#160;", ref will be "160"
         # Reconstruct the original character reference.
         self.pieces.append("&#%(ref)s;" % locals())
-        
+
     def handle_entityref(self, ref):
         # called for each entity reference, e.g. for "&copy;", ref will be "copy"
         # Reconstruct the original entity reference.
@@ -1272,12 +1282,12 @@ class _BaseHTMLProcessor(sgmllib.SGMLParser):
         # Store the original text verbatim.
         if _debug: sys.stderr.write('_BaseHTMLProcessor, handle_text, text=%s\n' % text)
         self.pieces.append(text)
-        
+
     def handle_comment(self, text):
         # called for each HTML comment, e.g. <!-- insert Javascript code here -->
         # Reconstruct the original comment.
         self.pieces.append("<!--%(text)s-->" % locals())
-        
+
     def handle_pi(self, text):
         # called for each processing instruction, e.g. <?instruction>
         # Reconstruct original processing instruction.
@@ -1289,7 +1299,7 @@ class _BaseHTMLProcessor(sgmllib.SGMLParser):
         #     "http://www.w3.org/TR/html4/loose.dtd">
         # Reconstruct original DOCTYPE
         self.pieces.append("<!%(text)s>" % locals())
-        
+
     _new_declname_match = re.compile(r'[a-zA-Z][-_.a-zA-Z0-9:]*\s*').match
     def _scan_name(self, i, declstartpos):
         rawdata = self.rawdata
@@ -1335,7 +1345,7 @@ class _LooseFeedParser(_FeedParserMixin, _BaseHTMLProcessor):
             data = data.replace('&quot;', '"')
             data = data.replace('&apos;', "'")
         return data
-        
+
 class _RelativeURIResolver(_BaseHTMLProcessor):
     relative_uris = [('a', 'href'),
                      ('applet', 'codebase'),
@@ -1369,12 +1379,12 @@ class _RelativeURIResolver(_BaseHTMLProcessor):
 
     def resolveURI(self, uri):
         return urlparse.urljoin(self.baseuri, uri)
-    
+
     def unknown_starttag(self, tag, attrs):
         attrs = self.normalize_attrs(attrs)
         attrs = [(key, ((tag, key) in self.relative_uris) and self.resolveURI(value) or value) for key, value in attrs]
         _BaseHTMLProcessor.unknown_starttag(self, tag, attrs)
-        
+
 def _resolveRelativeURIs(htmlSource, baseURI, encoding):
     if _debug: sys.stderr.write("entering _resolveRelativeURIs\n")
     p = _RelativeURIResolver(baseURI, encoding)
@@ -1407,7 +1417,7 @@ class _HTMLSanitizer(_BaseHTMLProcessor):
     def reset(self):
         _BaseHTMLProcessor.reset(self)
         self.unacceptablestack = 0
-        
+
     def unknown_starttag(self, tag, attrs):
         if not tag in self.acceptable_elements:
             if tag in self.unacceptable_elements_with_end_tag:
@@ -1416,7 +1426,7 @@ class _HTMLSanitizer(_BaseHTMLProcessor):
         attrs = self.normalize_attrs(attrs)
         attrs = [(key, value) for key, value in attrs if key in self.acceptable_attributes]
         _BaseHTMLProcessor.unknown_starttag(self, tag, attrs)
-        
+
     def unknown_endtag(self, tag):
         if not tag in self.acceptable_elements:
             if tag in self.unacceptable_elements_with_end_tag:
@@ -1475,7 +1485,7 @@ class _FeedURLHandler(urllib2.HTTPRedirectHandler, urllib2.HTTPDefaultErrorHandl
 
     http_error_300 = http_error_302
     http_error_307 = http_error_302
-        
+
 def _open_resource(url_file_stream_or_string, etag, modified, agent, referrer, handlers):
     """URL, filename, or string --> stream
 
@@ -1555,7 +1565,7 @@ def _open_resource(url_file_stream_or_string, etag, modified, agent, referrer, h
             return opener.open(request)
         finally:
             opener.close() # JohnD
-    
+
     # try to open with native open function (if url_file_stream_or_string is a filename)
     try:
         return open(url_file_stream_or_string)
@@ -1674,7 +1684,7 @@ def _w3dtf_parse(s):
 # Please note the order in templates is significant because we need a
 # greedy match
 _iso8601_tmpl = ['YYYY-?MM-?DD', 'YYYY-MM', 'YYYY-?OOO',
-                'YY-?MM-?DD', 'YY-?OOO', 'YYYY', 
+                'YY-?MM-?DD', 'YY-?OOO', 'YYYY',
                 '-YY-?MM', '-OOO', '-YY',
                 '--MM-?DD', '--MM',
                 '---DD',
@@ -1820,7 +1830,7 @@ def _getCharacterEncoding(http_headers, xml_data):
 
     http_headers is a dictionary
     xml_data is a raw string (not Unicode)
-    
+
     This is so much trickier than it sounds,
     it's not even funny.  According to RFC 3023 ("XML Media Types"), if
     the HTTP Content-Type is application/xml, application/*+xml,
@@ -1839,13 +1849,13 @@ def _getCharacterEncoding(http_headers, xml_data):
     served with a Content-Type of text/* and no charset parameter
     must be treated as us-ascii.  (We now do this.)  And also that it
     must always be flagged as non-well-formed.  (We do not do this.)
-    
+
     If Content-Type is unspecified (input was local file or non-HTTP source)
     or unrecognized (server just got it totally wrong), then go by the
     encoding given in the XML prefix of the document and default to
     "utf-8" as per the XML specification.  This part is probably wrong,
     as HTTP defaults to "iso-8859-1" if no Content-Type is specified.
-    
+
     Also, the default Content-Type and well-formedness of XML documents
     served as wacky types like "application/octet-stream" is still under
     discussion.
@@ -1964,7 +1974,7 @@ def _getCharacterEncoding(http_headers, xml_data):
     else:
         true_encoding = xml_encoding or 'utf-8'
     return true_encoding, http_encoding, xml_encoding, sniffed_xml_encoding
-    
+
 def _toUTF8(data, encoding):
     """Changes an XML data stream on the fly to specify a new encoding
 
@@ -2035,7 +2045,7 @@ def _stripDoctype(data):
         version = None
     data = doctype_pattern.sub('', data)
     return version, data
-    
+
 def parse(url_file_stream_or_string, etag=None, modified=None, agent=None, referrer=None, handlers=[]):
     """Parse a feed from a URL, file, stream, or string"""
 
