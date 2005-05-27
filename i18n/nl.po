@@ -13,11 +13,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"Language-code: LL\n"
-"Language-name: Language\n"
 "Preferred-encodings: utf-8 latin1\n"
-"Domain: default\n"
 "X-Generator: KBabel 1.0.2\n"
+"Language-Code: nl\n"
+"Language-Name: Nederlands\n"
+"Domain: default\n"
 
 #.   <th align="right">Channel</th>
 #: from ../skins/rssbox_edit_form.pt

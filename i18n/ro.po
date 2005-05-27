@@ -1,13 +1,6 @@
 # translation of ro.po to 
-# ##########################################################
-# ################# DON'T EDIT THIS FILE! ##################
-# ##########################################################
 # Gettext Message File for default.
 # Your Name <your@email>, Year
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
 msgid ""
 msgstr ""
 "Project-Id-Version: ro\n"
@@ -19,11 +12,11 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Content-Type: text/plain; charset=ISO-8859-2\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language-code: ro\n"
-"Language-name: Romanian\n"
 "Preferred-encodings: utf-8 latin1\n"
-"Domain: default\n"
 "X-Generator: KBabel 1.9.1\n"
+"Language-Code: ro\n"
+"Language-Name: Rumanian\n"
+"Domain: default\n"
 
 #.   <th align="right">Channel</th>
 #: from ../skins/rssbox_edit_form.pt

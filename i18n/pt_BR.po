@@ -1,8 +1,5 @@
 # translation of pt-BR.po to Português do Brasil
 # translation of cpsrss.po to PortuguÃªs do Brasil
-# ##########################################################
-# ################# DON'T EDIT THIS FILE! ##################
-# ##########################################################
 # Gettext Message File for default.
 # Your Name <your@email>, Year
 # Mario Olimpio de Menezes <mario@curiango.ipen.br>, 2004.
@@ -16,6 +13,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language-Code: pt_BR\n"
+"Language-Name: Portuguese Brazilian\n"
+"Domain: default\n"
 
 #.   <th align="right">Channel</th>
 #: from ../skins/rssbox_edit_form.pt
