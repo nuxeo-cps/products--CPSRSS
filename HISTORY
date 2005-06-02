@@ -1,4 +1,20 @@
 *******************************************
+** CPSRSS V0.5.6 [R1 build 2005/06/02-09:34 by fguillaume]
+** SVN URL: https://svn.nuxeo.org/pub/CPSRSS/trunk Revision: 22058
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+-
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- Import BaseBox from CPSBoxes
+
+*******************************************
 ** CPSRSS V0.5.5 [R1 build 2005/04/13-08:27 by ben]
 
 Requires:
