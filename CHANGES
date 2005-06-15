@@ -6,7 +6,7 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
--
+- Taking advantage of the new centralized CPSI18n.tests.translations module.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -
