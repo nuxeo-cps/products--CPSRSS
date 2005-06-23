@@ -15,7 +15,7 @@ msgstr ""
 "Preferred-encodings: utf-8 latin1\n"
 "X-Generator: KBabel 1.9.1\n"
 "Language-Code: ro\n"
-"Language-Name: Rumanian\n"
+"Language-Name: Romanian\n"
 "Domain: default\n"
 
 #.   <th align="right">Channel</th>
