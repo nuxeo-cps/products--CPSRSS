@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSRSS messages\n"
-"POT-Creation-Date: 2004-09-24 12:09+ora solare Europa occidentale\n"
+"POT-Creation-Date: 2005-06-23 17:33default\n"
 "PO-Revision-Date: 2004-10-01 08:39+0100\n"
 "Last-Translator: Fabio Nosari <fabnos@fastwebnet.it>\n"
 "Language-Team: it <> <fabnos@fastwebnet.it> <fabnos@fastwebnet.it>\n"
@@ -14,9 +14,13 @@ msgstr ""
 "Language-Name: Italian\n"
 "Domain: default\n"
 
+#.   <th align="right">Channel</th>
+#: from ../skins/rssbox_edit_form.pt
 msgid "label_channel"
 msgstr "Canale:"
 
+#.   <th align="right">Max items displayed</th>
+#: from ../skins/rssbox_edit_form.pt
 msgid "label_max_items"
 msgstr "Numero massimo di elementi:"
 

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSRSS\n"
-"POT-Creation-Date: 2003-10-03 14:39default\n"
+"POT-Creation-Date: 2005-06-23 17:33default\n"
 "PO-Revision-Date: 2005-05-18 17:33+0100\n"
 "Last-Translator: Jesús <jesusmartin@lasalle.es>\n"
 "Language-Team: español <jesusmartin@lasalle.es>\n"
@@ -25,7 +25,7 @@ msgstr ""
 #: from ../skins/rssbox_edit_form.pt
 #, fuzzy
 msgid "label_channel"
-msgstr "OK"
+msgstr "Channel"
 
 #.   <th align="right">Max items displayed</th>
 #: from ../skins/rssbox_edit_form.pt
@@ -34,4 +34,3 @@ msgstr "Número de ítem máximo"
 
 msgid "portal_type_RSSBox_description"
 msgstr "Recuadro de obtención de RSS"
-
