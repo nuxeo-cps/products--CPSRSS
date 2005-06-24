@@ -46,5 +46,5 @@ def initialize(registrar):
     ToolInit('RSS Tool',
              tools = tools,
              product_name = 'CPSRSS',
-             icon = 'tool.gif',
+             icon = 'tool.png',
              ).initialize(registrar)
