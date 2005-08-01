@@ -166,12 +166,14 @@ def install(self):
         pr(" Type RSS Box Deleted")
         ttool.manage_delObjects('RSS Box')
     pr(" Adding Type RSS Box")
-    ttool.manage_addTypeInformation(id='RSS Box',
-                                    add_meta_type='Factory-based Type Information',
-                                    typeinfo_name='CPSRSS: RSS Box',)
-    ttool['RSS Box'].manage_changeProperties(title='portal_type_RSSBox_title',
-                                             description='portal_type_RSSBox_description',
-                                             content_meta_type='RSS Box')
+    ttool.manage_addTypeInformation(
+        add_meta_type='Factory-based Type Information',
+        id='RSS Box',
+        typeinfo_name='CPSRSS: RSS Box (RSS Box)')
+    ttool['RSS Box'].manage_changeProperties(
+        title='portal_type_RSSBox_title',
+        description='portal_type_RSSBox_description',
+        content_meta_type='RSS Box')
 
 
 
