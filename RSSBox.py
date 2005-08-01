@@ -27,7 +27,7 @@ from Products.CMFCore.permissions import View, ModifyPortalContent
 from Products.CPSBoxes.BaseBox import BaseBox
 
 factory_type_information = (
-    {'id': 'portal_type_RSSBox_title',
+    {'id': 'RSS Box',
      'title': 'portal_type_RSSBox_title',
      'description': 'portal_type_RSSBox_description',
      'meta_type': 'RSS Box',
