@@ -1,4 +1,22 @@
 *******************************************
+** CPSRSS V0.5.7 [R1 build 2005/08/05-13:57 by ben]
+** SVN URL: https://svn.nuxeo.org/pub/CPSRSS/trunk Revision: 25426
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- Taking advantage of the new centralized CPSI18n.tests.translations module.
+- Fixed translation files through the CPSI18n/bin/fix_pos script.
+- Added a black list pot file.
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSRSS V0.5.6 [R1 build 2005/06/02-09:34 by fguillaume]
 ** SVN URL: https://svn.nuxeo.org/pub/CPSRSS/trunk Revision: 22058
 Requires:
