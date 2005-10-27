@@ -34,15 +34,9 @@ HOW TO INSTALL
   (feedreader.py). If it does not, you can get a copy at [1]. You should use
   version 2.5.3 or later. Copy feedparser.py to the CPSRSS directory or to your
   standard zope python lib directory (e.g. lib/python relative to Zope's main
-  dir). 
-  
-  Note: you might also want to get timeoutsocket.py from [2] which is
-  used by the parser if present (put it in the same directory). This is however
-  not mandatory, and might cause trouble as it has not yet been extensively 
-  tested
+  dir).
 
 [1] http://diveintomark.org/projects/feed_parser/
-[2] http://www.timo-tasi.org/python/timeoutsocket.py
 
 - An Installer is now available for CPSRSS, but you still need to do one manual
   operation: as CPSRSS is not a final product, it is necessary to edit either
@@ -64,7 +58,7 @@ TypeError when attempting to add an RSS Box in your portal.
 
 Note: it might be necessary to restart your Zope server after this step.
 
-- The remainder of the installation process is straightforward, as it 
+- The remainder of the installation process is straightforward, as it
   consists in executing the product's installer (as you would for any other
   product).
 
@@ -96,7 +90,7 @@ Note: it might be necessary to restart your Zope server after this step.
   to be transformed (this will just retrieve the HTML fragment at the given URL
   and put it in the RSS Box).
 
-- It is also possible to limit the number of items displayed for a given feed, 
+- It is also possible to limit the number of items displayed for a given feed,
   by entering a non-zero integer value in field nbMaxItems. Value zero is the
   default value and displays all items (no limit).
 
@@ -116,7 +110,7 @@ portal_rss tool. These options apply to all channels:
 
 - lazy_refresh: check this box if the channel's content should not be
   updated each time the page is reloaded, but only when a given amount
-  of time (specified by refresh_delay in seconds) has elapsed since the 
+  of time (specified by refresh_delay in seconds) has elapsed since the
   last refresh.
 
 - refresh_delay: see above item

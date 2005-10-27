@@ -62,26 +62,9 @@ try:
 except:
     zlib = None
 
-# timeoutsocket allows feedparser to time out rather than hang forever on ultra-slow servers.
-# Python 2.3 now has this functionality available in the standard socket library, so under
-# 2.3 you don't need to install anything.  But you probably should anyway, because the socket
-# module is buggy and timeoutsocket is better.
-
-# for python >= 2.3 we want to use the bundled stuff
-import sys
-python_version = sys.version_info[0], sys.version_info[1]
-
-if python_version[0] == 2 and python_version[1] >= 3:
-    import socket
-    if hasattr(socket, 'setdefaulttimeout'):
-        socket.setdefaulttimeout(20)
-else:
-    try:
-        import timeoutsocket # http://www.timo-tasi.org/python/timeoutsocket.py
-        timeoutsocket.setDefaultSocketTimeout(20)
-    except ImportError:
-        # no timeout
-        pass
+import socket
+if hasattr(socket, 'setdefaulttimeout'):
+    socket.setdefaulttimeout(20)
 
 import urllib, urllib2
 

@@ -46,12 +46,6 @@ import feedparser
 
 from sgmllib import SGMLParseError
 
-# http://www.timo-tasi.org/python/timeoutsocket.py
-try:
-    from timeoutsocket import Timeout
-except ImportError,ie:
-    LOG('CPSRSS:RSSChannel:Warning',DEBUG,'could not import Timeout '+str(ie))
-
 RSSChannel_meta_type = 'RSS Channel'
 
 factory_type_information = (
@@ -344,7 +338,6 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
                       PortalContent.manage_options[3:])
 
 InitializeClass(RSSChannel)
-
 
 def addRSSChannel(container, id, channel_url, REQUEST=None, **kw):
     """Create an empty RSS Channel."""
