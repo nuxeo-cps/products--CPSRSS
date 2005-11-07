@@ -9,4 +9,4 @@ Bug fixes:
 -
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
-- Removed timeoutsocket.py, which caused problems and is now standard python.
+-
