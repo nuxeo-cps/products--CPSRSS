@@ -25,24 +25,10 @@ from Products.CMFCore.DirectoryView import registerDirectory
 from Products.CMFCore.permissions import AddPortalContent
 
 import RSSTool
-import RSSBox
-
-
-contentClasses = (RSSBox.RSSBox,)
-contentConstructors = (RSSBox.addRSSBox,)
-fti = (RSSBox.factory_type_information + ())
-
-registerDirectory('skins', globals())
 
 tools = (RSSTool.RSSTool, )
 
 def initialize(registrar):
-    ContentInit('RSS Boxes',
-                content_types=contentClasses,
-                permission=AddPortalContent,
-                extra_constructors=contentConstructors,
-                fti=fti,
-                ).initialize(registrar)
     ToolInit('RSS Tool',
              tools = tools,
              icon = 'tool.png',
