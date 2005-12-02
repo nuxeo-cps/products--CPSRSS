@@ -37,6 +37,8 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.PortalContent import PortalContent
 from Products.CMFDefault.DublinCore import DefaultDublinCoreImpl
 
+from Products.CPSCore.EventServiceTool import getEventService
+
 # (Ultraliberal RSS Parser) referred to as URP in this code
 # http://feedparser.org/
 # This parser is required for RSSChannel to function properly
@@ -146,9 +148,8 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
         self._refresh()
 
         # notify the event service
-        etool = getToolByName(self, 'portal_eventservice', None)
-        if etool is not None:
-            etool.notifyEvent('rss_channel_refresh', self, {})
+        evtool = getEventService(self)
+        evtool.notifyEvent('rss_channel_refresh', self, {})
 
     security.declareProtected(View, 'getData')
     def getData(self, maxItems=None):
