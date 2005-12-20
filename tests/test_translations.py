@@ -23,7 +23,7 @@ from Products.CPSI18n.tests.translations import TranslationsTestCase
 from Testing import ZopeTestCase
 import unittest
 
-product_name = __name__.split('.')[0]
+product_name = [c for c in __name__.split('.') if c != 'Products'][0]
 
 # We need to install this product because the TranslationsTestCase will later on
 # find the .pot and .po files from this installed product.
