@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2005-06-23 17:33default\n"
+"POT-Creation-Date: 2005-12-29 16:29default\n"
 "PO-Revision-Date: 2003-10-03 14:41+0200\n"
 "Last-Translator: emmanuel <epietriga@nuxeo.com>\n"
 "Language-Team: francais <fr@li.org>\n"
@@ -19,15 +19,11 @@ msgstr ""
 "Language-Name: Dutch\n"
 "Domain: default\n"
 
-#.   <th align="right">Channel</th>
-#: from ../skins/rssbox_edit_form.pt
-msgid "label_channel"
-msgstr "Channel"
-
-#.   <th align="right">Max items displayed</th>
-#: from ../skins/rssbox_edit_form.pt
-msgid "label_max_items"
-msgstr "Maximum Number of Items"
-
 msgid "portal_type_RSSBox_description"
 msgstr "A box displaying RSS feeds"
+
+#~ msgid "label_channel"
+#~ msgstr "Channel"
+
+#~ msgid "label_max_items"
+#~ msgstr "Maximum Number of Items"

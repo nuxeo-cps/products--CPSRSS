@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ro\n"
-"POT-Creation-Date: 2005-06-23 17:33default\n"
+"POT-Creation-Date: 2005-12-29 16:29default\n"
 "PO-Revision-Date: 2005-04-06 17:05+0300\n"
 "Last-Translator: \n"
 "Language-Team:  <en@li.org>\n"
@@ -18,15 +18,11 @@ msgstr ""
 "Language-Name: Romanian\n"
 "Domain: default\n"
 
-#.   <th align="right">Channel</th>
-#: from ../skins/rssbox_edit_form.pt
-msgid "label_channel"
-msgstr "Canal"
-
-#.   <th align="right">Max items displayed</th>
-#: from ../skins/rssbox_edit_form.pt
-msgid "label_max_items"
-msgstr "Numar maxim de articole"
-
 msgid "portal_type_RSSBox_description"
 msgstr "Un box care afiseaza continutul fluxului RSS"
+
+#~ msgid "label_channel"
+#~ msgstr "Canal"
+
+#~ msgid "label_max_items"
+#~ msgstr "Numar maxim de articole"

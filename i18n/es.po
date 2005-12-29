@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSRSS\n"
-"POT-Creation-Date: 2005-06-23 17:33default\n"
+"POT-Creation-Date: 2005-12-29 16:29default\n"
 "PO-Revision-Date: 2005-05-18 17:33+0100\n"
 "Last-Translator: Jesús <jesusmartin@lasalle.es>\n"
 "Language-Team: español <jesusmartin@lasalle.es>\n"
@@ -21,16 +21,12 @@ msgstr ""
 "X-Poedit-Language: Spanish\n"
 "X-Poedit-Country: SPAIN\n"
 
-#.   <th align="right">Channel</th>
-#: from ../skins/rssbox_edit_form.pt
+msgid "portal_type_RSSBox_description"
+msgstr "Recuadro de obtención de RSS"
+
 #, fuzzy
 msgid "label_channel"
 msgstr "Channel"
 
-#.   <th align="right">Max items displayed</th>
-#: from ../skins/rssbox_edit_form.pt
 msgid "label_max_items"
 msgstr "Número de ítem máximo"
-
-msgid "portal_type_RSSBox_description"
-msgstr "Recuadro de obtención de RSS"

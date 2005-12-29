@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pt-BR\n"
-"POT-Creation-Date: 2005-06-23 17:33default\n"
+"POT-Creation-Date: 2005-12-29 16:29default\n"
 "PO-Revision-Date: 2005-06-15 14:42-0300\n"
 "Last-Translator: Mario Olimpio de Menezes <mario@ipen.br>\n"
 "Language-Team: Portugues do Brasil <pt@li.org>\n"
@@ -20,15 +20,11 @@ msgstr ""
 "Language-Name: Portuguese Brazilian\n"
 "Domain: default\n"
 
-#.   <th align="right">Channel</th>
-#: from ../skins/rssbox_edit_form.pt
-msgid "label_channel"
-msgstr "Canal"
-
-#.   <th align="right">Max items displayed</th>
-#: from ../skins/rssbox_edit_form.pt
-msgid "label_max_items"
-msgstr "Máximo de itens a serem mostrados"
-
 msgid "portal_type_RSSBox_description"
 msgstr "Descrição"
+
+#~ msgid "label_channel"
+#~ msgstr "Canal"
+
+#~ msgid "label_max_items"
+#~ msgstr "Máximo de itens a serem mostrados"

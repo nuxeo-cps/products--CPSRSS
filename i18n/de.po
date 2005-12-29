@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPSRSS-de CPS-3.2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-06-23 17:33default\n"
+"POT-Creation-Date: 2005-12-29 16:29default\n"
 "PO-Revision-Date: 2005-03-16 09:18+0100\n"
 "Last-Translator: gh <georg.hennemann@dhl.com>\n"
 "Language-Team: de <rheinland@dzug.org>\n"
@@ -20,18 +20,14 @@ msgstr ""
 "Language-Name: German\n"
 "Domain: default\n"
 
-#.   <th align="right">Channel</th>
-#: from ../skins/rssbox_edit_form.pt
-msgid "label_channel"
-msgstr "Kanal"
-
-#.   <th align="right">Max items displayed</th>
-#: from ../skins/rssbox_edit_form.pt
-msgid "label_max_items"
-msgstr "Maximale Anzahl von Objekten"
-
 msgid "portal_type_RSSBox_description"
 msgstr "Eine Box mit RSS Feeds"
+
+#~ msgid "label_channel"
+#~ msgstr "Kanal"
+
+#~ msgid "label_max_items"
+#~ msgstr "Maximale Anzahl von Objekten"
 
 #~ msgid "rss_no_data"
 #~ msgstr "No data available"

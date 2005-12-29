@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSRSS_en\n"
-"POT-Creation-Date: 2005-06-23 17:33default\n"
+"POT-Creation-Date: 2005-12-29 16:29default\n"
 "PO-Revision-Date: 2004-09-24 09:47+0200\n"
 "Last-Translator: Aitzol Naberan Burgaña <anaberan@codesyntax.com>\n"
 "Language-Team: Euskara <eu@li.org>\n"
@@ -19,15 +19,11 @@ msgstr ""
 "Language-Name: Basque\n"
 "Domain: default\n"
 
-#.   <th align="right">Channel</th>
-#: from ../skins/rssbox_edit_form.pt
-msgid "label_channel"
-msgstr "Iturria"
-
-#.   <th align="right">Max items displayed</th>
-#: from ../skins/rssbox_edit_form.pt
-msgid "label_max_items"
-msgstr "Albiste Kopuru Maximoa"
-
 msgid "portal_type_RSSBox_description"
 msgstr "RSS iturriak erakusten dituen kutxa."
+
+#~ msgid "label_channel"
+#~ msgstr "Iturria"
+
+#~ msgid "label_max_items"
+#~ msgstr "Albiste Kopuru Maximoa"

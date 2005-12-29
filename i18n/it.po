@@ -1,10 +1,10 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: CPSRSS messages\n"
-"POT-Creation-Date: 2005-06-23 17:33default\n"
-"PO-Revision-Date: 2004-10-01 08:39+0100\n"
-"Last-Translator: Fabio Nosari <fabnos@fastwebnet.it>\n"
-"Language-Team: it <> <fabnos@fastwebnet.it> <fabnos@fastwebnet.it>\n"
+"Project-Id-Version: CPSRSS Italian Translation\n"
+"POT-Creation-Date: 2005-12-29 16:29default\n"
+"PO-Revision-Date: 2005-11-10 09:12+0100\n"
+"Last-Translator: Stefano Schintu <schintu@gmail.com>\n"
+"Language-Team: CPS Italian <schintu@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -14,15 +14,11 @@ msgstr ""
 "Language-Name: Italian\n"
 "Domain: default\n"
 
-#.   <th align="right">Channel</th>
-#: from ../skins/rssbox_edit_form.pt
-msgid "label_channel"
-msgstr "Canale:"
-
-#.   <th align="right">Max items displayed</th>
-#: from ../skins/rssbox_edit_form.pt
-msgid "label_max_items"
-msgstr "Numero massimo di elementi:"
-
 msgid "portal_type_RSSBox_description"
 msgstr "Un contenitore che visualizza i flussi RSS"
+
+#~ msgid "label_channel"
+#~ msgstr "Canale:"
+
+#~ msgid "label_max_items"
+#~ msgstr "Numero massimo di elementi:"
