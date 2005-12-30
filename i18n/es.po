@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSRSS\n"
-"POT-Creation-Date: 2005-12-29 16:29default\n"
+"POT-Creation-Date: 2005-12-30 12:42default\n"
 "PO-Revision-Date: 2005-05-18 17:33+0100\n"
 "Last-Translator: Jesús <jesusmartin@lasalle.es>\n"
 "Language-Team: español <jesusmartin@lasalle.es>\n"
