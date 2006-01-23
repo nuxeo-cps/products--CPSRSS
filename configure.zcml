@@ -1,0 +1,11 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope">
+
+  <adapter
+      factory=".exportimport.RSSToolXMLAdapter"
+      provides="Products.GenericSetup.interfaces.IBody"
+      for=".interfaces.IRSSTool
+           Products.GenericSetup.interfaces.ISetupEnviron"
+      />
+
+</configure>

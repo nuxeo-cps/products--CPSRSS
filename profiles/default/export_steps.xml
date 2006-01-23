@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<export-steps>
+ <export-step id="RSS"
+              handler="Products.CPSRSS.exportimport.exportRSSTool"
+              title="RSS Tool">
+  Export RSS tool and RSS configuration.
+ </export-step>
+</export-steps>

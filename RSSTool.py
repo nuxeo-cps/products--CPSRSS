@@ -26,11 +26,20 @@ from OFS.Folder import Folder
 
 from Products.CMFCore.permissions import View, ManagePortal
 from Products.CMFCore.utils import UniqueObject
+from Products.CMFCore.ActionProviderBase import ActionProviderBase
 
 from RSSChannel import addRSSChannel, RSSChannel_meta_type
 
+from zope.interface import implements
+
+from Products.CPSRSS.interfaces import IRSSTool
+
 class RSSTool(UniqueObject, Folder):
     """RSS tool, a container for RSS channels that can refresh them."""
+
+    __implements__ = ActionProviderBase.__implements__
+
+    implements(IRSSTool)
 
     id = 'portal_rss'
     meta_type = 'RSS Tool'

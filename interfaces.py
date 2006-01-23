@@ -1,5 +1,6 @@
 # (C) Copyright 2006 Nuxeo SAS <http://nuxeo.com>
-# Author: Dragos Ivan <div@nuxeo.com>
+# Author:
+# Dragos Ivan <div@nuxeo.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as published
@@ -16,16 +17,13 @@
 # 02111-1307, USA.
 #
 # $Id$
+"""Subscriptions interfaces.
+"""
 
-from Products.CPSDefault.tests.CPSTestCase import CPSTestCase
-from Products.CPSDefault.tests.CPSTestCase import ExtensionProfileLayerClass
-
-
-class LayerClass(ExtensionProfileLayerClass):
-    extension_ids = ('CPSRSS:default',)
-
-CPSRSSLayer = LayerClass(__name__, 'CPSRSSLayer')
+from zope.interface import Interface
 
 
-class CPSRSSTestCase(CPSTestCase):
-    layer = CPSRSSLayer
+class IRSSTool(Interface):
+    """RSS Tool.
+    """
+

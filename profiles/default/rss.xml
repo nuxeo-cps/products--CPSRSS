@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<object name="portal_rss" meta_type="RSS Tool">
+ <property name="title"></property>
+ <property name="refresh_delay">1200</property>
+ <property name="lazy_refresh">True</property>
+</object>
