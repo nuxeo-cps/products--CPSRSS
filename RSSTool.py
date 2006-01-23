@@ -37,8 +37,6 @@ from Products.CPSRSS.interfaces import IRSSTool
 class RSSTool(UniqueObject, Folder):
     """RSS tool, a container for RSS channels that can refresh them."""
 
-    __implements__ = ActionProviderBase.__implements__
-
     implements(IRSSTool)
 
     id = 'portal_rss'
