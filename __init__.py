@@ -26,6 +26,11 @@ from Products.CMFCore.permissions import AddPortalContent
 
 import RSSTool
 
+from Products.GenericSetup import profile_registry
+from Products.GenericSetup import EXTENSION
+
+from Products.CPSCore.interfaces import ICPSSite
+
 tools = (RSSTool.RSSTool, )
 
 def initialize(registrar):
@@ -33,3 +38,11 @@ def initialize(registrar):
              tools = tools,
              icon = 'tool.png',
              ).initialize(registrar)
+    profile_registry.registerProfile(
+        'default',
+        'CPS RSS',
+        "RSS product for CPS.",
+        'profiles/default',
+        'CPSRSS',
+        EXTENSION,
+        for_=ICPSSite)
