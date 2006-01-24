@@ -27,3 +27,6 @@ class IRSSTool(Interface):
     """RSS Tool.
     """
 
+class IRSSChannel(Interface):
+    """RSS Channel.
+    """

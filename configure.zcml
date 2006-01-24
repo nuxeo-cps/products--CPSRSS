@@ -8,4 +8,11 @@
            Products.GenericSetup.interfaces.ISetupEnviron"
       />
 
+  <adapter
+      factory=".exportimport.RSSXMLAdapter"
+      provides="Products.GenericSetup.interfaces.IBody"
+      for=".interfaces.IRSSChannel
+           Products.GenericSetup.interfaces.ISetupEnviron"
+      />
+
 </configure>

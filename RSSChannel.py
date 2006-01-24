@@ -39,6 +39,10 @@ from Products.CMFDefault.DublinCore import DefaultDublinCoreImpl
 
 from Products.CPSCore.EventServiceTool import getEventService
 
+from zope.interface import implements
+
+from Products.CPSRSS.interfaces import IRSSChannel
+
 # (Ultraliberal RSS Parser) referred to as URP in this code
 # http://feedparser.org/
 # This parser is required for RSSChannel to function properly
@@ -85,6 +89,8 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
     Restructuring gets rid of irrelevant data.
     """
 
+    implements(IRSSChannel)
+    
     meta_type = RSSChannel_meta_type
     portal_type = RSSChannel_meta_type # to be able to add CMF object via ZMI
 

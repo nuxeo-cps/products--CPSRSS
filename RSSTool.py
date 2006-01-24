@@ -26,7 +26,6 @@ from OFS.Folder import Folder
 
 from Products.CMFCore.permissions import View, ManagePortal
 from Products.CMFCore.utils import UniqueObject
-from Products.CMFCore.ActionProviderBase import ActionProviderBase
 
 from RSSChannel import addRSSChannel, RSSChannel_meta_type
 
