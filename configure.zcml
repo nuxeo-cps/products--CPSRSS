@@ -1,5 +1,6 @@
 <configure
-    xmlns="http://namespaces.zope.org/zope">
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five">
 
   <adapter
       factory=".exportimport.RSSToolXMLAdapter"
@@ -13,6 +14,13 @@
       provides="Products.GenericSetup.interfaces.IBody"
       for=".interfaces.IRSSChannel
            Products.GenericSetup.interfaces.ISetupEnviron"
+      />
+
+  <five:registerClass
+      class=".RSSChannel.RSSChannel"
+      meta_type="RSS Channel"
+      permission="cmf.ManagePortal"
+      global="False"
       />
 
 </configure>

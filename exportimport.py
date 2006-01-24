@@ -97,9 +97,6 @@ class RSSXMLAdapter(XMLAdapterBase, PropertyManagerHelpers):
         self._initProperties(node)
 
         obj_id = str(node.getAttribute('name'))
-        if not obj_id:
-            # BBB: for CMF 1.5 profiles
-            obj_id = str(node.getAttribute('id'))
         self._logger.info('%r rss feed imported.' % obj_id)
 
 
@@ -136,58 +133,3 @@ class RSSToolXMLAdapter(XMLAdapterBase, ObjectManagerHelpers,
 
         self._logger.info("RSS tool imported.")
 
-    def _initObjects(self, node):
-        """Initialize subobjects from node children.
-        """
-        for child in node.childNodes:
-            if child.nodeName != 'object':
-                continue
-            if child.hasAttribute('deprecated'):
-                continue
-            parent = self.context
-
-            obj_id = str(child.getAttribute('name'))
-            if obj_id not in parent.objectIds():
-                meta_type = str(child.getAttribute('meta_type'))
-                if meta_type != RSSChannel_meta_type:
-                    raise ValueError(meta_type)
-                ob = RSSChannel(obj_id)
-                parent._setObject(obj_id, ob)
-                
-            if child.hasAttribute('insert-before'):
-                insert_before = child.getAttribute('insert-before')
-                if insert_before == '*':
-                    parent.moveObjectsToTop(obj_id)
-                else:
-                    try:
-                        position = parent.getObjectPosition(insert_before)
-                        parent.moveObjectToPosition(obj_id, position)
-                    except ValueError:
-                        pass
-            elif child.hasAttribute('insert-after'):
-                insert_after = child.getAttribute('insert-after')
-                if insert_after == '*':
-                    parent.moveObjectsToBottom(obj_id)
-                else:
-                    try:
-                        position = parent.getObjectPosition(insert_after)
-                        parent.moveObjectToPosition(obj_id, position+1)
-                    except ValueError:
-                        pass
-
-            obj = getattr(self.context, obj_id)
-            importer = zapi.queryMultiAdapter((obj, self.environ), INode)
-            if importer:
-                importer.node = child
-
-    def _extractObjects(self):
-        fragment = self._doc.createDocumentFragment()
-        items = self.context.objectItems()
-        items.sort()
-        for id, ob in items:
-            exporter = zapi.queryMultiAdapter((ob, self.environ), INode)
-            if not exporter:
-                raise ValueError("RSS Feed %s cannot be adapted to INode" % ob)
-            child = exporter._getObjectNode('object', False)
-            fragment.appendChild(child)
-        return fragment
