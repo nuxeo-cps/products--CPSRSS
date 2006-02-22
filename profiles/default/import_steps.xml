@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <import-steps>
- <import-step id="RSS" version="20060123-01"
+ <import-step id="rss" version="20060123-01"
               handler="Products.CPSRSS.exportimport.importRSSTool"
               title="RSS Tool">
   <dependency step="toolset"/>
