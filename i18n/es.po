@@ -1,13 +1,9 @@
-# translation of fr.po to francais
-# Gettext Message File for default.
-# Your Name <your@email>, Year
-# emmanuel <epietriga@nuxeo.com>, 2003.
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSRSS\n"
-"POT-Creation-Date: 2006-01-03 14:54default\n"
-"PO-Revision-Date: 2005-05-18 17:33+0100\n"
-"Last-Translator: Jesús <jesusmartin@lasalle.es>\n"
+"POT-Creation-Date: 2005-06-23 17:33default\n"
+"PO-Revision-Date: 2006-02-22 22:13+0100\n"
+"Last-Translator: Jesús Martín <jesusmartin@lasalle.es>\n"
 "Language-Team: español <jesusmartin@lasalle.es>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-15\n"
@@ -22,11 +18,5 @@ msgstr ""
 "X-Poedit-Country: SPAIN\n"
 
 msgid "portal_type_RSSBox_description"
-msgstr "Recuadro de obtención de RSS"
+msgstr "Recuadro mostrando la obtención de RSS"
 
-#, fuzzy
-msgid "label_channel"
-msgstr "Channel"
-
-msgid "label_max_items"
-msgstr "Número de ítem máximo"
