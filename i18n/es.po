@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSRSS\n"
-"POT-Creation-Date: 2005-06-23 17:33default\n"
+"POT-Creation-Date: 2007-04-25 12:29default\n"
 "PO-Revision-Date: 2006-02-22 22:13+0100\n"
 "Last-Translator: Jesús Martín <jesusmartin@lasalle.es>\n"
 "Language-Team: español <jesusmartin@lasalle.es>\n"
@@ -19,4 +19,3 @@ msgstr ""
 
 msgid "portal_type_RSSBox_description"
 msgstr "Recuadro mostrando la obtención de RSS"
-

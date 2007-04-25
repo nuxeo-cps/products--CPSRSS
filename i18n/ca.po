@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSRSS\n"
-"POT-Creation-Date: 2005-06-23 17:33default\n"
+"POT-Creation-Date: 2007-04-25 12:29default\n"
 "PO-Revision-Date: 2006-07-14 19:31+0100\n"
 "Last-Translator: Domènec Arcalís <darcalis@gmail.com>\n"
 "Language-Team: català <darcalis@gmail.com>\n"
@@ -18,4 +18,3 @@ msgstr ""
 
 msgid "portal_type_RSSBox_description"
 msgstr "Requadre que mostra l'obtenció de RSS"
-

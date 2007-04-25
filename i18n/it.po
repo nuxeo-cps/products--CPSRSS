@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSRSS Italian Translation\n"
-"POT-Creation-Date: 2006-01-03 14:54default\n"
+"POT-Creation-Date: 2007-04-25 12:29default\n"
 "PO-Revision-Date: 2005-11-10 09:12+0100\n"
 "Last-Translator: Stefano Schintu <schintu@gmail.com>\n"
 "Language-Team: CPS Italian <schintu@gmail.com>\n"

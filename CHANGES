@@ -1,6 +1,6 @@
 Requires
 ~~~~~~~~
--
+- CPSI18n >= 1.0.0
 New features
 ~~~~~~~~~~~~
 -
