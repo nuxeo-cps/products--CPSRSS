@@ -1,5 +1,6 @@
-# (C) Copyright 2003-2005 Nuxeo SARL <http://nuxeo.com>
-# Author: Emmanuel Pietriga (ep@nuxeo.com)
+# (C) Copyright 2003-2008 Nuxeo SAS <http://nuxeo.com>
+# Authors:
+# Emmanuel Pietriga (ep@nuxeo.com)
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as published
@@ -90,7 +91,7 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
     """
 
     implements(IRSSChannel)
-    
+
     meta_type = RSSChannel_meta_type
     portal_type = RSSChannel_meta_type # to be able to add CMF object via ZMI
 
@@ -259,6 +260,7 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
                         item['description'] = it.get('description', '')
                         item['author'] = it.get('author', '')
                         item['modified'] = it.get('modified','')
+                        item['modified_parsed'] = it.get('modified_parsed','')
                         items.append(item)
                 # If the max number of items to be displayed is limited
                 # and the total number of items is higher, truncate.
