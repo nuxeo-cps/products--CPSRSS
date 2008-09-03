@@ -1,5 +1,5 @@
-# translation of pt-BR.po to Português do Brasil
-# translation of cpsrss.po to PortuguÃªs do Brasil
+# translation of pt-BR.po to PortuguÃªs do Brasil
+# translation of cpsrss.po to PortuguÃƒÂªs do Brasil
 # ##########################################################
 # ################# DON'T EDIT THIS FILE! ##################
 # ##########################################################
@@ -14,17 +14,18 @@ msgstr ""
 "Last-Translator: Mario Olimpio de Menezes <mario@ipen.br>\n"
 "Language-Team: Portugues do Brasil <pt@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language-Code: pt_BR\n"
 "Language-Name: Portuguese Brazilian\n"
 "Domain: default\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Preferred-Encodings: utf-8\n"
 
 msgid "portal_type_RSSBox_description"
-msgstr "Descrição"
+msgstr "DescriÃ§Ã£o"
 
 #~ msgid "label_channel"
 #~ msgstr "Canal"
 
 #~ msgid "label_max_items"
-#~ msgstr "Máximo de itens a serem mostrados"
+#~ msgstr "MÃ¡ximo de itens a serem mostrados"
