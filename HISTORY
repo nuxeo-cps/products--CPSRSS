@@ -1,4 +1,24 @@
 ===========================================================
+Package: CPSRSS 1.0.1
+===========================================================
+First release built by: madarche at: 2008-11-23T22:15:41
+SVN Tag: https://svn.nuxeo.org/pub/CPS3/products/CPSRSS/tags/1.0.1
+Build from: https://svn.nuxeo.org/pub/CPS3/products/CPSRSS/trunk@53051
+
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- #1916: Switch all the .po files to UTF-8
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSRSS 1.0.0
 ===========================================================
 First release built by: madarche at: 2008-04-18T12:44:59
