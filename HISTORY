@@ -1,4 +1,21 @@
 ===========================================================
+Package: CPSRSS 1.0.2
+===========================================================
+First release built by: gracinet at: 2010-03-14T16:28:13
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- Switch to mercurial DCVS and hgbundler release manager
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSRSS 1.0.1
 ===========================================================
 First release built by: madarche at: 2008-11-23T22:15:41
