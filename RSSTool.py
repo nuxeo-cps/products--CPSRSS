@@ -19,7 +19,7 @@
 """The RSS tool manages RSS channels and refreshes them.
 """
 
-from zLOG import LOG, DEBUG
+import logging
 from Globals import InitializeClass, DTMLFile
 from AccessControl import ClassSecurityInfo
 from OFS.Folder import Folder
@@ -32,6 +32,8 @@ from RSSChannel import addRSSChannel, RSSChannel_meta_type
 from zope.interface import implements
 
 from Products.CPSRSS.interfaces import IRSSTool
+
+logger = logging.getLogger(__name__)
 
 class RSSTool(UniqueObject, Folder):
     """RSS tool, a container for RSS channels that can refresh them."""

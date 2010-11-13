@@ -20,8 +20,7 @@
 """The RSS tool manages RSS channels and refreshes them.
 """
 
-from zLOG import LOG, DEBUG
-
+import logging
 import time
 import urllib
 from urllib2 import ProxyHandler
@@ -43,6 +42,8 @@ from Products.CPSCore.EventServiceTool import getEventService
 from zope.interface import implements
 
 from Products.CPSRSS.interfaces import IRSSChannel
+
+logger = logging.getLogger(__name__)
 
 # (Ultraliberal RSS Parser) referred to as URP in this code
 # http://feedparser.org/
@@ -180,17 +181,17 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
         """Refresh if on lazy refresh and the delay has elapsed."""
 
         if not self.lazy_refresh: # acquired from parent (portal_rss)
-            LOG('RSSChannel refresh', DEBUG, 'not on lazy refresh')
+            logger.debug('Not on lazy refresh')
             self._refresh()
             return
         delay = self.refresh_delay # acquired from parent (portal_rss)
         now = int(time.time())
         if now - self._refresh_time > delay:
-            LOG('RSSChannel refresh', DEBUG, ' refreshing')
+            logger.debug('Refreshing %r', self.id)
             self._refresh()
         else:
-            LOG('RSSChannel refresh', DEBUG, 'not refreshing (now=%s last=%s)' %
-                (now, self._refresh_time))
+            logger.debug("Not refreshing %r (now=%s last=%s)", self.id,
+                         now, self._refresh_time)
 
     def _refresh(self):
         """Refresh the channels from its source."""
@@ -219,13 +220,10 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
                 data = feedparser.parse(url, None, None, handlers=handlers)
         except SGMLParseError, err:
             data = {'channel': {}, 'items': []}
-            LOG('RSSChannel Error', DEBUG,
-                'RSS/SGML parsing error while retrieving feed\n'
-                +str(url)+'\n'+str(err))
+            logger.warn('RSS/SGML parsing error for feed at %s: %s', url, err)
         except Timeout, err2:
             data = {'channel': {}, 'items': []}
-            LOG('RSSChannel Error', DEBUG,
-                'Timeout error while retrieving feed\n'+str(url)+'\n'+str(err2))
+            logger.warn('Timeout retrieving feed at %s: %s', url, err2)
 
         if data.has_key('status') and data['status'] >= 400:
             # If the http request fails, the description field could contain
