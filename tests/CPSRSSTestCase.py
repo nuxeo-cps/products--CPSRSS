@@ -14,12 +14,13 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 # 02111-1307, USA.
-#
-# $Id$
+
+from Testing.ZopeTestCase import ZopeTestCase
 
 from Products.CPSDefault.tests.CPSTestCase import CPSTestCase
 from Products.CPSDefault.tests.CPSTestCase import ExtensionProfileLayerClass
 
+from Products.CPSRSS.RSSTool import RSSTool
 
 class LayerClass(ExtensionProfileLayerClass):
     extension_ids = ('CPSRSS:default',)
@@ -28,4 +29,15 @@ CPSRSSLayer = LayerClass(__name__, 'CPSRSSLayer')
 
 
 class CPSRSSTestCase(CPSTestCase):
+    """This class also tests that the profile does what it's supposed to."""
     layer = CPSRSSLayer
+
+    def afterSetUp(self):
+        self.tool = self.portal.portal_rss
+
+class ZopeRSSTestCase(ZopeTestCase):
+
+    def afterSetUp(self):
+        self.folder._setObject('portal_rss', RSSTool())
+        self.tool = self.folder.portal_rss
+
