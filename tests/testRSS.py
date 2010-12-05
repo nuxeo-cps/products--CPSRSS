@@ -2,6 +2,7 @@
 
 import unittest, os.path
 
+from OFS.Folder import Folder
 from CPSRSSTestCase import CPSRSSTestCase
 from CPSRSSTestCase import ZopeRSSTestCase
 
@@ -13,7 +14,12 @@ def get_feed_url(feed_file):
 
 class TestRSS(object):
 
+    def localContainer(self):
+        """Depends on subclass."""
+        raise NotImplementedError
+
     def _localContainer(self, folder):
+        """Common code called by subclass."""
         folder._setObject('.cps_rss', RSSChannelContainer('.cps_rss'))
         return folder['.cps_rss']
 
@@ -54,11 +60,17 @@ class TestRSS(object):
     def testChannelNotLazy(self):
         self._testChannel(lazy_refresh=0)
 
+    def testLocalChannelLazy(self):
+        self._testLocalChannel(lazy_refresh=1)
+
+    def testLocalChannelNotLazy(self):
+        self._testLocalChannel(lazy_refresh=0)
+
 class CPSTestRSS(TestRSS, CPSRSSTestCase):
     """Run the tests in a full CPS portal context."""
 
     def localContainer(self):
-        return _localContainer(self.portal.workspaces)
+        return self._localContainer(self.portal.workspaces)
 
 
 class ZopeTestRSS(TestRSS, ZopeRSSTestCase):
@@ -66,7 +78,7 @@ class ZopeTestRSS(TestRSS, ZopeRSSTestCase):
 
     def localContainer(self):
         self.folder._setObject('subfold', Folder('subfold'))
-        return _localContainer(self.folder.subfold)
+        return self._localContainer(self.folder.subfold)
 
 def test_suite():
     suites = [unittest.makeSuite(cls) for cls in (ZopeTestRSS, CPSTestRSS)]

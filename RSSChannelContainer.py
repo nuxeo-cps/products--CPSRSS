@@ -1,5 +1,7 @@
 # (C) Copyright 2003 Nuxeo SARL <http://nuxeo.com>
-# Author: Emmanuel Pietriga (ep@nuxeo.com)
+#               2010 Georges Racinet <georges@racinet.fr>
+# Authors: Emmanuel Pietriga (ep@nuxeo.com)
+#          Georges Racinet <georges@racinet.fr>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as published
@@ -15,40 +17,50 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 # 02111-1307, USA.
 #
-# $Id$
 """The RSS tool manages RSS channels and refreshes them.
 """
 
-import logging
+from zLOG import LOG, DEBUG
 from Globals import InitializeClass, DTMLFile
 from AccessControl import ClassSecurityInfo
+from OFS.Folder import Folder
 
 from Products.CMFCore.permissions import View, ManagePortal
 from Products.CMFCore.utils import UniqueObject
 
-from RSSChannelContainer import RSSChannelContainer
 from RSSChannel import addRSSChannel, RSSChannel_meta_type
 
 from zope.interface import implements
 
 from Products.CPSRSS.interfaces import IRSSTool
+from Products.CPSRSS.interfaces import IRSSChannelContainer
 
-logger = logging.getLogger(__name__)
-
-class RSSTool(UniqueObject, RSSChannelContainer):
-
+class RSSChannelContainer(Folder):
     """RSS tool, a container for RSS channels that can refresh them."""
 
-    implements(IRSSTool)
+    implements(IRSSChannelContainer)
 
-    id = 'portal_rss'
-    meta_type = 'RSS Tool'
+    meta_type = 'RSS Channel Container'
 
     security = ClassSecurityInfo()
     security.declareObjectProtected(View)
 
-    def __init__(self):
-        super(self.__class__, self).__init__(self.id)
+    def __init__(self, zid):
+        self._setId(zid)
+
+    #
+    # API
+    #
+
+    security.declareProtected(ManagePortal, 'refresh')
+    def refresh(self, REQUEST=None):
+        """Refresh all the channels from their source."""
+        for ob in self.objectValues(RSSChannel_meta_type):
+            ob.refresh()
+        if REQUEST:
+            REQUEST.RESPONSE.redirect(
+                '%s/manage_main?manage_tabs_message=Refreshed.'
+                % self.absolute_url())
 
     #
     # CMF views
@@ -69,13 +81,12 @@ class RSSTool(UniqueObject, RSSChannelContainer):
     # ZMI
     #
     _properties = (
-        {'id': 'title', 'type': 'string', 'mode': 'w', 
-         'label': 'Title'},
         {'id': 'refresh_delay', 'type': 'int', 'mode': 'w', 
          'label': 'Refresh Delay'},
         {'id': 'lazy_refresh', 'type': 'boolean', 'mode': 'w', 
          'label': 'Lazy Refresh'},
     )
+
     title = ''
     refresh_delay = 1200 # 20 minutes
     lazy_refresh = 1
@@ -101,4 +112,13 @@ class RSSTool(UniqueObject, RSSChannelContainer):
             REQUEST.RESPONSE.redirect('%s/%s/manage_workspace'
                                       % (container.absolute_url(), id))
 
-InitializeClass(RSSTool)
+    manage_options = (Folder.manage_options[:1] + # contents
+                      ({'label': 'Refresh', 'action': 'refreshForm'},) +
+                      Folder.manage_options[1:])
+
+    refreshForm = DTMLFile('zmi/refreshForm', globals())
+
+
+InitializeClass(RSSChannelContainer)
+
+

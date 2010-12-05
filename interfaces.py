@@ -23,7 +23,13 @@
 from zope.interface import Interface
 
 
-class IRSSTool(Interface):
+class IRSSChannelContainer(Interface):
+    """RSS Channel Container.
+
+    Placeful container to put RSS channels in
+    """
+
+class IRSSTool(IRSSChannelContainer):
     """RSS Tool.
     """
 

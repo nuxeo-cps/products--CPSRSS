@@ -15,8 +15,6 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 # 02111-1307, USA.
-#
-# $Id$
 """The RSS tool manages RSS channels and refreshes them.
 """
 
@@ -180,11 +178,17 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
     def _maybeRefresh(self):
         """Refresh if on lazy refresh and the delay has elapsed."""
 
-        if not self.lazy_refresh: # acquired from parent (portal_rss)
+        # GR: I find it doubtful that refresh lazyness and delay
+        # are set at the tool, because they are likely to depend on the
+        # rate of the feed itself. The tool should imo provide default values
+        # keeping status quo for now.
+        rss_tool = getToolByName(self, 'portal_rss')
+        if not rss_tool.lazy_refresh:
             logger.debug('Not on lazy refresh')
             self._refresh()
             return
-        delay = self.refresh_delay # acquired from parent (portal_rss)
+
+        delay = rss_tool.refresh_delay
         now = int(time.time())
         if now - self._refresh_time > delay:
             logger.debug('Refreshing %r', self.id)
@@ -209,8 +213,12 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
         if not url.startswith('http://') or url.startswith('https://'):
             data = {'channel': {}, 'items': []}
         try :
-            if self.channel_proxy:
-                proxy_handler = ProxyHandler({'http': self.channel_proxy})
+            proxy = self.channel_proxy
+            # GR TODO : replace this by a portal-wide setting and maybe use
+            # system-wide setting (environ['http_proxy'])
+            if proxy:
+                logger.info("Using HTTP proxy %r", proxy)
+                proxy_handler = ProxyHandler({'http': proxy})
                 handlers = [proxy_handler]
             else:
                 handlers = []
