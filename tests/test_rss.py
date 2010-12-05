@@ -3,10 +3,11 @@
 import unittest, os.path
 
 from OFS.Folder import Folder
-from CPSRSSTestCase import CPSRSSTestCase
-from CPSRSSTestCase import ZopeRSSTestCase
+from basetests import CPSRSSTestCase
+from basetests import ZopeRSSTestCase
 
 from Products.CPSRSS.RSSChannelContainer import RSSChannelContainer
+from Products.CPSRSS.RSSChannelContainer import addRSSChannelContainer
 
 def get_feed_url(feed_file):
     return os.path.abspath(os.path.join(os.path.dirname(__file__), feed_file))
@@ -15,13 +16,8 @@ def get_feed_url(feed_file):
 class TestRSS(object):
 
     def localContainer(self):
-        """Depends on subclass."""
+        """Provided by subclasses."""
         raise NotImplementedError
-
-    def _localContainer(self, folder):
-        """Common code called by subclass."""
-        folder._setObject('.cps_rss', RSSChannelContainer('.cps_rss'))
-        return folder['.cps_rss']
 
     def testEmptyTool(self):
         rss_tool = self.tool
@@ -86,7 +82,7 @@ class CPSTestRSS(TestRSS, CPSRSSTestCase):
     """Run the tests in a full CPS portal context."""
 
     def localContainer(self):
-        return self._localContainer(self.portal.workspaces)
+        return addRSSChannelContainer(self.portal.workspaces)
 
 
 class ZopeTestRSS(TestRSS, ZopeRSSTestCase):
@@ -94,7 +90,7 @@ class ZopeTestRSS(TestRSS, ZopeRSSTestCase):
 
     def localContainer(self):
         self.folder._setObject('subfold', Folder('subfold'))
-        return self._localContainer(self.folder.subfold)
+        return addRSSChannelContainer(self.folder.subfold)
 
 
 def test_suite():

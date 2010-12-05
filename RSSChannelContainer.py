@@ -122,3 +122,11 @@ class RSSChannelContainer(Folder):
 InitializeClass(RSSChannelContainer)
 
 
+def addRSSChannelContainer(folder, cid='.cps_rss'):
+    """Add a channel container in folder and return it.
+
+    This does not redirect to a ZMI URL like addRSSChannel does in case a
+    request would be provided, because ZMI would not the only UI.
+    """
+    folder._setObject(cid, RSSChannelContainer(cid))
+    return folder[cid]
