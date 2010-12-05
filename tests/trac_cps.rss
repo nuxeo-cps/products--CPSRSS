@@ -1,0 +1,361 @@
+<?xml version="1.0"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  
+
+  <channel>
+    <title>CPS CMS: Ticket Query</title>
+    <link>http://trac.cps-cms.org/query?status=closed&amp;group=status&amp;milestone=CPS+3.5.2&amp;row=description</link>
+    <description>Collaborative Portal System CMS</description>
+    <language>en-US</language>
+    <image>
+      <title>CPS CMS</title>
+      <url>http://trac.cps-cms.org/chrome/site/logo_cps.png</url>
+      <link>http://trac.cps-cms.org/query?status=closed&amp;group=status&amp;milestone=CPS+3.5.2&amp;row=description</link>
+    </image>
+    <generator>Trac 0.11.1</generator>
+    <item>
+        <link>http://trac.cps-cms.org/ticket/2184</link>
+        <guid isPermaLink="false">http://trac.cps-cms.org/ticket/2184</guid>
+        <title>#2184: Make a unicode upgrade cpsjob</title>
+        <pubDate>Thu, 29 Jul 2010 13:53:41 GMT</pubDate>
+          <dc:creator>gracinet</dc:creator>
+        <description>&lt;p&gt;
+Having upgrade steps is nice, but not enough:
+&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;the whole upgrade process
+&lt;/li&gt;&lt;li&gt;the upgrade can be long, people will need to invoke it from server console, behind any corporate proxy
+&lt;/li&gt;&lt;li&gt;some treatment can be factorized among steps (crawling the folder hierarchy, see &lt;a class="closed ticket" href="http://trac.cps-cms.org/ticket/2183" title="defect: Unicode upgrades should not depend on the catalog (closed: fixed)"&gt;#2183&lt;/a&gt;)
+&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;
+Unicode upgrade steps will be kept, though, so that people can relaunch one independently from the big thing.
+&lt;/p&gt;
+&lt;p&gt;
+In my mind, the upgrade process needs not to be so polished for 3.5.1, but that'd be welcomed, of course
+&lt;/p&gt;
+</description>
+        <category>Results</category>
+        <comments>http://trac.cps-cms.org/ticket/2184#changelog</comments>
+    </item><item>
+        <link>http://trac.cps-cms.org/ticket/2223</link>
+        <guid isPermaLink="false">http://trac.cps-cms.org/ticket/2223</guid>
+        <title>#2223: Allow unicode labels in widgets and vocabularies</title>
+        <pubDate>Fri, 20 Aug 2010 01:37:18 GMT</pubDate>
+          <dc:creator>gracinet</dc:creator>
+        <description>&lt;p&gt;
+Because of the previous limitations, widgets labels and help messages are always plain strings. An additional boolean property &lt;tt&gt;&lt;/tt&gt;&lt;tt&gt;is_i18n&lt;/tt&gt;&lt;tt&gt;&lt;/tt&gt;
+controls whether this to be considered as a label for the translation service.
+&lt;/p&gt;
+&lt;p&gt;
+In practice, working for a french-only installation therefore means going through the cumbersome &lt;tt&gt;&lt;/tt&gt;&lt;tt&gt;.pot&lt;/tt&gt;&lt;tt&gt;&lt;/tt&gt; and &lt;tt&gt;&lt;/tt&gt;&lt;tt&gt;.po&lt;/tt&gt;&lt;tt&gt;&lt;/tt&gt; files for each label with non ascii characters, which is rather absurd and an terrible waste of developer's time and focus.
+&lt;/p&gt;
+&lt;p&gt;
+Marking this as feature, because it will indeed be a relief.
+&lt;/p&gt;
+&lt;p&gt;
+This could be done my making &lt;tt&gt;&lt;/tt&gt;&lt;tt&gt;label&lt;/tt&gt;&lt;tt&gt;&lt;/tt&gt; and friends &lt;tt&gt;&lt;/tt&gt;&lt;tt&gt;ustring&lt;/tt&gt;&lt;tt&gt;&lt;/tt&gt; properties and having auxiliaray &lt;tt&gt;&lt;/tt&gt;&lt;tt&gt;label_msgid&lt;/tt&gt;&lt;tt&gt;&lt;/tt&gt; etc, but a compatibility layer will then be needed to avoid the cumbersome task of migrating the old profiles.
+&lt;/p&gt;
+&lt;p&gt;
+Same remarks apply to vocabulary, but it will be easier for them since they already have different labels properties.
+&lt;/p&gt;
+</description>
+        <category>Results</category>
+        <comments>http://trac.cps-cms.org/ticket/2223#changelog</comments>
+    </item><item>
+        <link>http://trac.cps-cms.org/ticket/1615</link>
+        <guid isPermaLink="false">http://trac.cps-cms.org/ticket/1615</guid>
+        <title>#1615: change widgets defaults</title>
+        <pubDate>Fri, 14 Apr 2006 13:32:47 GMT</pubDate>
+          <dc:creator>tziade</dc:creator>
+        <description>&lt;p&gt;
+- activate "Text WIdget"
+- remove "Rich Text widget"
+&lt;/p&gt;
+</description>
+        <category>Results</category>
+        <comments>http://trac.cps-cms.org/ticket/1615#changelog</comments>
+    </item><item>
+        <link>http://trac.cps-cms.org/ticket/2074</link>
+        <guid isPermaLink="false">http://trac.cps-cms.org/ticket/2074</guid>
+        <title>#2074: Split navigation portlet render method</title>
+        <pubDate>Sun, 29 Nov 2009 13:22:10 GMT</pubDate>
+          <dc:creator>gracinet</dc:creator>
+        <description>&lt;p&gt;
+Currently, all the different rendering types for navigation portlets are being handled by a single ZPT file. This is a customization and maintainance nightmare.
+&lt;/p&gt;
+&lt;p&gt;
+To avoid making a dozen new portlet types, there should be a simple logic assigning a rendering type to its ZPT file. I would support a simple automatic file name convention, like the one for layout modes.
+&lt;/p&gt;
+&lt;p&gt;
+This could very well be done at the level of the generic portlet widget, declaring the field that triggers this, if any, in a property, and therefore apply to other portlet types.
+&lt;/p&gt;
+&lt;p&gt;
+Not at all suited for 3.4, of course
+&lt;/p&gt;
+</description>
+        <category>Results</category>
+        <comments>http://trac.cps-cms.org/ticket/2074#changelog</comments>
+    </item><item>
+        <link>http://trac.cps-cms.org/ticket/2118</link>
+        <guid isPermaLink="false">http://trac.cps-cms.org/ticket/2118</guid>
+        <title>#2118: Image and Photo widget available sizes</title>
+        <pubDate>Mon, 22 Feb 2010 12:11:38 GMT</pubDate>
+          <dc:creator>gracinet</dc:creator>
+        <description>&lt;p&gt;
+The available image sizes for the resize operation are filtered to be smaller than the display size (width&amp;amp;height actually) in the widget props.
+&lt;/p&gt;
+&lt;p&gt;
+The filtering criterion should be smaller 'or equal' : it's unlogical to specify 641x480 in the widget props to get the 640x480 option in the available sizes.
+&lt;/p&gt;
+</description>
+        <category>Results</category>
+        <comments>http://trac.cps-cms.org/ticket/2118#changelog</comments>
+    </item><item>
+        <link>http://trac.cps-cms.org/ticket/2210</link>
+        <guid isPermaLink="false">http://trac.cps-cms.org/ticket/2210</guid>
+        <title>#2210: Tramline Image</title>
+        <pubDate>Sun, 15 Aug 2010 16:16:36 GMT</pubDate>
+          <dc:creator>gracinet</dc:creator>
+        <description>&lt;p&gt;
+As shown in &lt;a class="reopened ticket" href="http://trac.cps-cms.org/ticket/2205" title="feature: Generic batch or archive upload system (reopened)"&gt;#2205&lt;/a&gt;, it's time to have Tramline images.
+&lt;/p&gt;
+</description>
+        <category>Results</category>
+        <comments>http://trac.cps-cms.org/ticket/2210#changelog</comments>
+    </item><item>
+        <link>http://trac.cps-cms.org/ticket/2222</link>
+        <guid isPermaLink="false">http://trac.cps-cms.org/ticket/2222</guid>
+        <title>#2222: Provide a progress bar for long uploads</title>
+        <pubDate>Fri, 20 Aug 2010 01:16:35 GMT</pubDate>
+          <dc:creator>gracinet</dc:creator>
+        <description>&lt;p&gt;
+CPSTramline allows to update hundreds of megabytes to a CPS installation. This is neat, but a progress bar is a must have.
+&lt;/p&gt;
+</description>
+        <category>Results</category>
+        <comments>http://trac.cps-cms.org/ticket/2222#changelog</comments>
+    </item><item>
+        <link>http://trac.cps-cms.org/ticket/2242</link>
+        <guid isPermaLink="false">http://trac.cps-cms.org/ticket/2242</guid>
+        <title>#2242: Explicitensess in password reset timeouts</title>
+        <pubDate>Sat, 02 Oct 2010 16:28:29 GMT</pubDate>
+          <dc:creator>gracinet</dc:creator>
+        <description>&lt;p&gt;
+This is what remains of &lt;a class="closed ticket" href="http://trac.cps-cms.org/ticket/2230" title="enhancement: Improve usability of the reset password functionality (closed: fixed)"&gt;#2230&lt;/a&gt;:
+reset request timed-out validity should be explicitly announced as such to users
+&lt;/p&gt;
+&lt;p&gt;
+One should modify &lt;a class="missing wiki" href="http://trac.cps-cms.org/wiki/MembershipTool" rel="nofollow"&gt;MembershipTool?&lt;/a&gt;.isPasswordResetRequestValid to not only return True or False but why it is False, ie is it a validity error of the token or is it a timed-out error.
+&lt;/p&gt;
+</description>
+        <category>Results</category>
+        <comments>http://trac.cps-cms.org/ticket/2242#changelog</comments>
+    </item><item>
+        <link>http://trac.cps-cms.org/ticket/2244</link>
+        <guid isPermaLink="false">http://trac.cps-cms.org/ticket/2244</guid>
+        <title>#2244: Allow CSV export of booleans in directories</title>
+        <pubDate>Tue, 05 Oct 2010 13:38:10 GMT</pubDate>
+          <dc:creator>gracinet</dc:creator>
+        <description>&lt;p&gt;
+Currently, only String and String List fields are being exported, but some people really need the boolean ones, too (for various treatments like sortin in their favorite spreadsheet application).
+&lt;/p&gt;
+&lt;p&gt;
+Most users would like localized labels in the export itself, we should reuse the same vocabulary as in the Boolean Widget itself.
+&lt;/p&gt;
+</description>
+        <category>Results</category>
+        <comments>http://trac.cps-cms.org/ticket/2244#changelog</comments>
+    </item><item>
+        <link>http://trac.cps-cms.org/ticket/2245</link>
+        <guid isPermaLink="false">http://trac.cps-cms.org/ticket/2245</guid>
+        <title>#2245: Upgrade step document to be flexible is broken</title>
+        <pubDate>Wed, 06 Oct 2010 11:17:05 GMT</pubDate>
+          <dc:creator>gracinet</dc:creator>
+        <description>&lt;p&gt;
+The reason is that it goes through the CPSDocument API, which evaluates expressions. In particular, the contributors list is updated with the current user fullname, which is unicode. Since typically the step is launched before the unicode upgrade, we have an error each time the previous contributors list has a non ascci character.
+&lt;/p&gt;
+</description>
+        <category>Results</category>
+        <comments>http://trac.cps-cms.org/ticket/2245#changelog</comments>
+    </item><item>
+        <link>http://trac.cps-cms.org/ticket/2247</link>
+        <guid isPermaLink="false">http://trac.cps-cms.org/ticket/2247</guid>
+        <title>#2247: ZODB directory unicode upgrade fails over 99 entries</title>
+        <pubDate>Wed, 06 Oct 2010 13:09:33 GMT</pubDate>
+          <dc:creator>gracinet</dc:creator>
+        <description>&lt;p&gt;
+Missing import for the explicit transaction commit that occurs every 100 entries…
+&lt;/p&gt;
+</description>
+        <category>Results</category>
+        <comments>http://trac.cps-cms.org/ticket/2247#changelog</comments>
+    </item><item>
+        <link>http://trac.cps-cms.org/ticket/2248</link>
+        <guid isPermaLink="false">http://trac.cps-cms.org/ticket/2248</guid>
+        <title>#2248: Datamodel unicode upgrade not robust enough</title>
+        <pubDate>Wed, 06 Oct 2010 13:11:49 GMT</pubDate>
+          <dc:creator>gracinet</dc:creator>
+        <description>&lt;p&gt;
+There is an exotic case where write access is denied.
+Unfortunately, the exception catching lacks an import
+&lt;/p&gt;
+</description>
+        <category>Results</category>
+        <comments>http://trac.cps-cms.org/ticket/2248#changelog</comments>
+    </item><item>
+        <link>http://trac.cps-cms.org/ticket/2249</link>
+        <guid isPermaLink="false">http://trac.cps-cms.org/ticket/2249</guid>
+        <title>#2249: DateTime List Field</title>
+        <pubDate>Wed, 06 Oct 2010 16:33:04 GMT</pubDate>
+          <dc:creator>gracinet</dc:creator>
+        <description>&lt;p&gt;
+Now that fields are strongly typed &lt;a class="closed ticket" href="http://trac.cps-cms.org/ticket/2178" title="defect: Fields validation not called (for Ascii field) (closed: fixed)"&gt;#2178&lt;/a&gt;, old workarounds in custom code don't pass anymore, and we really need a field for lists of DateTime objects
+&lt;/p&gt;
+</description>
+        <category>Results</category>
+        <comments>http://trac.cps-cms.org/ticket/2249#changelog</comments>
+    </item><item>
+        <link>http://trac.cps-cms.org/ticket/2258</link>
+        <guid isPermaLink="false">http://trac.cps-cms.org/ticket/2258</guid>
+        <title>#2258: Remove the "Edit online" action on the File document type</title>
+        <pubDate>Mon, 11 Oct 2010 15:57:37 GMT</pubDate>
+          <dc:creator>madarche</dc:creator>
+        <description>&lt;p&gt;
+This action can be misleading since it exists both on the document and on the widget. Moreover some document types have multiple widgets with this "Edit online" action, thus creating an inconsistency from the user point of view.
+&lt;/p&gt;
+</description>
+        <category>Results</category>
+        <comments>http://trac.cps-cms.org/ticket/2258#changelog</comments>
+    </item><item>
+        <link>http://trac.cps-cms.org/ticket/2262</link>
+        <guid isPermaLink="false">http://trac.cps-cms.org/ticket/2262</guid>
+        <title>#2262: [Regression] All stats to 0%</title>
+        <pubDate>Tue, 12 Oct 2010 21:58:59 GMT</pubDate>
+          <dc:creator>madarche</dc:creator>
+        <description>&lt;p&gt;
+Since the Unicode migration all the answers in the stats page of CPSCollector documents return 0%.
+&lt;/p&gt;
+</description>
+        <category>Results</category>
+        <comments>http://trac.cps-cms.org/ticket/2262#changelog</comments>
+    </item><item>
+        <link>http://trac.cps-cms.org/ticket/2267</link>
+        <guid isPermaLink="false">http://trac.cps-cms.org/ticket/2267</guid>
+        <title>#2267: ZMI server crash on Debian Squeeze</title>
+        <pubDate>Wed, 27 Oct 2010 08:21:53 GMT</pubDate>
+          <dc:creator>gracinet</dc:creator>
+        <description>&lt;p&gt;
+On Debian 6.0 Squeeze (current testing), opening the ZMI on the portal object leads to a systematic server crash (process dies) while serving the request for the left frame (&lt;tt&gt;&lt;/tt&gt;&lt;tt&gt;manage_menu&lt;/tt&gt;&lt;tt&gt;&lt;/tt&gt;).
+&lt;/p&gt;
+&lt;p&gt;
+End of console log:
+&lt;/p&gt;
+&lt;pre class="wiki"&gt;2010-10-27 10:15:06 DEBUG CPSUserFolder Setting user manager into cache
+2010-10-27 10:15:06 DEBUG PortalTransforms Importing module = st
+2010-10-27 10:15:06 DEBUG PortalTransforms Appending transform = &amp;lt;module 'Products.PortalTransforms.transforms.st' from '/home/zopes/energy/Products/PortalTransforms/transforms/st.pyc'&amp;gt;
+2010-10-27 10:15:06 DEBUG PortalTransforms Importing module = rest
+AccessInit: hash collision: 3 for both 1 and 1
+purity-/var/opt/cps-dev/cps3 $
+&lt;/pre&gt;&lt;p&gt;
+Navigating to the &lt;tt&gt;&lt;/tt&gt;&lt;tt&gt;portal_transforms&lt;/tt&gt;&lt;tt&gt;&lt;/tt&gt; tool produces the same effect.
+&lt;/p&gt;
+&lt;p&gt;
+Seen on various versions, ranging from 3.4.6 to pre-3.5.2.
+&lt;/p&gt;
+</description>
+        <category>Results</category>
+        <comments>http://trac.cps-cms.org/ticket/2267#changelog</comments>
+    </item><item>
+        <link>http://trac.cps-cms.org/ticket/2277</link>
+        <guid isPermaLink="false">http://trac.cps-cms.org/ticket/2277</guid>
+        <title>#2277: Update to the TinyMCE current version</title>
+        <pubDate>Tue, 16 Nov 2010 03:23:35 GMT</pubDate>
+          <dc:creator>madarche</dc:creator>
+        <description>&lt;p&gt;
+The current version of TinyMCE: 3.3.9.2
+&lt;/p&gt;
+</description>
+        <category>Results</category>
+        <comments>http://trac.cps-cms.org/ticket/2277#changelog</comments>
+    </item><item>
+        <link>http://trac.cps-cms.org/ticket/2281</link>
+        <guid isPermaLink="false">http://trac.cps-cms.org/ticket/2281</guid>
+        <title>#2281: Recreate renderJS</title>
+        <pubDate>Sat, 20 Nov 2010 15:05:01 GMT</pubDate>
+          <dc:creator>gracinet</dc:creator>
+        <description>&lt;p&gt;
+There is currently no CPSDesignerThemes equivalent of the &lt;tt&gt;&lt;/tt&gt;&lt;tt&gt;renderJS&lt;/tt&gt;&lt;tt&gt;&lt;/tt&gt; method.
+&lt;/p&gt;
+&lt;p&gt;
+Its purpose is to include in the page head element all javascript resources needed by portlets (in the case of custom portlets, this is part of the portlet fields).
+&lt;/p&gt;
+&lt;p&gt;
+Without this, CPSDesignerThemes is almost unusable for portlets requiring javascript resources. This has been tolerable up to now, because with migrated themes from CPSSkins, we had a call to CPSSkins' &lt;tt&gt;&lt;/tt&gt;&lt;tt&gt;renderJS&lt;/tt&gt;&lt;tt&gt;&lt;/tt&gt; method, thanks to the &lt;tt&gt;&lt;/tt&gt;&lt;tt&gt;cps&lt;/tt&gt;&lt;tt&gt;&lt;/tt&gt; URL scheme, and this works approximatively, namely as long as the theme is not edited to change slots or new portlet slots don't need any JS resource, and CPSSkins' original theme is still present.
+&lt;/p&gt;
+&lt;p&gt;
+CPSDesignerThemes' version should rely on the recently introduced request resource registry (see &lt;a class="assigned ticket" href="http://trac.cps-cms.org/ticket/837" title="feature: Refactoring CSS and JavaScript declaration (assigned)"&gt;#837&lt;/a&gt;).
+&lt;/p&gt;
+&lt;p&gt;
+As a side note, there will be a difference: CPSSkins' renderJS aggregates all the needed JS code and is loaded by a single separated HTTP request, whereas the registry will trigger a request per JS file. Therefore CPSSkins better complies to recommendations of tools like &lt;a class="ext-link" href="http://developer.yahoo.com/yslow/"&gt;&lt;span class="icon"&gt;YSlow&lt;/span&gt;&lt;/a&gt; (minimizing the number of requests), which of course don't consider the server-side cost of such an aggregation. CPSSkins' &lt;tt&gt;&lt;/tt&gt;&lt;tt&gt;renderJS&lt;/tt&gt;&lt;tt&gt;&lt;/tt&gt; has always been a pain to cache, because of its query URL part (page id).
+&lt;/p&gt;
+&lt;p&gt;
+Providing such a single request inclusion for all portlets could be a later evolution, possibly optional and more general than portlets.
+&lt;/p&gt;
+</description>
+        <category>Results</category>
+        <comments>http://trac.cps-cms.org/ticket/2281#changelog</comments>
+    </item><item>
+        <link>http://trac.cps-cms.org/ticket/2292</link>
+        <guid isPermaLink="false">http://trac.cps-cms.org/ticket/2292</guid>
+        <title>#2292: Portlet edition popup not unicode-ready</title>
+        <pubDate>Sat, 27 Nov 2010 23:30:25 GMT</pubDate>
+          <dc:creator>gracinet</dc:creator>
+        <description>&lt;p&gt;
+I created a portlet and chose "À la une" as title:
+&lt;/p&gt;
+&lt;pre class="wiki"&gt;    * &amp;lt;FSPageTemplate at /cps/cpsportlet_edit_form used for /cps/.cps_portlets/a-la-une&amp;gt;
+(...)
+    * Module Products.PageTemplates.TALES, line 221, in evaluate
+      URL: file:CPSDefault/skins/cps_default/header_lib_header.pt
+      Line 19, Column 2
+      Expression: standard:'expanded_title|here/expanded_title'
+      Names:
+      {'container': &amp;lt;CPSDefaultSite at /cps&amp;gt;,
+       'context': &amp;lt;CPSPortlet at /cps/.cps_portlets/a-la-une&amp;gt;,
+       'default': &amp;lt;Products.PageTemplates.TALES.Default instance at 0x7feffff273f8&amp;gt;,
+       'here': &amp;lt;CPSPortlet at /cps/.cps_portlets/a-la-une&amp;gt;,
+       'loop': &amp;lt;Products.PageTemplates.TALES.SafeMapping object at 0x5b8b7e8&amp;gt;,
+       'modules': &amp;lt;Products.PageTemplates.ZRPythonExpr._SecureModuleImporter instance at 0x7feffff27830&amp;gt;,
+       'nothing': None,
+       'options': {'args': ()},
+       'repeat': &amp;lt;Products.PageTemplates.TALES.SafeMapping object at 0x5b8b7e8&amp;gt;,
+       'request': &amp;lt;HTTPRequest, URL=http://localhost:8080/cps/.cps_portlets/a-la-une/edit_form&amp;gt;,
+       'root': &amp;lt;Application at &amp;gt;,
+       'template': &amp;lt;FSPageTemplate at /cps/cpsportlet_edit_form used for /cps/.cps_portlets/a-la-une&amp;gt;,
+       'traverse_subpath': [],
+       'user': &amp;lt;User 'admin'&amp;gt;}
+(...)
+      * Module Products.CMFCore.FSPythonScript, line 164, in _exec
+    * Module None, line 13, in expanded_title
+      &amp;lt;FSPythonScript at /cps/expanded_title used for /cps/.cps_portlets/a-la-une&amp;gt;
+      Line 13
+UnicodeDecodeError: &amp;lt;exceptions.UnicodeDecodeError instance at 0x5c35a70&amp;gt;
+&lt;/pre&gt;</description>
+        <category>Results</category>
+        <comments>http://trac.cps-cms.org/ticket/2292#changelog</comments>
+    </item><item>
+        <link>http://trac.cps-cms.org/ticket/2296</link>
+        <guid isPermaLink="false">http://trac.cps-cms.org/ticket/2296</guid>
+        <title>#2296: Keywords metadata should be indexed too</title>
+        <pubDate>Fri, 03 Dec 2010 13:25:41 GMT</pubDate>
+          <dc:creator>madarche</dc:creator>
+        <description>&lt;p&gt;
+Keywords metadata, introduced in &lt;a class="closed ticket" href="http://trac.cps-cms.org/ticket/495" title="enhancement: Document HTML view page should contain HTML metadata (closed: fixed)"&gt;#495&lt;/a&gt; for SEO, should be indexed too, so that internal search on those keywords could return the matching documents to the user doing the search.
+&lt;/p&gt;
+&lt;p&gt;
+Having the keywords not indexed confuses users.
+&lt;/p&gt;
+</description>
+        <category>Results</category>
+        <comments>http://trac.cps-cms.org/ticket/2296#changelog</comments>
+    </item>
+ </channel>
+</rss>

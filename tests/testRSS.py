@@ -35,10 +35,13 @@ class TestRSS(object):
 
         rss_tool.manage_addRSSChannel('channel', get_feed_url('zope.rss'))
         self.assertEquals(rss_tool.objectIds(), ['channel'])
-        d = rss_tool.channel.getData()
+        channel = rss_tool.channel
+
+        d = channel.getData()
         self.assertEquals(d['url'], 'http://zope.org')
         self.assertEquals(d['title'], 'Zope.org')
         self.assertEquals(d['description'], '')
+        return channel
 
     def _testLocalChannel(self, lazy_refresh=0):
         rss_tool = self.tool
@@ -47,10 +50,13 @@ class TestRSS(object):
         container = self.localContainer()
         container.manage_addRSSChannel('channel', get_feed_url('zope.rss'))
         self.assertEquals(container.objectIds(), ['channel'])
-        d = container.channel.getData()
+        channel = container.channel
+
+        d = channel.getData()
         self.assertEquals(d['url'], 'http://zope.org')
         self.assertEquals(d['title'], 'Zope.org')
         self.assertEquals(d['description'], '')
+        return container, channel
 
     def testChannelLazy(self):
         self._testChannel(lazy_refresh=1)
@@ -63,6 +69,18 @@ class TestRSS(object):
 
     def testLocalChannelNotLazy(self):
         self._testLocalChannel(lazy_refresh=0)
+
+    def testExplicitRefresh(self):
+        # this should eventually move to RSSChannelContainer tests
+        self.tool.refresh_delay = 30
+        # creating and filling the channel (TODO refactor)
+        container, channel = self._testLocalChannel(lazy_refresh=1)
+        channel.channel_url = get_feed_url('trac_cps.rss')
+        # check that we'll actually test somethin
+        self.assertEquals(channel.getData()['title'], 'Zope.org')
+        container.refresh()
+        self.assertEquals(channel.getData()['title'], 'CPS CMS: Ticket Query')
+
 
 class CPSTestRSS(TestRSS, CPSRSSTestCase):
     """Run the tests in a full CPS portal context."""
@@ -77,6 +95,7 @@ class ZopeTestRSS(TestRSS, ZopeRSSTestCase):
     def localContainer(self):
         self.folder._setObject('subfold', Folder('subfold'))
         return self._localContainer(self.folder.subfold)
+
 
 def test_suite():
     suites = [unittest.makeSuite(cls) for cls in (ZopeTestRSS, CPSTestRSS)]
