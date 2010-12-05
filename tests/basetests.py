@@ -15,12 +15,18 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 # 02111-1307, USA.
 
+import os
+
 from Testing.ZopeTestCase import ZopeTestCase
 
 from Products.CPSDefault.tests.CPSTestCase import CPSTestCase
 from Products.CPSDefault.tests.CPSTestCase import ExtensionProfileLayerClass
 
 from Products.CPSRSS.RSSTool import RSSTool
+
+def get_feed_url(feed_file):
+    return os.path.abspath(os.path.join(os.path.dirname(__file__), feed_file))
+
 
 class LayerClass(ExtensionProfileLayerClass):
     extension_ids = ('CPSRSS:default',)

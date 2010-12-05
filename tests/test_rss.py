@@ -5,12 +5,10 @@ import unittest, os.path
 from OFS.Folder import Folder
 from basetests import CPSRSSTestCase
 from basetests import ZopeRSSTestCase
+from basetests import get_feed_url
 
 from Products.CPSRSS.RSSChannelContainer import RSSChannelContainer
 from Products.CPSRSS.RSSChannelContainer import addRSSChannelContainer
-
-def get_feed_url(feed_file):
-    return os.path.abspath(os.path.join(os.path.dirname(__file__), feed_file))
 
 
 class TestRSS(object):
