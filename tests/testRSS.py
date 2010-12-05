@@ -35,7 +35,6 @@ class TestRSS(object):
 
         rss_tool.manage_addRSSChannel('channel', get_feed_url('zope.rss'))
         self.assertEquals(rss_tool.objectIds(), ['channel'])
-        rss_tool.refresh()
         d = rss_tool.channel.getData()
         self.assertEquals(d['url'], 'http://zope.org')
         self.assertEquals(d['title'], 'Zope.org')
@@ -48,7 +47,6 @@ class TestRSS(object):
         container = self.localContainer()
         container.manage_addRSSChannel('channel', get_feed_url('zope.rss'))
         self.assertEquals(container.objectIds(), ['channel'])
-        rss_tool.refresh()
         d = container.channel.getData()
         self.assertEquals(d['url'], 'http://zope.org')
         self.assertEquals(d['title'], 'Zope.org')
