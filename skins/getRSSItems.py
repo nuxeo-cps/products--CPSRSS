@@ -9,6 +9,8 @@ from logging import getLogger
 
 import operator
 
+from Products.CPSUtil.text import summarize
+
 LOG_KEY = 'CPSPortlets.getRSSItems'
 
 DEFAULT_RSS_ITEM_DISPLAY = 'cpsportlet_rssitem_display'
@@ -47,19 +49,6 @@ if len(channels_ids) > 1:
     # Relying on the 'modified_parsed' item for the sorting.
     data_items.sort(key=operator.itemgetter('modified_parsed'), reverse=True)
     data_items = data_items[:max_items]
-
-def summarize(text='', max_words=20):
-    """summarize the text by returning the first max_words
-    """
-    if not max_words:
-        return text
-    if not text:
-        return ''
-    split_text = text.split(' ', max_words)[0:max_words]
-    res = ''
-    if split_text:
-        res = ' '.join(split_text) + ' ...'
-    return res
 
 render_method = kw.get('render_method') or DEFAULT_RSS_ITEM_DISPLAY
 render_method = getattr(context, render_method, None)
