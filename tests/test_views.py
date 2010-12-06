@@ -59,7 +59,7 @@ class ManageChannelsTestCase(ZopeRSSTestCase):
         # call the view API and present channels as dicts for easy assert
         # why staticmethod ? for fun
         return tuple(dict(id=chan.getId(), title=chan.title)
-                     for chan in view.channels())
+                     for chan in view.channels(with_activation=False))
 
     def test_channels(self):
         view = self.makeView()
@@ -89,7 +89,7 @@ class ManageChannelsTestCase(ZopeRSSTestCase):
         view.addChannel(url=get_feed_url('zope.rss'))
 
         # low level url change
-        channel = view.channels()[0]
+        channel = view.channels(with_activation=False)[0]
         channel.channel_url = get_feed_url('trac_cps.rss')
         # before refresh
         self.assertEquals(channel.title, 'Zope.org')

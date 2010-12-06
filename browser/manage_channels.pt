@@ -14,41 +14,48 @@
       i18n:translate="manage_rss_channels_no_channel">
     Il n'y a pas encore de flux RSS &agrave; cet emplacement.
    </p>
+
    <tal:block condition="channels">
     <h2 i18n:translate="manage_rss_channels_available">Flux disponibles</h2>
-    <ul>
-     <li tal:repeat="channel channels">
-       <a tal:content="channel/title"
-          tal:attributes="href string:${channel/absolute_url_path}/edit.html">
-       </a>
-       <p tal:content="channel/description"/>
-     </li>
-    </ul>
+    <form action="set_activated" encoding="multipart-form-data"
+          method="post">
+     <ul>
+      <li tal:repeat="channel_info channels">
+       <tal:block define="channel nocall:channel_info/channel">
+        <input name="activated:list" type="checkbox"
+               tal:attributes="value channel/getId;
+                               checked channel_info/activated;"/>
+        <a tal:content="channel/title"
+           tal:attributes="href string:${channel/absolute_url_path}/edit.html"
+           />
+        <p tal:content="channel/description"/>
+       </tal:block>
+      </li>
+     </ul>
+     <input type="submit" class="standalone" value="activer/desactiver"
+            name="submit"/>
+    </form>
    </tal:block>
 
    <h2 i18n:translate="manage_rss_channels_add_channel">Ajouter un flux</h2>
-   <p>
-    <form action="add_channel" enctype="multipart/form-data" method="post">
-     <label for="new_channel_url"
-            i18n:translate="manage_rss_channels_new_url">
+   <form action="add_channel" enctype="multipart/form-data" method="post">
+    <label for="new_channel_url"
+           i18n:translate="manage_rss_channels_new_url">
       Adresse du flux (URL)
       <input id="new_channel_url" name="url" type="text" width="60" />
       <br/>
       <input type="submit" value="button_ok" name="add" class="standalone"
              i18n:attributes="value" />
-      </label>
+    </label>
      </form>
-   </p>
 
    <h2 i18n:translate="manage_rss_channels_refresh">
     Mettre &agrave; jour tous les flux
    </h2>
-   <p>
-    <form action="refresh_channels" method="post">
-      <input type="submit" value="button_ok" name="add" class="standalone"
-             i18n:attributes="value" />
-     </form>
-   </p>
+   <form action="refresh_channels" method="post">
+    <input type="submit" value="button_ok" name="add" class="standalone"
+           i18n:attributes="value" />
+   </form>
   </metal:main>
 
  </body>

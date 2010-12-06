@@ -42,6 +42,17 @@ logger = logging.getLogger(__name__)
 DEFAULT_RSS_ITEM_DISPLAY = 'cpsportlet_rssitem_display'
 
 class ManageChannels(AqSafeBrowserView):
+    """This view class serves as a view mostly for local channels.
+
+    It does the container lookup, and provides interface to the container.
+    It also maintains the list of channels to be rendered on context proxy,
+    and provides the rendering logic.
+
+    Some options make it possible for the regular portlet to call it as well,
+    by forcing the container.
+    This is still experimental, and will likely evolve in something
+    more uniform, in which the portlet can also render local channels.
+    """
 
     security = ClassSecurityInfo()
 
@@ -68,11 +79,19 @@ class ManageChannels(AqSafeBrowserView):
     def hasContainer(self):
         return self.aqSafeGet('container') is not None
 
-    def channels(self):
+    def channels(self, with_activation=True):
         cont = self.aqSafeGet('container')
         if cont is None:
             return ()
-        return cont.objectValues([RSSChannel.meta_type])
+        proxy = self.context
+        channels = cont.objectValues([RSSChannel.meta_type])
+        if not with_activation:
+            return channels
+
+        dm = proxy.getContent().getDataModel(proxy=proxy)
+        activated = dm.get('channels', ())
+        return tuple(dict(channel=chan, activated=chan.getId() in activated)
+                     for chan in channels)
 
     # traditional security declaration is necessary for browser:view,
     # and further in current Five 1.3.2 takes precedence over zcml
@@ -162,6 +181,23 @@ class ManageChannels(AqSafeBrowserView):
             order += 1
 
         return data_items
+
+    def setActivated(self):
+        """Set the list of activated channels."""
+        activated = self.request.form['activated']
+        proxy = self.context
+        doc = proxy.getEditableContent()
+        dm = doc.getDataModel(proxy=proxy)
+        if not 'channels' in dm:
+            raise RuntimeError(
+                "Document type %r lacks fields for channels management",
+                doc.portal_type)
+
+        available = set(chan.getId()
+                        for chan in self.channels(with_activation=False))
+        dm['channels'] = [cid for cid in activated if cid in available]
+        dm._commit()
+        self.redirectManageChannels()
 
     def redirectManageChannels(self):
         self.request.RESPONSE.redirect('/'.join((
