@@ -1,0 +1,29 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:five="http://namespaces.zope.org/five"
+           xmlns:browser="http://namespaces.zope.org/browser">
+
+  <browser:page
+    for="Products.CPSCore.interfaces.ICPSProxy"
+    name="manage_channels.html"
+    permission="cps.rss.ManageChannels"
+    class=".browser.channels.ManageChannels"
+    template="manage_channels.pt"
+    />
+
+  <browser:page
+    for="Products.CPSCore.interfaces.ICPSProxy"
+    name="add_channel"
+    permission="cps.rss.ManageChannels"
+    class=".browser.channels.ManageChannels"
+    attribute="addChannel"
+    />
+
+  <!--browser:page
+    for="Products.CPSRSS.interfaces.IRSSChannel"
+    name="edit.html"
+    permission="cps.rss.ManageChannels"
+    class=".browser.channels.EditChannel"
+    template="channel_edit.pt"
+    /-->
+
+</configure>

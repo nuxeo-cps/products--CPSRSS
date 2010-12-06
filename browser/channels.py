@@ -19,8 +19,11 @@ from Products.CMFCore.utils import getToolByName
 from Products.CPSonFive.browser import AqSafeBrowserView
 
 from Products.CPSUtil.id import generateId
+
 from Products.CPSRSS.RSSChannel import RSSChannel
 from Products.CPSRSS.RSSChannelContainer import RSSChannelContainer
+from Products.CPSRSS.RSSChannelContainer import addRSSChannelContainer
+
 from Products.CPSRSS.interfaces import IRSSChannelContainer
 
 class ManageChannels(AqSafeBrowserView):
@@ -52,16 +55,22 @@ class ManageChannels(AqSafeBrowserView):
         cont = self.aqSafeGet('container')
         if cont is None:
             return ()
-        return tuple(dict(id=chan.getId(), title=chan.title)
-                     for chan in cont.objectValues([RSSChannel.meta_type]))
+        return cont.objectValues([RSSChannel.meta_type])
 
-    def addChannel(self, url):
-        """Create a channel, deriving all properties from the feed.
+    def addChannel(self, url=None):
+        """Create a channel from explicit url or from request form.
+
+        All other properties are retrieved from the feed itself.
         """
+
+        if url is None:
+            # taking from request
+            url = self.request.form['channel_url']
 
         cont = self.aqSafeGet('container')
         if cont is None:
             cont = addRSSChannelContainer(self.context)
+            self.aqSafeSet('container', cont)
         channel = RSSChannel('channel', url).__of__(cont)
         d = channel.getData() # might be quite empty if feed has problems
 
@@ -73,4 +82,4 @@ class ManageChannels(AqSafeBrowserView):
 
         cont._setObject(cid, channel)
         self.request.RESPONSE.redirect('/'.join((
-                cont.absolute_url_path(), cid, 'edit.html')))
+                self.context.absolute_url_path(), 'manage_channels.html')))

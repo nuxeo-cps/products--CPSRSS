@@ -98,9 +98,9 @@ class RSSChannel(PortalContent, DefaultDublinCoreImpl):
     security.declareObjectProtected(View)
 
     _properties = (
-        {'id': 'title', 'type': 'string', 'mode': 'w',
+        {'id': 'title', 'type': 'ustring', 'mode': 'w',
          'label': 'Title'},
-        {'id': 'description', 'type': 'text', 'mode': 'w',
+        {'id': 'description', 'type': 'utext', 'mode': 'w',
          'label': 'Description'},
         {'id': 'channel_url', 'type': 'string', 'mode':'w',
          'label': 'Channel URL'},

@@ -1,0 +1,45 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="here/main_template/macros/master">
+ <body>
+
+  <metal:main fill-slot="main"
+              tal:define="channels view/channels">
+
+   <h1 i18n:translate="heading_manage_rss_channels">
+    Gestion des flux RSS
+   </h1>
+
+   <p tal:condition="not:channels"
+      i18n:translate="manage_rss_channels_no_channel">
+    Il n'y a pas encore de flux RSS &agrave; cet emplacement.
+   </p>
+   <tal:block condition="channels">
+    <h2 i18n:translate="manage_rss_channels_available">Flux disponibles</h2>
+    <ul>
+     <li tal:repeat="channel channels">
+       <a tal:content="channel/title"
+          tal:attributes="href string:${channel/absolute_url_path}/edit.html">
+       </a>
+       <p tal:content="channel/description"/>
+     </li>
+    </ul>
+   </tal:block>
+
+   <h2 i18n:translate="manage_rss_channels_add_channel">Ajouter un flux</h2>
+   <p>
+    <form action="add_channel" enctype="multipart/form-data" method="post">
+     <label for="new_channel_url"
+            i18n:translate="manage_rss_channels_new_url">
+      Adresse du flux (URL)
+      <input id="new_channel_url" name="url" type="text" width="60" />
+      <br/>
+      <input type="submit" value="button_ok" name="add" class="standalone"
+             i18n:attributes="value" />
+      </label>
+     </form>
+   </p>
+  </metal:main>
+
+ </body>
+</html>

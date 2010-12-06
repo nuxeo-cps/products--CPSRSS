@@ -2,6 +2,10 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:five="http://namespaces.zope.org/five">
 
+  <permission id="cps.rss.ManageChannels" title="Manage RSS Channels" />
+
+  <include file="browser/configure.zcml"/>
+
   <adapter
       factory=".exportimport.RSSToolXMLAdapter"
       provides="Products.GenericSetup.interfaces.IBody"
@@ -22,5 +26,6 @@
       permission="cmf.ManagePortal"
       global="False"
       />
+
 
 </configure>
