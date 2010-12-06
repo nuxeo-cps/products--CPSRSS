@@ -39,22 +39,26 @@
 
    <h2 i18n:translate="manage_rss_channels_add_channel">Ajouter un flux</h2>
    <form action="add_channel" enctype="multipart/form-data" method="post">
-    <label for="new_channel_url"
-           i18n:translate="manage_rss_channels_new_url">
+    <p>
+     <label for="new_channel_url"
+            i18n:translate="manage_rss_channels_new_url">
       Adresse du flux (URL)
-      <input id="new_channel_url" name="url" type="text" width="60" />
-      <br/>
-      <input type="submit" value="button_ok" name="add" class="standalone"
-             i18n:attributes="value" />
-    </label>
-     </form>
+     </label>
+     <input id="new_channel_url" name="url" type="text" size="72"/>
+     <br/>
+     <input type="submit" value="button_ok" name="add" class="standalone"
+            i18n:attributes="value" />
+    </p>
+   </form>
 
    <h2 i18n:translate="manage_rss_channels_refresh">
     Mettre &agrave; jour tous les flux
    </h2>
    <form action="refresh_channels" method="post">
-    <input type="submit" value="button_ok" name="add" class="standalone"
-           i18n:attributes="value" />
+    <p>
+     <input type="submit" value="button_ok" name="add" class="standalone"
+            i18n:attributes="value" />
+    </p>
    </form>
   </metal:main>
 
