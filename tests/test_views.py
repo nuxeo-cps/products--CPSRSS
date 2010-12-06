@@ -54,6 +54,13 @@ class ManageChannelsTestCase(ZopeRSSTestCase):
         view = self.makeView()
         self.assertTrue(view.hasContainer())
 
+    @staticmethod
+    def extractChannels(view):
+        # call the view API and present channels as dicts for easy assert
+        # why staticmethod ? for fun
+        return tuple(dict(id=chan.getId(), title=chan.title)
+                     for chan in view.channels())
+
     def test_channels(self):
         view = self.makeView()
         self.assertEquals(view.channels(), ())
@@ -63,7 +70,7 @@ class ManageChannelsTestCase(ZopeRSSTestCase):
         view.addChannel(url=get_feed_url('zope.rss'))
         view.addChannel(url=get_feed_url('trac_cps.rss'))
 
-        self.assertEquals(view.channels(),
+        self.assertEquals(self.extractChannels(view),
                           (dict(id='zope-org', title='Zope.org'),
                            dict(id='cps-cms-ticket-query',
                                 title='CPS CMS: Ticket Query')))
@@ -75,7 +82,7 @@ class ManageChannelsTestCase(ZopeRSSTestCase):
         view.request.form['channel_url'] = get_feed_url('zope.rss')
         view.addChannel()
 
-        self.assertEquals(view.channels(),
+        self.assertEquals(self.extractChannels(view),
                           (dict(id='zope-org', title='Zope.org'),))
 
 
