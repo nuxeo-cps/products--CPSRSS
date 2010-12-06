@@ -26,6 +26,22 @@
     attribute="refresh"
     />
 
+  <browser:view
+    for="Products.CPSCore.interfaces.ICPSProxy"
+    name="channels_restricted"
+    class=".browser.channels.ManageChannels"
+    allowed_attributes="rssItems"
+    permission="zope2.View"
+    />
+
+  <browser:view
+    for="Products.CPSCore.interfaces.ICPSSite"
+    name="channels_restricted"
+    class=".browser.channels.ManageChannels"
+    allowed_attributes="rssItems"
+    permission="zope2.View"
+    />
+
   <!--browser:page
     for="Products.CPSRSS.interfaces.IRSSChannel"
     name="edit.html"

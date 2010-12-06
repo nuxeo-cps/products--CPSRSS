@@ -1,6 +1,9 @@
 <tal:block define="ds options/datastructure;
                    export request/form/export|nothing;
-                   rssitems python: here.getRSSItems(**dict(ds))"
+                   portal here/portal_url/getPortalObject;
+                   view nocall:portal/@@channels_restricted;
+                   rssitems python: view.rssItems(cont_id='portal_rss',
+                                                  **dict(ds))"
            condition="rssitems">
 
   <tal:block condition="not:export">
