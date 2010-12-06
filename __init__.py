@@ -20,9 +20,7 @@
 #
 # $Id$
 
-from Products.CMFCore.utils import ContentInit, ToolInit
-from Products.CMFCore.DirectoryView import registerDirectory
-from Products.CMFCore.permissions import AddPortalContent
+from Products.CMFCore.utils import ToolInit
 
 import RSSTool
 

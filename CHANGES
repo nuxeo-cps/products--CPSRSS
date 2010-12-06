@@ -6,7 +6,7 @@ New features
 - #446: local RSS Channels and management via normal CPS UI
 Bug fixes
 ~~~~~~~~~
--
+- Related to #2185: remaining problems with non ascii chars in title/descr
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
