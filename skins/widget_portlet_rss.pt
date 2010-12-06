@@ -1,0 +1,29 @@
+<tal:block define="ds options/datastructure;
+                   export request/form/export|nothing;
+                   rssitems python: here.getRSSItems(**dict(ds))"
+           condition="rssitems">
+
+  <tal:block condition="not:export">
+    <ul class="cpsskinsMenu">
+      <tal:block repeat="item rssitems">
+        <li tal:define="item_url item/url;
+                        rendered item/rendered">
+          <a tal:attributes="href item_url;
+	   onclick python:item['newWindow'] and 'window.open(\x22%s\x22)\x3b return false\x3b' % item_url or None"
+             tal:content="structure rendered" />
+        </li>
+      </tal:block>
+    </ul>
+    <tal:block condition="rssitems">
+      <metal:block use-macro="here/cpsportlet_macros/macros/xml_exports" />
+    </tal:block>
+  </tal:block>
+
+  <tal:block condition="export">
+    <tal:block define="export_macro string:export_${export};
+                       items rssitems">
+      <metal:block use-macro="here/cpsportlet_macros/macros/?export_macro|
+                              here/cpsportlet_macros/macros/export_not_implemented" />
+    </tal:block>
+  </tal:block>
+</tal:block>

@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<object name="RSS Portlet" meta_type="CPS Flexible Type Information"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+ <property name="title">portal_type_RSSPortlet_title</property>
+ <property name="description">portal_type_RSSPortlet_description</property>
+ <property name="content_icon">rss_portlet_icon.png</property>
+ <property name="content_meta_type">CPS Portlet</property>
+ <property name="product">CPSPortlets</property>
+ <property name="factory">addCPSPortlet</property>
+ <property name="immediate_view">cpsportlet_edit_form</property>
+ <property name="global_allow">False</property>
+ <property name="filter_content_types">False</property>
+ <property name="allowed_content_types"/>
+ <property name="allow_discussion">False</property>
+ <property name="cps_is_searchable">False</property>
+ <property name="cps_proxy_type"></property>
+ <property name="cps_display_as_document_in_listing">False</property>
+ <property name="schemas">
+  <element value="portlet_common"/>
+  <element value="rss_portlet"/>
+  <element value="common"/>
+  <element value="metadata"/>
+ </property>
+ <property name="layouts">
+  <element value="portlet_common"/>
+  <element value="rss_portlet"/>
+ </property>
+ <property name="layout_clusters">
+  <element value="metadata:metadata"/>
+ </property>
+ <property name="flexible_layouts"/>
+ <property name="storage_methods"/>
+ <property name="cps_is_portlet">True</property>
+ <alias from="(Default)" to="render"/>
+ <alias from="view" to="render"/>
+ <action title="action_create" action_id="create" category="object"
+    condition_expr="" url_expr="string:${object_url}/cpsportlet_create_form"
+    visible="False">
+  <permission value="Manage Portlets"/>
+ </action>
+ <action title="action_edit" action_id="edit" category="object"
+    condition_expr="" url_expr="string:${object_url}/cpsportlet_edit_form"
+    visible="False">
+  <permission value="Manage Portlets"/>
+ </action>
+ <action title="action_view" action_id="view" category="object"
+    condition_expr="" url_expr="string:${object_url}/render" visible="False">
+  <permission value="View"/>
+ </action>
+ <action title="action_metadata" action_id="metadata" category="object"
+    condition_expr="" url_expr="string:${object_url}/cpsportlet_metadata"
+    visible="False">
+  <permission value="Manage Portlets"/>
+ </action>
+</object>

@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<object name="portal_schemas" meta_type="CPS Schemas Tool">
+ <object name="rss_portlet" meta_type="CPS Schema"/>
+</object>

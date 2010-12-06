@@ -21,13 +21,16 @@
 # $Id$
 
 from Products.CMFCore.utils import ToolInit
-
-import RSSTool
+from Products.CMFCore.DirectoryView import registerDirectory
 
 from Products.GenericSetup import profile_registry
 from Products.GenericSetup import EXTENSION
 
+import RSSTool
+
 from Products.CPSCore.interfaces import ICPSSite
+
+registerDirectory('skins', globals())
 
 tools = (RSSTool.RSSTool, )
 

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<object name="rss_portlet" meta_type="CPS Schema">
+ <field name="channels" meta_type="CPS String List Field"/>
+ <field name="display_description" meta_type="CPS Boolean Field">
+  <property name="default_expr">python:True</property>
+ </field>
+ <field name="first_item" meta_type="CPS Int Field">
+  <property name="default_expr">python:1</property>
+ </field>
+ <field name="link_string" meta_type="CPS String Field">
+  <property name="default_expr">string:&gt;&gt;</property>
+ </field>
+ <field name="max_items" meta_type="CPS Int Field">
+  <property name="default_expr">python:5</property>
+ </field>
+ <field name="max_words" meta_type="CPS Int Field"/>
+ <field name="render_method" meta_type="CPS String Field"/>
+ <field name="short_syndication_formats" meta_type="CPS Int Field"/>
+ <field name="syndication_formats" meta_type="CPS String List Field"/>
+</object>

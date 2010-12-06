@@ -1,0 +1,188 @@
+<?xml version="1.0"?>
+<object name="rss_portlet" meta_type="CPS Layout">
+ <property name="layout_create_method"></property>
+ <property name="layout_edit_method"></property>
+ <property name="layout_view_method"></property>
+ <property name="style_prefix">layout_portlet_</property>
+ <property name="flexible_widgets"/>
+ <property name="validate_values_expr"></property>
+ <widget name="cache_timeout" meta_type="Int Widget">
+  <property name="fields">
+   <element value="cache_timeout"/>
+  </property>
+  <property name="is_required">True</property>
+  <property name="is_limited">True</property>
+  <property name="min_value">60</property>
+  <property name="max_value">2000000000</property>
+  <property
+     name="label_edit">cpsportlets_rss_update_frequency_label</property>
+  <property name="is_i18n">True</property>
+  <property name="readonly_layout_modes"/>
+  <property name="hidden_layout_modes">
+   <element value="view"/>
+  </property>
+  <property name="hidden_readonly_layout_modes"/>
+ </widget>
+ <widget name="channels" meta_type="MultiSelect Widget">
+  <property name="fields">
+   <element value="channels"/>
+  </property>
+  <property name="label_edit">cpsportlets_rss_channel_label</property>
+  <property name="is_i18n">True</property>
+  <property name="readonly_layout_modes"/>
+  <property name="hidden_layout_modes">
+   <element value="view"/>
+  </property>
+  <property name="hidden_readonly_layout_modes"/>
+  <property name="vocabulary">cpsportlets_rss_channels_voc</property>
+ </widget>
+ <widget name="display_description" meta_type="Boolean Widget">
+  <property name="fields">
+   <element value="display_description"/>
+  </property>
+  <property
+     name="label_edit">cpsportlets_common_display_description_label</property>
+  <property name="is_i18n">True</property>
+  <property name="readonly_layout_modes"/>
+  <property name="hidden_layout_modes">
+   <element value="view"/>
+  </property>
+  <property name="hidden_readonly_layout_modes"/>
+  <property name="hidden_if_expr">context/render_method</property>
+ </widget>
+ <widget name="first_item" meta_type="Int Widget">
+  <property name="fields">
+   <element value="first_item"/>
+  </property>
+  <property name="label_edit">cpsportlets_common_first_item_label</property>
+  <property name="is_i18n">True</property>
+  <property name="readonly_layout_modes"/>
+  <property name="hidden_layout_modes">
+   <element value="view"/>
+  </property>
+  <property name="hidden_readonly_layout_modes"/>
+  <property name="is_limited">True</property>
+  <property name="min_value">1</property>
+  <property name="max_value">15</property>
+ </widget>
+ <widget name="link_string" meta_type="String Widget">
+  <property name="fields">
+   <element value="link_string"/>
+  </property>
+  <property name="label_edit">cpsportlets_common_link_string_label</property>
+  <property name="is_i18n">True</property>
+  <property name="readonly_layout_modes"/>
+  <property name="hidden_layout_modes">
+   <element value="view"/>
+  </property>
+  <property name="hidden_readonly_layout_modes"/>
+  <property name="hidden_if_expr">context/render_method</property>
+ </widget>
+ <widget name="max_items" meta_type="Int Widget">
+  <property name="fields">
+   <element value="max_items"/>
+  </property>
+  <property name="label_edit">cpsportlets_common_max_items_label</property>
+  <property name="is_i18n">True</property>
+  <property name="readonly_layout_modes"/>
+  <property name="hidden_layout_modes">
+   <element value="view"/>
+  </property>
+  <property name="hidden_readonly_layout_modes"/>
+  <property name="min_value">1</property>
+  <property name="max_value">15</property>
+ </widget>
+ <widget name="max_words" meta_type="Int Widget">
+  <property name="fields">
+   <element value="max_words"/>
+  </property>
+  <property name="label_edit">cpsportlets_rss_max_words_label</property>
+  <property name="is_i18n">True</property>
+  <property name="readonly_layout_modes"/>
+  <property name="hidden_layout_modes">
+   <element value="view"/>
+  </property>
+  <property name="hidden_readonly_layout_modes"/>
+  <property name="hidden_if_expr">not:context/display_description</property>
+ </widget>
+ <widget name="portlet" meta_type="Generic Portlet Widget">
+  <property name="fields">
+   <element value="portlet"/>
+  </property>
+  <property name="readonly_layout_modes"/>
+  <property name="hidden_layout_modes">
+   <element value="edit"/>
+  </property>
+  <property name="hidden_readonly_layout_modes"/>
+  <property name="render_method">widget_portlet_rss</property>
+ </widget>
+ <widget name="render_method" meta_type="String Widget">
+  <property name="fields">
+   <element value="render_method"/>
+  </property>
+  <property
+     name="label_edit">cpsportlets_common_render_method_label</property>
+  <property name="is_i18n">True</property>
+  <property name="hidden_layout_modes">
+   <element value="view"/>
+  </property>
+  <property name="display_width">30</property>
+ </widget>
+ <widget name="short_syndication_formats" meta_type="CheckBox Widget">
+  <property name="fields">
+   <element value="short_syndication_formats"/>
+  </property>
+  <property
+     name="label_edit">cpsportlets_common_short_syndication_formats_label</property>
+  <property name="is_i18n">True</property>
+  <property name="hidden_layout_modes">
+   <element value="view"/>
+  </property>
+ </widget>
+ <widget name="syndication_formats" meta_type="MultiSelect Widget">
+  <property name="fields">
+   <element value="syndication_formats"/>
+  </property>
+  <property
+     name="label_edit">cpsportlets_common_syndication_formats_label</property>
+  <property name="is_i18n">True</property>
+  <property name="hidden_layout_modes">
+   <element value="view"/>
+  </property>
+  <property name="vocabulary">cpsportlets_syndication_formats_voc</property>
+  <property name="translated">True</property>
+ </widget>
+ <table>
+  <row>
+   <cell name="portlet" ncols="2"/>
+  </row>
+  <row>
+   <cell name="channels" ncols="2"/>
+  </row>
+  <row>
+   <cell name="cache_timeout" ncols="2"/>
+  </row>
+  <row>
+   <cell name="render_method" ncols="2"/>
+  </row>
+  <row>
+   <cell name="display_description" ncols="2"/>
+  </row>
+  <row>
+   <cell name="first_item" ncols="2"/>
+  </row>
+  <row>
+   <cell name="max_items" ncols="2"/>
+  </row>
+  <row>
+   <cell name="max_words" ncols="2"/>
+  </row>
+  <row>
+   <cell name="link_string" ncols="2"/>
+  </row>
+  <row>
+   <cell name="syndication_formats"/>
+   <cell name="short_syndication_formats"/>
+  </row>
+ </table>
+</object>
