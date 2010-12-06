@@ -1,4 +1,0 @@
-# author: epietriga@nuxeo.com
-
-- if lazy refresh is on, a newly-created RSS box won't be updated until
-  the next refresh (i.e. it might remain empty for up to refresh_delay seconds)
