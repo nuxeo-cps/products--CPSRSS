@@ -48,7 +48,7 @@
    <element value="view"/>
   </property>
   <property name="hidden_readonly_layout_modes"/>
-  <property name="hidden_if_expr">context/render_method</property>
+  <property name="hidden_if_expr">datamodel/render_method</property>
  </widget>
  <widget name="first_item" meta_type="Int Widget">
   <property name="fields">
@@ -76,7 +76,7 @@
    <element value="view"/>
   </property>
   <property name="hidden_readonly_layout_modes"/>
-  <property name="hidden_if_expr">context/render_method</property>
+  <property name="hidden_if_expr">datamodel/render_method</property>
  </widget>
  <widget name="max_items" meta_type="Int Widget">
   <property name="fields">
@@ -103,7 +103,7 @@
    <element value="view"/>
   </property>
   <property name="hidden_readonly_layout_modes"/>
-  <property name="hidden_if_expr">not:context/display_description</property>
+  <property name="hidden_if_expr">not:datamodel/display_description</property>
  </widget>
  <widget name="portlet" meta_type="Generic Portlet Widget">
   <property name="fields">
