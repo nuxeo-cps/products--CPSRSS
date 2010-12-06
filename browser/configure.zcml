@@ -18,6 +18,14 @@
     attribute="addChannel"
     />
 
+  <browser:page
+    for="Products.CPSCore.interfaces.ICPSProxy"
+    name="refresh_channels"
+    permission="cps.rss.ManageChannels"
+    class=".browser.channels.ManageChannels"
+    attribute="refresh"
+    />
+
   <!--browser:page
     for="Products.CPSRSS.interfaces.IRSSChannel"
     name="edit.html"

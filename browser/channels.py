@@ -26,6 +26,7 @@ from Products.CPSRSS.RSSChannelContainer import addRSSChannelContainer
 
 from Products.CPSRSS.interfaces import IRSSChannelContainer
 
+
 class ManageChannels(AqSafeBrowserView):
 
     def __init__(self, *args, **kwargs):
@@ -57,6 +58,16 @@ class ManageChannels(AqSafeBrowserView):
             return ()
         return cont.objectValues([RSSChannel.meta_type])
 
+    def redirectManageChannels(self):
+        self.request.RESPONSE.redirect('/'.join((
+                self.context.absolute_url_path(), 'manage_channels.html')))
+
+    def refresh(self):
+        cont = self.aqSafeGet('container')
+        if cont is not None:
+            cont.refresh()
+        self.redirectManageChannels()
+
     def addChannel(self, url=None):
         """Create a channel from explicit url or from request form.
 
@@ -81,5 +92,4 @@ class ManageChannels(AqSafeBrowserView):
         channel.manage_changeProperties(title=title, description=description)
 
         cont._setObject(cid, channel)
-        self.request.RESPONSE.redirect('/'.join((
-                self.context.absolute_url_path(), 'manage_channels.html')))
+        self.redirectManageChannels()

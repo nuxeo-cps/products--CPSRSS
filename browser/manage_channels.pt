@@ -39,6 +39,16 @@
       </label>
      </form>
    </p>
+
+   <h2 i18n:translate="manage_rss_channels_refresh">
+    Mettre &agrave; jour tous les flux
+   </h2>
+   <p>
+    <form action="refresh_channels" method="post">
+      <input type="submit" value="button_ok" name="add" class="standalone"
+             i18n:attributes="value" />
+     </form>
+   </p>
   </metal:main>
 
  </body>

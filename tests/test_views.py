@@ -75,7 +75,6 @@ class ManageChannelsTestCase(ZopeRSSTestCase):
                            dict(id='cps-cms-ticket-query',
                                 title='CPS CMS: Ticket Query')))
 
-
     def test_addChannel_form_no_cont(self):
         # test adding a channel while there's no container yet, from form
         view = self.makeView()
@@ -85,6 +84,18 @@ class ManageChannelsTestCase(ZopeRSSTestCase):
         self.assertEquals(self.extractChannels(view),
                           (dict(id='zope-org', title='Zope.org'),))
 
+    def test_refresh(self):
+        view = self.makeView()
+        view.addChannel(url=get_feed_url('zope.rss'))
+
+        # low level url change
+        channel = view.channels()[0]
+        channel.channel_url = get_feed_url('trac_cps.rss')
+        # before refresh
+        self.assertEquals(channel.title, 'Zope.org')
+        # after
+        view.refresh()
+        self.assertEquals(channel.title, 'CPS CMS: Ticket Query')
 
 def test_suite():
     return unittest.makeSuite(ManageChannelsTestCase)
