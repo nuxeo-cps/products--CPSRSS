@@ -22,6 +22,9 @@ msgstr ""
 msgid "portal_type_RSSBox_description"
 msgstr "A box displaying RSS feeds"
 
+msgid "action_manage_rss_channels"
+msgstr "Manage feeds"
+
 #~ msgid "label_channel"
 #~ msgstr "Channel"
 

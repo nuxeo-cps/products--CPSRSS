@@ -19,3 +19,5 @@ msgstr ""
 msgid "portal_type_RSSBox_description"
 msgstr ""
 
+msgid "action_manage_rss_channels"
+msgstr ""

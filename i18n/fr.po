@@ -22,6 +22,9 @@ msgstr ""
 msgid "portal_type_RSSBox_description"
 msgstr "Affiche le contenu de flux RSS"
 
+msgid "action_manage_rss_channels"
+msgstr "Gérer les flux"
+
 #~ msgid "label_channel"
 #~ msgstr "Canal"
 
