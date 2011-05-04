@@ -4,7 +4,8 @@
  <body>
 
   <metal:main fill-slot="main"
-              tal:define="channels view/channels">
+              tal:define="channels view/channels;
+			  base_url here/portal_url/getBaseUrl">
 
    <h1 i18n:translate="heading_manage_rss_channels">
     Gestion des flux RSS
@@ -28,6 +29,13 @@
         <a tal:content="channel/title"
            tal:attributes="href string:${channel/absolute_url_path}/edit.html"
            />
+	<a
+
+           tal:attributes="href string:${here/absolute_url_path}/del_channels?chan_ids=${channel/getId};
+			   onclick python: 'return window.confirm(\'%s\')' % cpsmcat('confirm_channel_delete')"
+	   tal:condition="not:channel_info/activated">
+	 <img tal:attributes="src string:${base_url}/rss_channel_delete.png"/>
+	</a>
         <p tal:content="channel/description"/>
        </tal:block>
       </li>

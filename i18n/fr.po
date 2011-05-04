@@ -30,3 +30,6 @@ msgstr "Gérer les flux"
 
 #~ msgid "label_max_items"
 #~ msgstr "Nombre maximum de nouvelles"
+
+msgid "confirm_channel_delete"
+msgstr "Voulez-vous vraiment détruire ce flux ?"

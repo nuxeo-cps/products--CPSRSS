@@ -79,6 +79,16 @@ class ManageChannels(AqSafeBrowserView):
     def hasContainer(self):
         return self.aqSafeGet('container') is not None
 
+    def delChannels(self, chan_ids):
+        chan_ids = self.request.form.get('chan_ids')
+        if chan_ids is None:
+            raise BadRequest("Missing channel ids to remove.")
+        if isinstance(chan_ids, basestring):
+            chan_ids = [chan_ids]
+        cont = self.aqSafeGet('container')
+        cont.manage_delObjects(chan_ids)
+        self.redirectManageChannels()
+
     def channels(self, with_activation=True):
         cont = self.aqSafeGet('container')
         if cont is None:
@@ -184,7 +194,7 @@ class ManageChannels(AqSafeBrowserView):
 
     def setActivated(self):
         """Set the list of activated channels."""
-        activated = self.request.form['activated']
+        activated = self.request.form.get('activated', ())
         proxy = self.context
         doc = proxy.getEditableContent()
         dm = doc.getDataModel(proxy=proxy)

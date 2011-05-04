@@ -21,3 +21,6 @@ msgstr ""
 
 msgid "action_manage_rss_channels"
 msgstr ""
+
+msgid "confirm_channel_delete"
+msgstr ""

@@ -30,3 +30,6 @@ msgstr "Manage feeds"
 
 #~ msgid "label_max_items"
 #~ msgstr "Maximum Number of Items"
+
+msgid "confirm_channel_delete"
+msgstr "Do you really want to delete this channel ?"
