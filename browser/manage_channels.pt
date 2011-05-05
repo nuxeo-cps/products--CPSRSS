@@ -34,7 +34,7 @@
            tal:attributes="href string:${here/absolute_url_path}/del_channels?chan_ids=${channel/getId};
 			   onclick python: 'return window.confirm(\'%s\')' % cpsmcat('confirm_channel_delete')"
 	   tal:condition="not:channel_info/activated">
-	 <img tal:attributes="src string:${base_url}/rss_channel_delete.png"/>
+	 <img tal:attributes="src string:${base_url}rss_channel_delete.png"/>
 	</a>
         <p tal:content="channel/description"/>
        </tal:block>
