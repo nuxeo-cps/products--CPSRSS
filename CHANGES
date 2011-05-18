@@ -6,7 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
--
+- double leading slash problem for channel delete buttons
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
