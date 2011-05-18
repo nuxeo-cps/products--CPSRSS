@@ -1,4 +1,21 @@
 ===========================================================
+Package: CPSRSS 1.2.3
+===========================================================
+First release built by: gracinet at: 2011-05-18T12:54:33
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- double leading slash problem for channel delete buttons
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSRSS 1.2.2
 ===========================================================
 First release built by: gracinet at: 2011-05-04T18:45:57
