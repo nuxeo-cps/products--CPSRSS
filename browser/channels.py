@@ -125,7 +125,7 @@ class ManageChannels(AqSafeBrowserView):
         max_words = int(kw.get('max_words', 0))
 
         data_items = []
-        channels_ids = kw.get('channels')
+        channels_ids = kw.get('channels', [])
         for channel_id in channels_ids:
             if not cont.hasObject(channel_id):
                 continue
