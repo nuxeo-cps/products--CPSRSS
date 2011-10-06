@@ -1,4 +1,4 @@
-<tal:block define="ds options/datastructure;
+<tal:block define="ds options/datastructure|python:{};
                    export request/form/export|nothing;
                    portal here/portal_url/getPortalObject;
                    view nocall:portal/@@channels_restricted;
