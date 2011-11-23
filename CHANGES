@@ -6,7 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
-- Protection against missing parameters that cause ERROR messages in the logs.
+-
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
