@@ -1,4 +1,21 @@
 ===========================================================
+Package: CPSRSS 1.3.1-CPS-3.5
+===========================================================
+First release built by: gracinet at: 2011-11-23T19:59:09
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- Protection against missing parameters that cause ERROR messages in the logs.
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSRSS 1.3.0-CPS-3.5
 ===========================================================
 First release built by: gracinet at: 2011-09-28T20:54:53
