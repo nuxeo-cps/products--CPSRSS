@@ -2,6 +2,7 @@
                    export request/form/export|nothing;
                    portal here/portal_url/getPortalObject;
                    view nocall:portal/@@channels_restricted;
+                   dummy python:view.setDataStructure(ds);
                    rssitems python: view.rssItems(cont_id='portal_rss',
                                                   **dict(ds))"
            condition="rssitems">
@@ -17,7 +18,8 @@
         </li>
       </tal:block>
     </ul>
-    <tal:block condition="rssitems">
+    <tal:block 
+               define="dm python:ds.getDataModel()">
       <metal:block use-macro="here/cpsportlet_macros/macros/xml_exports" />
     </tal:block>
   </tal:block>

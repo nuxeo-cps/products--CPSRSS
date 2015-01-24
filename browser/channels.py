@@ -60,6 +60,13 @@ class ManageChannels(AqSafeBrowserView):
         AqSafeBrowserView.__init__(self, *args, **kwargs)
         self.aqSafeSet('container', self.lookupContainer())
 
+    security.declareProtected(View, 'setDataStructure')
+    def setDataStructure(self, ds):
+        self.datastructure = ds
+
+    def portlet(self):
+        return self.datastructure.getDataModel().getObject()
+
     def lookupContainer(self, cont_id=None):
         """Lookup the relevant container and set it up on self."""
         folder = self.context.aq_inner
